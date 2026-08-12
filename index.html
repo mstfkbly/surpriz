@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hava İçin</title>
 
-  <title>Hava ✨</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -15,91 +18,112 @@
 
     :root {
       --white: #ffffff;
-      --soft: rgba(255, 255, 255, 0.72);
-      --glass: rgba(255, 255, 255, 0.08);
-      --border: rgba(255, 255, 255, 0.14);
-      --pink: #ff5fa2;
-      --purple: #9a6cff;
+      --soft: rgba(255,255,255,0.80);
+      --muted: rgba(255,255,255,0.58);
+      --glass: rgba(255,255,255,0.10);
+      --border: rgba(255,255,255,0.15);
+      --pink: #ff5ea8;
+      --rose: #ff7ea8;
+      --purple: #9d74ff;
+      --shadow: 0 30px 80px rgba(0,0,0,0.45);
     }
 
     body {
       min-height: 100vh;
       overflow: hidden;
-      font-family: Inter, Arial, sans-serif;
       color: var(--white);
-
-      background:
-        radial-gradient(circle at 20% 15%, rgba(255, 82, 149, .22), transparent 30%),
-        radial-gradient(circle at 80% 80%, rgba(122, 92, 255, .24), transparent 34%),
-        linear-gradient(145deg, #090911, #11111c 55%, #08080f);
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-family: "Inter", sans-serif;
+      background: #08070c;
+      position: relative;
     }
 
-    .ambient {
+    body::before {
+      content: "";
       position: fixed;
       inset: 0;
-      pointer-events: none;
+      z-index: -3;
+      background:
+        linear-gradient(135deg, rgba(8,8,14,0.88), rgba(28,7,19,0.72), rgba(7,7,11,0.90)),
+        url("https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.05);
+      filter: saturate(1.05);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 94, 168, 0.20), transparent 28%),
+        radial-gradient(circle at 85% 75%, rgba(157, 116, 255, 0.22), transparent 30%),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.04), transparent 40%);
+    }
+
+    #bgRoses {
+      position: fixed;
+      inset: 0;
       overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    .blur {
+    .bg-rose {
       position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      opacity: .45;
-      animation: move 9s ease-in-out infinite alternate;
-    }
-
-    .blur.one {
-      width: 280px;
-      height: 280px;
-      background: #ff3b87;
-      top: -70px;
-      left: -60px;
-    }
-
-    .blur.two {
-      width: 360px;
-      height: 360px;
-      background: #705cff;
-      right: -100px;
-      bottom: -120px;
-      animation-delay: 1.5s;
+      opacity: 0.16;
+      filter: blur(0.3px);
+      animation: drift var(--d) ease-in-out infinite alternate;
+      user-select: none;
     }
 
     .app {
-      width: min(92%, 460px);
-      min-height: 560px;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
       position: relative;
       z-index: 2;
     }
 
+    .shell {
+      width: min(92vw, 470px);
+      position: relative;
+    }
+
+    .music-toggle {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 30;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.09);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: 0.25s ease;
+    }
+
+    .music-toggle:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.15);
+    }
+
     .card {
-      width: 100%;
-      min-height: 560px;
-
-      padding: 34px 28px;
-
+      min-height: 690px;
       border-radius: 34px;
-
-      background: linear-gradient(
-        145deg,
-        rgba(255,255,255,.12),
-        rgba(255,255,255,.05)
-      );
-
+      padding: 22px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
       border: 1px solid var(--border);
-
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-
-      box-shadow:
-        0 30px 90px rgba(0,0,0,.45),
-        inset 0 1px 0 rgba(255,255,255,.1);
-
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      box-shadow: var(--shadow);
       overflow: hidden;
       position: relative;
     }
@@ -108,314 +132,269 @@
       content: "";
       position: absolute;
       inset: 0;
-
-      background:
-        linear-gradient(
-          120deg,
-          transparent 0%,
-          rgba(255,255,255,.06) 40%,
-          transparent 70%
-        );
-
-      transform: translateX(-100%);
-      animation: sheen 6s infinite;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.08) 40%, transparent 72%);
+      transform: translateX(-120%);
+      animation: sheen 7s infinite;
+      pointer-events: none;
     }
 
     .top {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 14px;
       position: relative;
       z-index: 2;
     }
 
-    .tag {
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-size: 11px;
-      letter-spacing: 2.4px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: rgba(255,255,255,.52);
+      color: rgba(255,255,255,0.72);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.10);
+      padding: 9px 12px;
+      border-radius: 999px;
     }
 
     .step {
       font-size: 12px;
-      color: rgba(255,255,255,.4);
+      color: rgba(255,255,255,0.46);
+      font-weight: 600;
     }
 
-    .screens {
-      min-height: 450px;
+    .progress {
+      width: 100%;
+      height: 4px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.08);
+      margin-bottom: 14px;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 25%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--pink), var(--purple));
+      transition: width 0.55s ease;
+    }
+
+    .stage {
+      min-height: 585px;
       position: relative;
     }
 
     .screen {
       position: absolute;
       inset: 0;
-
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-
       text-align: center;
-
       opacity: 0;
-      pointer-events: none;
-
-      transform: translateY(20px) scale(.98);
+      transform: translateY(26px) scale(0.97);
       filter: blur(8px);
-
-      transition:
-        opacity .65s ease,
-        transform .65s ease,
-        filter .65s ease;
+      pointer-events: none;
+      transition: opacity 0.65s ease, transform 0.65s ease, filter 0.65s ease;
+      padding: 12px 4px;
     }
 
     .screen.active {
       opacity: 1;
-      pointer-events: auto;
       transform: translateY(0) scale(1);
       filter: blur(0);
+      pointer-events: auto;
     }
 
-    .icon {
+    .mini-icon {
       width: 82px;
       height: 82px;
-
-      border-radius: 26px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      margin-bottom: 25px;
-
-      font-size: 38px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,.16),
-          rgba(255,255,255,.06)
-        );
-
-      border: 1px solid rgba(255,255,255,.12);
-
-      box-shadow:
-        0 15px 40px rgba(0,0,0,.25);
-
-      animation: floating 3s ease-in-out infinite;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 36px;
+      margin-bottom: 20px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.07));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+      animation: floaty 3.2s ease-in-out infinite;
     }
 
-    h1 {
-      font-size: clamp(42px, 10vw, 62px);
-      letter-spacing: -2.5px;
-      font-weight: 700;
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.58);
       margin-bottom: 14px;
+    }
 
-      background:
-        linear-gradient(
-          90deg,
-          #fff,
-          #ffd4e7,
-          #fff
-        );
-
+    .title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(56px, 13vw, 82px);
+      line-height: 0.95;
+      margin-bottom: 14px;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      background: linear-gradient(90deg, #fff, #ffd7e9, #fff);
       -webkit-background-clip: text;
       color: transparent;
     }
 
-    h2 {
-      font-size: clamp(28px, 7vw, 39px);
-      letter-spacing: -1.3px;
+    .subtitle {
+      font-size: clamp(28px, 7vw, 40px);
       line-height: 1.15;
-      font-weight: 650;
-      margin-bottom: 18px;
+      font-weight: 700;
+      letter-spacing: -1.2px;
+      margin-bottom: 16px;
+      max-width: 360px;
     }
 
-    p {
+    .text {
       max-width: 350px;
       font-size: 16px;
-      line-height: 1.75;
+      line-height: 1.8;
       color: var(--soft);
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
 
-    .accent {
-      color: white;
-      font-weight: 600;
+    .photo-wrap {
+      width: 100%;
+      max-width: 320px;
+      padding: 12px;
+      border-radius: 28px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.16), rgba(255,255,255,0.07));
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 22px 55px rgba(0,0,0,0.25);
+      margin-bottom: 18px;
+      transform: rotate(-2deg);
     }
 
-    button {
-      border: 0;
-      outline: 0;
+    .photo-wrap img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 20px;
+    }
 
-      min-width: 180px;
+    .photo-caption {
+      padding: 12px 10px 4px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.76);
+      text-align: center;
+    }
 
-      padding: 15px 26px;
-
-      border-radius: 999px;
-
-      color: white;
-      font-size: 15px;
-      font-weight: 600;
-
+    .btn {
+      border: none;
+      outline: none;
       cursor: pointer;
-
-      background:
-        linear-gradient(
-          135deg,
-          #ff5f9f,
-          #925cff
-        );
-
-      box-shadow:
-        0 12px 35px rgba(219, 75, 165, .27);
-
-      transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        filter .25s ease;
+      min-width: 190px;
+      padding: 15px 28px;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ff5ea8, #9d74ff);
+      box-shadow: 0 16px 40px rgba(255, 94, 168, 0.28);
+      transition: 0.25s ease;
     }
 
-    button:hover {
+    .btn:hover {
       transform: translateY(-2px) scale(1.02);
-      box-shadow:
-        0 16px 45px rgba(219, 75, 165, .38);
+      box-shadow: 0 18px 46px rgba(255, 94, 168, 0.38);
     }
 
-    button:active {
-      transform: scale(.96);
+    .btn:active {
+      transform: scale(0.97);
     }
 
     .final-name {
-      font-size: clamp(48px, 11vw, 68px);
-      font-weight: 700;
-      margin-bottom: 18px;
-
-      background:
-        linear-gradient(
-          90deg,
-          #fff,
-          #ffb9d5,
-          #c8b8ff,
-          #fff
-        );
-
-      background-size: 250%;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(48px, 11vw, 70px);
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, #fff, #ffbfdc, #d6c6ff, #fff);
+      background-size: 220%;
       -webkit-background-clip: text;
       color: transparent;
-
-      animation: gradientMove 5s linear infinite;
+      animation: gradientFlow 5s linear infinite;
     }
 
-    .progress {
-      width: 100%;
-      height: 3px;
-
-      background: rgba(255,255,255,.07);
-
-      border-radius: 20px;
-      overflow: hidden;
+    .quote {
+      max-width: 350px;
+      min-height: 82px;
+      margin: 4px 0 16px;
+      color: #ffffff;
+      font-size: 17px;
+      line-height: 1.7;
+      font-weight: 500;
     }
 
-    .progress-fill {
-      height: 100%;
-      width: 25%;
-
-      background:
-        linear-gradient(
-          90deg,
-          #ff6ba9,
-          #946dff
-        );
-
-      transition: width .6s ease;
+    .soft-end {
+      max-width: 350px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.8;
+      font-size: 15px;
     }
 
-    .emoji {
+    .burst {
       position: fixed;
       z-index: 999;
-
       pointer-events: none;
-
-      animation: emojiFly 2.8s ease-out forwards;
-
-      filter:
-        drop-shadow(0 5px 10px rgba(0,0,0,.2));
+      user-select: none;
+      animation: burstUp 2.4s ease-out forwards;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.22));
     }
 
     .spark {
       position: fixed;
-      width: 6px;
-      height: 6px;
-
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-
-      background: white;
-
+      background: rgba(255,255,255,0.92);
+      box-shadow: 0 0 14px rgba(255,255,255,0.88);
       z-index: 998;
       pointer-events: none;
-
-      box-shadow:
-        0 0 12px rgba(255,255,255,.8);
-
-      animation: sparkFly 1.8s ease-out forwards;
+      animation: sparkFly 1.7s ease-out forwards;
     }
 
-    @keyframes emojiFly {
+    @keyframes burstUp {
       0% {
         opacity: 0;
-        transform:
-          translateY(0)
-          scale(.3)
-          rotate(0deg);
+        transform: translate(0, 0) scale(0.3) rotate(0deg);
       }
-
       15% {
         opacity: 1;
       }
-
       100% {
         opacity: 0;
-        transform:
-          translateY(-330px)
-          translateX(var(--move-x))
-          scale(1.25)
-          rotate(var(--rotate));
+        transform: translate(var(--x), var(--y)) scale(1.18) rotate(var(--r));
       }
     }
 
     @keyframes sparkFly {
       0% {
         opacity: 1;
-        transform: scale(.3);
+        transform: scale(0.2);
       }
-
       100% {
         opacity: 0;
-        transform:
-          translate(
-            var(--sx),
-            var(--sy)
-          )
-          scale(1.5);
+        transform: translate(var(--sx), var(--sy)) scale(1.6);
       }
     }
 
-    @keyframes floating {
+    @keyframes floaty {
       0%, 100% {
         transform: translateY(0);
       }
-
       50% {
         transform: translateY(-8px);
-      }
-    }
-
-    @keyframes move {
-      to {
-        transform:
-          translate(40px, 40px)
-          scale(1.12);
       }
     }
 
@@ -423,286 +402,299 @@
       0%, 65% {
         transform: translateX(-120%);
       }
-
       100% {
         transform: translateX(120%);
       }
     }
 
-    @keyframes gradientMove {
+    @keyframes gradientFlow {
       to {
-        background-position: 250%;
+        background-position: 220%;
       }
     }
 
-    @media (max-width: 500px) {
+    @keyframes drift {
+      from {
+        transform: translateY(0px) rotate(-8deg);
+      }
+      to {
+        transform: translateY(-18px) rotate(8deg);
+      }
+    }
+
+    @media (max-width: 520px) {
       .card {
-        min-height: 530px;
+        min-height: 660px;
         border-radius: 28px;
-        padding: 28px 22px;
+        padding: 18px;
       }
 
-      .screens {
-        min-height: 420px;
+      .stage {
+        min-height: 560px;
+      }
+
+      .music-toggle {
+        top: 10px;
+        right: 10px;
+        padding: 9px 12px;
+        font-size: 12px;
+      }
+
+      .text {
+        font-size: 15px;
+      }
+
+      .btn {
+        min-width: 170px;
       }
     }
   </style>
 </head>
-
 <body>
 
-<div class="ambient">
-  <div class="blur one"></div>
-  <div class="blur two"></div>
-</div>
+  <div id="bgRoses"></div>
 
-<div class="app">
+  <div class="app">
+    <div class="shell">
 
-  <div class="card">
+      <button class="music-toggle" id="musicBtn" onclick="toggleMusic()">♫ Müziği Aç</button>
 
-    <div class="top">
-      <div class="tag">Sadece Hava için</div>
-      <div class="step" id="stepText">01 / 04</div>
-    </div>
-
-    <div class="screens">
-
-      <!-- 1 -->
-      <section class="screen active" id="screen1">
-
-        <div class="icon">✨</div>
-
-        <h1>Hava.</h1>
-
-        <p>
-          Sana normal bir mesaj atabilirdim.
-          <br><br>
-          Ama <span class="accent">biraz daha farklı</span>
-          bir şey yapmak istedim.
-        </p>
-
-        <button onclick="goNext(1)">
-          Başlayalım
-        </button>
-
-      </section>
-
-      <!-- 2 -->
-      <section class="screen" id="screen2">
-
-        <div class="icon">🌙</div>
-
-        <h2>
-          Seni etkilemenin
-          kolay olmadığını biliyorum.
-        </h2>
-
-        <p>
-          Zaten mesele seni etkilemeye çalışmak değil.
-          <br><br>
-          Sadece seni düşündüğümde
-          sıradan bir mesajın biraz yetersiz kalması.
-        </p>
-
-        <button onclick="goNext(2)">
-          Devam et
-        </button>
-
-      </section>
-
-      <!-- 3 -->
-      <section class="screen" id="screen3">
-
-        <div class="icon">🌹</div>
-
-        <h2>
-          Bazı insanlar
-          fark edilmeden geçip gider.
-        </h2>
-
-        <p>
-          Bazılarıysa hiçbir şey yapmasa bile
-          insanın aklında biraz daha uzun kalır.
-          <br><br>
-          Sanırım sen
-          <span class="accent">ikinci gruptasın.</span>
-        </p>
-
-        <button onclick="goNext(3)">
-          Son bir şey
-        </button>
-
-      </section>
-
-      <!-- 4 -->
-      <section class="screen" id="screen4">
-
-        <div class="icon">❤️</div>
-
-        <div class="final-name">
-          Hava
+      <div class="card">
+        <div class="top">
+          <div class="badge">Sadece Hava için</div>
+          <div class="step" id="stepText">01 / 04</div>
         </div>
 
-        <p>
-          Bunu hazırlarken tek düşündüğüm şey şuydu:
-          <br><br>
+        <div class="progress">
+          <span id="progressFill"></span>
+        </div>
 
-          <span class="accent">
-            “Acaba yüzünde küçük de olsa
-            bir tebessüm oluşturur mu?”
-          </span>
-          <br><br>
+        <div class="stage">
 
-          Eğer olduysa,
-          bu sayfa görevini tamamladı.
-        </p>
+          <!-- 1 -->
+          <section class="screen active" id="screen1">
+            <div class="mini-icon">🌹</div>
+            <div class="eyebrow">Küçük bir sürpriz</div>
+            <h1 class="title">Hava</h1>
+            <p class="text">
+              Sana sıradan bir mesaj bırakmak istemedim.
+              Biraz daha özenli, biraz daha akılda kalıcı
+              bir şey hazırlamak istedim.
+            </p>
+            <button class="btn" onclick="nextScreen(1, 'hearts')">Dokun</button>
+          </section>
 
-      </section>
+          <!-- 2 -->
+          <section class="screen" id="screen2">
+            <div class="eyebrow">Bir kare</div>
 
-    </div>
+            <div class="photo-wrap">
+              <img src="foto.jpg" alt="Fotoğraf">
+              <div class="photo-caption">Bazı anlar, kelimelerden daha güçlüdür.</div>
+            </div>
 
-    <div class="progress">
-      <div
-        class="progress-fill"
-        id="progressFill">
+            <p class="text">
+              Bu sayfa sadece görünmek için değil,
+              biraz da hissedilmek için hazırlandı.
+            </p>
+
+            <button class="btn" onclick="nextScreen(2, 'mix')">Devam et</button>
+          </section>
+
+          <!-- 3 -->
+          <section class="screen" id="screen3">
+            <div class="mini-icon">✨</div>
+            <div class="eyebrow">Kısa ama net</div>
+            <h2 class="subtitle">
+              Bazı insanlar dikkat çekmek için uğraşır.
+            </h2>
+            <p class="text">
+              Bazılarıysa hiçbir şey yapmasa bile fark edilir.
+              <br><br>
+              Sanırım sen o ikinci gruptasın.
+            </p>
+            <button class="btn" onclick="nextScreen(3, 'final')">Son bir şey</button>
+          </section>
+
+          <!-- 4 -->
+          <section class="screen" id="screen4">
+            <div class="mini-icon">❤️</div>
+            <div class="eyebrow">Final</div>
+            <h2 class="subtitle final-name">Hava</h2>
+
+            <p class="text" style="margin-bottom: 8px;">
+              Bunu hazırlamamın sebebi seni ikna etmeye çalışmak değil.
+            </p>
+
+            <p class="quote" id="typeTarget"></p>
+
+            <p class="soft-end">
+              Eğer sonunda içinden küçücük bir
+              <strong>“vay be”</strong> geçtiyse,
+              tam istediğim şey buydu.
+            </p>
+          </section>
+
+        </div>
       </div>
     </div>
-
   </div>
 
-</div>
+  <audio id="bgMusic" loop>
+    <source src="muzik.mp3" type="audio/mpeg">
+  </audio>
 
-<script>
-  let current = 1;
+  <script>
+    const finalMessage =
+      "Sadece aklımda kaldığını, sıradan bir mesajdan biraz daha farklı bir şekilde göstermek istedim.";
 
-  function goNext(step) {
+    let typed = false;
 
-    if (step === 1) {
-      createEmojis(["❤️", "💗", "💕", "💖"], 22);
-    }
+    function nextScreen(current, effectType) {
+      startMusic();
+      runEffect(effectType);
 
-    if (step === 2) {
-      createEmojis(
-        ["❤️", "💗", "🌹", "🌹", "💕", "🌷"],
-        28
-      );
-
-      createSparkles(18);
-    }
-
-    if (step === 3) {
-      createEmojis(
-        ["❤️", "💖", "💕", "🌹", "✨", "💗"],
-        38
-      );
-
-      createSparkles(30);
-    }
-
-    document
-      .getElementById("screen" + step)
-      .classList.remove("active");
-
-    current = step + 1;
-
-    setTimeout(() => {
-
-      document
-        .getElementById("screen" + current)
-        .classList.add("active");
-
-      document.getElementById("stepText")
-        .textContent =
-        "0" + current + " / 04";
-
-      document.getElementById("progressFill")
-        .style.width =
-        (current * 25) + "%";
-
-    }, 380);
-  }
-
-  function createEmojis(items, amount) {
-
-    for (let i = 0; i < amount; i++) {
+      document.getElementById("screen" + current).classList.remove("active");
+      const next = current + 1;
 
       setTimeout(() => {
+        document.getElementById("screen" + next).classList.add("active");
+        document.getElementById("stepText").textContent = "0" + next + " / 04";
+        document.getElementById("progressFill").style.width = (next * 25) + "%";
 
-        const emoji =
-          document.createElement("div");
+        if (next === 4 && !typed) {
+          typeWriter("typeTarget", finalMessage, 34);
+          typed = true;
+        }
+      }, 320);
+    }
 
-        emoji.className = "emoji";
+    function runEffect(type) {
+      if (type === "hearts") {
+        spawnBurst(["❤️", "💖", "💕", "💗", "✨"], 24);
+      }
 
-        emoji.textContent =
-          items[
-            Math.floor(
-              Math.random() * items.length
-            )
-          ];
+      if (type === "mix") {
+        spawnBurst(["❤️", "💖", "💕", "🌹", "🌹", "✨"], 34);
+        spawnSparkles(18);
+      }
 
-        emoji.style.left =
-          (8 + Math.random() * 84) + "vw";
+      if (type === "final") {
+        spawnBurst(["❤️", "💖", "💕", "🌹", "🌹", "✨", "💫"], 46);
+        spawnSparkles(28);
+      }
+    }
 
-        emoji.style.bottom =
-          (-10 + Math.random() * 100) + "px";
+    function spawnBurst(items, count) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          const el = document.createElement("div");
+          el.className = "burst";
+          el.textContent = items[Math.floor(Math.random() * items.length)];
 
-        emoji.style.fontSize =
-          (18 + Math.random() * 25) + "px";
+          el.style.left = (10 + Math.random() * 80) + "vw";
+          el.style.top = (60 + Math.random() * 24) + "vh";
+          el.style.fontSize = (18 + Math.random() * 24) + "px";
 
-        emoji.style.setProperty(
-          "--move-x",
-          (-90 + Math.random() * 180) + "px"
-        );
+          el.style.setProperty("--x", (-140 + Math.random() * 280) + "px");
+          el.style.setProperty("--y", (-180 - Math.random() * 200) + "px");
+          el.style.setProperty("--r", (-90 + Math.random() * 180) + "deg");
 
-        emoji.style.setProperty(
-          "--rotate",
-          (-50 + Math.random() * 100) + "deg"
-        );
+          document.body.appendChild(el);
 
-        document.body.appendChild(emoji);
+          setTimeout(() => {
+            el.remove();
+          }, 2500);
+        }, i * 42);
+      }
+    }
+
+    function spawnSparkles(count) {
+      for (let i = 0; i < count; i++) {
+        const spark = document.createElement("div");
+        spark.className = "spark";
+
+        spark.style.left = (32 + Math.random() * 36) + "vw";
+        spark.style.top = (35 + Math.random() * 32) + "vh";
+        spark.style.setProperty("--sx", (-170 + Math.random() * 340) + "px");
+        spark.style.setProperty("--sy", (-150 + Math.random() * 260) + "px");
+
+        document.body.appendChild(spark);
 
         setTimeout(() => {
-          emoji.remove();
-        }, 3000);
-
-      }, i * 55);
-
+          spark.remove();
+        }, 1800);
+      }
     }
-  }
 
-  function createSparkles(amount) {
+    function typeWriter(id, text, speed) {
+      const target = document.getElementById(id);
+      let i = 0;
+      target.textContent = "";
 
-    for (let i = 0; i < amount; i++) {
+      const timer = setInterval(() => {
+        target.textContent += text.charAt(i);
+        i++;
 
-      const spark =
-        document.createElement("div");
-
-      spark.className = "spark";
-
-      spark.style.left =
-        (30 + Math.random() * 40) + "vw";
-
-      spark.style.top =
-        (35 + Math.random() * 35) + "vh";
-
-      spark.style.setProperty(
-        "--sx",
-        (-150 + Math.random() * 300) + "px"
-      );
-
-      spark.style.setProperty(
-        "--sy",
-        (-160 + Math.random() * 300) + "px"
-      );
-
-      document.body.appendChild(spark);
-
-      setTimeout(() => {
-        spark.remove();
-      }, 1900);
+        if (i >= text.length) {
+          clearInterval(timer);
+        }
+      }, speed);
     }
-  }
-</script>
 
+    function createBgRoses() {
+      const layer = document.getElementById("bgRoses");
+
+      for (let i = 0; i < 18; i++) {
+        const rose = document.createElement("span");
+        rose.className = "bg-rose";
+        rose.textContent = "🌹";
+
+        rose.style.left = (Math.random() * 100) + "vw";
+        rose.style.top = (Math.random() * 100) + "vh";
+        rose.style.fontSize = (22 + Math.random() * 34) + "px";
+        rose.style.opacity = (0.08 + Math.random() * 0.16);
+        rose.style.setProperty("--d", (6 + Math.random() * 8) + "s");
+        rose.style.animationDelay = (-Math.random() * 10) + "s";
+
+        layer.appendChild(rose);
+      }
+    }
+
+    function startMusic() {
+      const music = document.getElementById("bgMusic");
+      const btn = document.getElementById("musicBtn");
+
+      if (music.paused) {
+        music.play()
+          .then(() => {
+            btn.textContent = "♫ Müziği Kapat";
+          })
+          .catch(() => {
+            btn.textContent = "♫ Müziği Aç";
+          });
+      }
+    }
+
+    function toggleMusic() {
+      const music = document.getElementById("bgMusic");
+      const btn = document.getElementById("musicBtn");
+
+      if (music.paused) {
+        music.play()
+          .then(() => {
+            btn.textContent = "♫ Müziği Kapat";
+          })
+          .catch(() => {
+            btn.textContent = "Tarayıcı engelledi";
+          });
+      } else {
+        music.pause();
+        btn.textContent = "♫ Müziği Aç";
+      }
+    }
+
+    createBgRoses();
+  </script>
 </body>
 </html>

@@ -2,1819 +2,1682 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>Hava ✦</title>
 
 <!-- H FAVICON -->
-<link
-  rel="icon"
-  type="image/svg+xml"
-  href='data:image/svg+xml,
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <defs>
-      <linearGradient id="g" x1="0" x2="1">
-        <stop stop-color="%23ff477e"/>
-        <stop offset="1" stop-color="%239b6dff"/>
-      </linearGradient>
-    </defs>
-    <rect width="100" height="100" rx="25" fill="%23070509"/>
-    <circle cx="50" cy="50" r="37" fill="url(%23g)" opacity=".28"/>
-    <text x="50" y="69"
-          text-anchor="middle"
-          font-family="serif"
-          font-size="61"
-          font-weight="700"
-          fill="white">H</text>
-  </svg>'>
+<link rel="icon" type="image/svg+xml"
+href='data:image/svg+xml,
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<defs>
+<linearGradient id="g" x1="0" x2="1">
+<stop stop-color="%23ff477e"/>
+<stop offset="1" stop-color="%239b6dff"/>
+</linearGradient>
+</defs>
+<rect width="100" height="100" rx="25" fill="%23070509"/>
+<circle cx="50" cy="50" r="37" fill="url(%23g)" opacity=".28"/>
+<text x="50" y="69" text-anchor="middle"
+font-family="serif" font-size="61" font-weight="700" fill="white">H</text>
+</svg>'>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin>
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
-  rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+rel="stylesheet">
 
 <style>
 
-/* =========================================================
-   TEMEL
-========================================================= */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-:root {
-  --white: #fff;
-  --soft: rgba(255,255,255,.78);
-  --muted: rgba(255,255,255,.43);
-  --pink: #ff477e;
-  --pink2: #ff93b7;
-  --purple: #9b6dff;
-  --black: #050507;
+:root{
+  --pink:#ff477e;
+  --pink2:#ff93b7;
+  --purple:#9b6dff;
+  --soft:rgba(255,255,255,.78);
 }
 
-html,
-body {
-  width: 100%;
-  min-height: 100%;
+html,body{
+  width:100%;
+  min-height:100%;
 }
 
-body {
-  min-height: 100vh;
-  overflow: hidden;
-  font-family: "Inter", sans-serif;
-  color: white;
+body{
+  min-height:100vh;
+  overflow:hidden;
+  font-family:"Inter",sans-serif;
+  color:#fff;
 
   background:
-    radial-gradient(circle at 14% 10%,
-      rgba(186,21,80,.36),
-      transparent 30%),
-
-    radial-gradient(circle at 88% 86%,
-      rgba(103,62,186,.27),
-      transparent 35%),
-
-    linear-gradient(
-      145deg,
-      #050507,
-      #12070d 52%,
-      #060509
-    );
+    radial-gradient(circle at 14% 10%,rgba(186,21,80,.36),transparent 30%),
+    radial-gradient(circle at 88% 86%,rgba(103,62,186,.27),transparent 35%),
+    linear-gradient(145deg,#050507,#12070d 52%,#060509);
 }
 
 
-/* =========================================================
-   NETFLIX HİSSİ VEREN ÖZGÜN H INTRO
-========================================================= */
+/* =====================================================
+   SİNEMATİK H INTRO
+===================================================== */
 
-#introOverlay {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-
-  background: #000;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-
-  transition:
-    opacity 1s ease,
-    visibility 1s ease;
+#introOverlay{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  transition:opacity 1s ease,visibility 1s ease;
 }
 
-#introOverlay.hide {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+#introOverlay.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
 }
 
-.introScene {
-  position: absolute;
-  inset: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.introScene{
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-.introGlow {
-  position: absolute;
-
-  width: 380px;
-  height: 380px;
-
-  border-radius: 50%;
+.introGlow{
+  position:absolute;
+  width:380px;
+  height:380px;
+  border-radius:50%;
 
   background:
-    radial-gradient(
-      circle,
-      rgba(255,39,103,.32),
-      rgba(133,70,255,.11) 45%,
-      transparent 72%
-    );
+    radial-gradient(circle,
+    rgba(255,39,103,.32),
+    rgba(133,70,255,.11) 45%,
+    transparent 72%);
 
-  filter: blur(43px);
+  filter:blur(43px);
+  opacity:0;
 
-  opacity: 0;
+  animation:introGlow 5s ease forwards;
+}
+
+.introH{
+  position:relative;
+
+  font-family:"Playfair Display",serif;
+  font-size:clamp(170px,43vw,350px);
+  font-weight:700;
+  line-height:1;
+
+  color:transparent;
+  -webkit-text-stroke:2px rgba(255,255,255,.14);
+
+  opacity:0;
 
   animation:
-    introGlow 5s ease forwards;
+    introLetter 4.7s cubic-bezier(.2,.8,.2,1) forwards;
 }
 
-.introH {
-  position: relative;
+.introH::before{
+  content:"H";
+  position:absolute;
+  inset:0;
 
-  font-family:
-    "Playfair Display",
-    serif;
-
-  font-size:
-    clamp(170px, 43vw, 350px);
-
-  font-weight: 700;
-
-  line-height: 1;
-
-  color: transparent;
-
-  opacity: 0;
-
-  -webkit-text-stroke:
-    2px rgba(255,255,255,.14);
-
-  animation:
-    introLetter
-    4.7s
-    cubic-bezier(.2,.8,.2,1)
-    forwards;
-}
-
-.introH::before {
-  content: "H";
-
-  position: absolute;
-  inset: 0;
-
-  color: transparent;
+  color:transparent;
 
   background:
-    linear-gradient(
-      90deg,
-      #ff174f,
-      #ff477e,
-      #a95bff,
-      #ffffff,
-      #ff386b
-    );
+    linear-gradient(90deg,
+    #ff174f,
+    #ff477e,
+    #a95bff,
+    #fff,
+    #ff386b);
 
-  background-size: 300%;
+  background-size:300%;
 
-  -webkit-background-clip: text;
+  -webkit-background-clip:text;
 
   filter:
-    drop-shadow(
-      0 0 24px
-      rgba(255,40,108,.52)
-    );
+    drop-shadow(0 0 24px rgba(255,40,108,.52));
 
-  animation:
-    introGradient
-    2.2s linear infinite;
+  animation:introGradient 2.2s linear infinite;
 }
 
-.introBeam {
-  position: absolute;
+.introBeam{
+  position:absolute;
+  width:2px;
+  height:130vh;
+  top:-15vh;
 
-  width: 2px;
-  height: 130vh;
-
-  top: -15vh;
-
-  opacity: 0;
+  opacity:0;
 
   background:
     linear-gradient(
-      transparent,
-      rgba(255,255,255,.88),
-      rgba(255,71,126,.82),
-      transparent
-    );
+    transparent,
+    rgba(255,255,255,.88),
+    rgba(255,71,126,.82),
+    transparent);
+
+  animation:introBeam 2.5s ease forwards;
+}
+
+.introBeam.b1{
+  left:42%;
+  animation-delay:.3s;
+}
+
+.introBeam.b2{
+  left:50%;
+  animation-delay:.48s;
+}
+
+.introBeam.b3{
+  left:58%;
+  animation-delay:.68s;
+}
+
+.introCaption{
+  position:absolute;
+  bottom:18%;
+
+  font-size:10px;
+  letter-spacing:5px;
+  text-transform:uppercase;
+
+  color:rgba(255,255,255,.72);
+
+  opacity:0;
+  transform:translateY(12px);
+
+  animation:introCaption 1s ease 3.55s forwards;
+}
+
+
+/* =====================================================
+   ARKA PLAN
+===================================================== */
+
+.background{
+  position:fixed;
+  inset:-35px;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+  transition:transform .15s linear;
+}
+
+.orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(110px);
+  opacity:.34;
+}
+
+.orb.one{
+  width:380px;
+  height:380px;
+  left:-140px;
+  top:-140px;
+  background:#c31a59;
+  animation:orbOne 12s ease-in-out infinite alternate;
+}
+
+.orb.two{
+  width:450px;
+  height:450px;
+  right:-185px;
+  bottom:-190px;
+  background:#7147dc;
+  animation:orbTwo 14s ease-in-out infinite alternate;
+}
+
+#backgroundRoses{
+  position:absolute;
+  inset:0;
+}
+
+.backgroundRose{
+  position:absolute;
+  user-select:none;
+  opacity:.055;
 
   animation:
-    introBeam 2.5s ease forwards;
-}
-
-.introBeam.b1 {
-  left: 42%;
-  animation-delay: .3s;
-}
-
-.introBeam.b2 {
-  left: 50%;
-  animation-delay: .48s;
-}
-
-.introBeam.b3 {
-  left: 58%;
-  animation-delay: .68s;
-}
-
-.introCaption {
-  position: absolute;
-
-  bottom: 18%;
-
-  font-size: 10px;
-
-  letter-spacing: 5px;
-
-  text-transform: uppercase;
-
-  color:
-    rgba(255,255,255,.72);
-
-  opacity: 0;
-
-  transform:
-    translateY(12px);
-
-  animation:
-    introCaption 1s ease forwards;
-
-  animation-delay: 3.55s;
+    backgroundRose var(--duration)
+    ease-in-out infinite alternate;
 }
 
 
-/* =========================================================
-   3D ARKA PLAN
-========================================================= */
+/* =====================================================
+   GÜL YAPRAKLARI
+===================================================== */
 
-.background {
-  position: fixed;
-  inset: -35px;
-
-  z-index: 0;
-
-  pointer-events: none;
-
-  overflow: hidden;
-
-  transition:
-    transform .15s linear;
+#petalLayer{
+  position:fixed;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  overflow:hidden;
 }
 
-.orb {
-  position: absolute;
+.petal{
+  position:absolute;
 
-  border-radius: 50%;
+  width:var(--size);
+  height:calc(var(--size) * .72);
 
-  filter: blur(110px);
+  top:-50px;
 
-  opacity: .34;
-}
-
-.orb.one {
-  width: 380px;
-  height: 380px;
-
-  left: -140px;
-  top: -140px;
-
-  background: #c31a59;
-
-  animation:
-    orbOne
-    12s ease-in-out
-    infinite alternate;
-}
-
-.orb.two {
-  width: 450px;
-  height: 450px;
-
-  right: -185px;
-  bottom: -190px;
-
-  background: #7147dc;
-
-  animation:
-    orbTwo
-    14s ease-in-out
-    infinite alternate;
-}
-
-
-/* =========================================================
-   ARKA PLAN GÜLLER
-========================================================= */
-
-#backgroundRoses {
-  position: absolute;
-  inset: 0;
-}
-
-.backgroundRose {
-  position: absolute;
-
-  user-select: none;
-
-  opacity: .055;
-
-  animation:
-    backgroundRose
-    var(--duration)
-    ease-in-out
-    infinite alternate;
-}
-
-
-/* =========================================================
-   GERÇEKÇİ GÜL YAPRAKLARI
-========================================================= */
-
-#petalLayer {
-  position: fixed;
-  inset: 0;
-
-  z-index: 3;
-
-  pointer-events: none;
-
-  overflow: hidden;
-}
-
-.petal {
-  position: absolute;
-
-  width: var(--size);
-  height: calc(var(--size) * .72);
-
-  top: -50px;
-
-  border-radius:
-    60% 15% 60% 25%;
+  border-radius:60% 15% 60% 25%;
 
   background:
-    radial-gradient(
-      circle at 35% 25%,
-      #ff799a,
-      #ca154d 62%,
-      #680820 100%
-    );
+    radial-gradient(circle at 35% 25%,
+    #ff799a,
+    #ca154d 62%,
+    #680820 100%);
 
-  opacity: var(--opacity);
+  opacity:var(--opacity);
 
   filter:
-    drop-shadow(
-      0 6px 7px
-      rgba(0,0,0,.22)
-    );
+    drop-shadow(0 6px 7px rgba(0,0,0,.22));
 
   animation:
-    petalFall
-    var(--fallTime)
+    petalFall var(--fallTime)
     linear forwards;
 }
 
 
-/* =========================================================
+/* =====================================================
    ANA ALAN
-========================================================= */
+===================================================== */
 
-.app {
-  position: relative;
+.app{
+  position:relative;
+  z-index:10;
 
-  z-index: 10;
+  width:100%;
+  min-height:100vh;
 
-  width: 100%;
-  min-height: 100vh;
+  display:grid;
+  place-items:center;
 
-  display: grid;
-  place-items: center;
-
-  padding: 18px;
+  padding:18px;
 }
 
-.shell {
-  width:
-    min(94vw, 470px);
-
-  position: relative;
-
-  perspective: 1200px;
+.shell{
+  width:min(94vw,470px);
+  position:relative;
+  perspective:1200px;
 }
 
+.card{
+  position:relative;
 
-/* =========================================================
-   PREMIUM KART
-========================================================= */
+  width:100%;
+  height:min(755px,93vh);
+  min-height:630px;
 
-.card {
-  position: relative;
+  padding:23px;
 
-  width: 100%;
+  overflow:hidden;
 
-  height:
-    min(755px, 93vh);
+  border-radius:38px;
 
-  min-height: 630px;
+  transform-style:preserve-3d;
 
-  padding: 23px;
-
-  overflow: hidden;
-
-  border-radius: 38px;
-
-  transform-style:
-    preserve-3d;
-
-  transition:
-    transform .18s linear;
+  transition:transform .18s linear;
 
   background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.108),
-      rgba(255,255,255,.032)
-    );
+    linear-gradient(145deg,
+    rgba(255,255,255,.108),
+    rgba(255,255,255,.032));
 
-  border:
-    1px solid
-    rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.13);
 
-  backdrop-filter:
-    blur(30px);
-
-  -webkit-backdrop-filter:
-    blur(30px);
+  backdrop-filter:blur(30px);
+  -webkit-backdrop-filter:blur(30px);
 
   box-shadow:
-    0 42px 115px
-    rgba(0,0,0,.54),
-
-    inset
-    0 1px 0
-    rgba(255,255,255,.10);
+    0 42px 115px rgba(0,0,0,.54),
+    inset 0 1px 0 rgba(255,255,255,.10);
 }
 
-.card::before {
-  content: "";
+.card::before{
+  content:"";
 
-  position: absolute;
-  inset: 0;
+  position:absolute;
+  inset:0;
 
-  pointer-events: none;
+  pointer-events:none;
 
   background:
-    linear-gradient(
-      115deg,
-      transparent 15%,
-      rgba(255,255,255,.07) 45%,
-      transparent 72%
-    );
+    linear-gradient(115deg,
+    transparent 15%,
+    rgba(255,255,255,.07) 45%,
+    transparent 72%);
 
-  transform:
-    translateX(-135%);
+  transform:translateX(-135%);
 
-  animation:
-    cardShine
-    8s infinite;
+  animation:cardShine 8s infinite;
 }
 
 
-/* =========================================================
-   ÜST ALAN
-========================================================= */
+/* =====================================================
+   ÜST
+===================================================== */
 
-.topbar {
-  position: relative;
+.topbar{
+  position:relative;
+  z-index:20;
 
-  z-index: 20;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.brand {
-  font-size: 10px;
-
-  letter-spacing: 3px;
-
-  text-transform: uppercase;
-
-  color:
-    rgba(255,255,255,.55);
+.brand{
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.55);
 }
 
-.counter {
-  font-size: 11px;
-
-  letter-spacing: 1px;
-
-  color:
-    rgba(255,255,255,.36);
+.counter{
+  font-size:11px;
+  letter-spacing:1px;
+  color:rgba(255,255,255,.36);
 }
 
-.progress {
-  position: relative;
+.progress{
+  position:relative;
+  z-index:20;
 
-  z-index: 20;
+  width:100%;
+  height:3px;
 
-  width: 100%;
-  height: 3px;
+  margin-top:16px;
 
-  margin-top: 16px;
+  border-radius:20px;
+  overflow:hidden;
 
-  overflow: hidden;
+  background:rgba(255,255,255,.065);
+}
 
-  border-radius: 20px;
+.progressBar{
+  width:20%;
+  height:100%;
+
+  border-radius:inherit;
 
   background:
-    rgba(255,255,255,.065);
-}
-
-.progressBar {
-  width: 20%;
-  height: 100%;
-
-  border-radius: inherit;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--pink),
-      var(--purple)
-    );
+    linear-gradient(90deg,var(--pink),var(--purple));
 
   box-shadow:
-    0 0 14px
-    rgba(255,71,126,.45);
+    0 0 14px rgba(255,71,126,.45);
 
   transition:
-    width .75s
-    cubic-bezier(.2,.8,.2,1);
+    width .75s cubic-bezier(.2,.8,.2,1);
 }
 
 
-/* =========================================================
-   SAHNELER
-========================================================= */
+/* =====================================================
+   SAYFALAR
+===================================================== */
 
-.stage {
-  position: relative;
-
-  height:
-    calc(100% - 50px);
+.stage{
+  position:relative;
+  height:calc(100% - 50px);
 }
 
-.screen {
-  position: absolute;
-  inset: 0;
+.screen{
+  position:absolute;
+  inset:0;
 
-  display: flex;
-  flex-direction: column;
+  display:flex;
+  flex-direction:column;
 
-  align-items: center;
-  justify-content: center;
+  align-items:center;
+  justify-content:center;
 
-  text-align: center;
+  text-align:center;
 
-  opacity: 0;
-
-  pointer-events: none;
+  opacity:0;
+  pointer-events:none;
 
   transform:
     translateY(27px)
     scale(.965);
 
-  filter:
-    blur(9px);
+  filter:blur(9px);
 
   transition:
     opacity .72s ease,
-    transform .72s
-      cubic-bezier(.2,.8,.2,1),
+    transform .72s cubic-bezier(.2,.8,.2,1),
     filter .72s ease;
 }
 
-.screen.active {
-  opacity: 1;
-
-  pointer-events: auto;
+.screen.active{
+  opacity:1;
+  pointer-events:auto;
 
   transform:
     translateY(0)
     scale(1);
 
-  filter: blur(0);
+  filter:blur(0);
 }
 
 
-/* =========================================================
-   ORTAK İKON
-========================================================= */
+/* =====================================================
+   ORTAK TASARIM
+===================================================== */
 
-.icon {
-  width: 82px;
-  height: 82px;
+.icon{
+  width:82px;
+  height:82px;
 
-  margin-bottom: 23px;
+  margin-bottom:23px;
 
-  display: grid;
-  place-items: center;
+  display:grid;
+  place-items:center;
 
-  border-radius: 27px;
+  border-radius:27px;
 
-  font-size: 34px;
+  font-size:34px;
 
   background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.14),
-      rgba(255,255,255,.04)
-    );
+    linear-gradient(145deg,
+    rgba(255,255,255,.14),
+    rgba(255,255,255,.04));
 
-  border:
-    1px solid
-    rgba(255,255,255,.11);
+  border:1px solid rgba(255,255,255,.11);
 
   box-shadow:
-    0 20px 52px
-    rgba(0,0,0,.26);
+    0 20px 52px rgba(0,0,0,.26);
 
-  animation:
-    floating
-    3.5s ease-in-out
-    infinite;
+  animation:floating 3.5s ease-in-out infinite;
 }
 
+.eyebrow{
+  margin-bottom:14px;
 
-/* =========================================================
-   YAZILAR
-========================================================= */
+  font-size:10px;
+  letter-spacing:4px;
 
-.eyebrow {
-  margin-bottom: 14px;
+  text-transform:uppercase;
 
-  font-size: 10px;
-
-  letter-spacing: 4px;
-
-  text-transform: uppercase;
-
-  color:
-    rgba(255,255,255,.43);
+  color:rgba(255,255,255,.43);
 }
 
-.name {
-  margin-bottom: 20px;
+.name{
+  margin-bottom:20px;
 
-  font-family:
-    "Playfair Display",
-    serif;
+  font-family:"Playfair Display",serif;
 
-  font-size:
-    clamp(66px, 15vw, 92px);
+  font-size:clamp(66px,15vw,92px);
 
-  line-height: .92;
-
-  letter-spacing: -3px;
+  line-height:.92;
+  letter-spacing:-3px;
 
   background:
-    linear-gradient(
-      95deg,
-      #fff,
-      #ffc5d9,
-      #d9c8ff,
-      #fff
-    );
+    linear-gradient(95deg,
+    #fff,
+    #ffc5d9,
+    #d9c8ff,
+    #fff);
 
-  background-size: 250%;
+  background-size:250%;
 
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 
-  animation:
-    gradientMove
-    6s linear infinite;
+  animation:gradientMove 6s linear infinite;
 }
 
-.introText {
-  max-width: 350px;
+.introText{
+  max-width:350px;
+  margin-bottom:24px;
 
-  margin-bottom: 24px;
+  font-size:15.5px;
+  line-height:1.9;
 
-  font-size: 15.5px;
-
-  line-height: 1.9;
-
-  color: var(--soft);
+  color:var(--soft);
 }
 
-.headphones {
-  display: inline-flex;
+.headphones{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
 
-  align-items: center;
+  margin-bottom:24px;
 
-  gap: 8px;
+  padding:9px 14px;
 
-  margin-bottom: 24px;
+  border-radius:100px;
 
-  padding:
-    9px 14px;
+  font-size:12px;
 
-  border-radius: 100px;
+  color:rgba(255,255,255,.68);
 
-  font-size: 12px;
+  background:rgba(255,255,255,.04);
 
-  color:
-    rgba(255,255,255,.68);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.heading{
+  max-width:365px;
+
+  margin-bottom:20px;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:clamp(30px,7vw,42px);
+
+  line-height:1.15;
+}
+
+.paragraph{
+  max-width:350px;
+
+  margin-bottom:28px;
+
+  font-size:15.5px;
+  line-height:1.9;
+
+  color:var(--soft);
+}
+
+.white{
+  color:#fff;
+  font-weight:600;
+}
+
+
+/* =====================================================
+   BUTON
+===================================================== */
+
+.button{
+  min-width:205px;
+
+  border:0;
+  outline:0;
+
+  cursor:pointer;
+
+  padding:16px 28px;
+
+  border-radius:100px;
+
+  color:#fff;
+
+  font-family:inherit;
+  font-size:14px;
+  font-weight:600;
 
   background:
-    rgba(255,255,255,.04);
-
-  border:
-    1px solid
-    rgba(255,255,255,.08);
-}
-
-.heading {
-  max-width: 365px;
-
-  margin-bottom: 20px;
-
-  font-family:
-    "Playfair Display",
-    serif;
-
-  font-size:
-    clamp(30px,7vw,42px);
-
-  line-height: 1.15;
-}
-
-.paragraph {
-  max-width: 350px;
-
-  margin-bottom: 28px;
-
-  font-size: 15.5px;
-
-  line-height: 1.9;
-
-  color: var(--soft);
-}
-
-.white {
-  color: white;
-  font-weight: 600;
-}
-
-
-/* =========================================================
-   BUTONLAR
-========================================================= */
-
-.button {
-  min-width: 205px;
-
-  border: none;
-  outline: none;
-
-  cursor: pointer;
-
-  padding:
-    16px 28px;
-
-  border-radius: 100px;
-
-  color: white;
-
-  font-family: inherit;
-
-  font-size: 14px;
-
-  font-weight: 600;
-
-  background:
-    linear-gradient(
-      135deg,
-      #f43f79,
-      #9f6fff
-    );
+    linear-gradient(135deg,#f43f79,#9f6fff);
 
   box-shadow:
-    0 17px 45px
-    rgba(222,55,125,.29),
-
-    inset
-    0 1px 0
-    rgba(255,255,255,.24);
+    0 17px 45px rgba(222,55,125,.29),
+    inset 0 1px 0 rgba(255,255,255,.24);
 
   transition:
     transform .22s ease,
     box-shadow .22s ease;
 }
 
-.button:hover {
+.button:hover{
   transform:
     translateY(-3px)
     scale(1.02);
 
   box-shadow:
-    0 22px 53px
-    rgba(222,55,125,.41);
+    0 22px 53px rgba(222,55,125,.41);
 }
 
-.button:active {
-  transform:
-    scale(.96);
+.button:active{
+  transform:scale(.96);
 }
 
 
-/* =========================================================
+/* =====================================================
    FOTOĞRAF
-========================================================= */
+===================================================== */
 
-.photoContainer {
-  width:
-    min(100%,325px);
+.photoContainer{
+  width:min(100%,325px);
 
-  position: relative;
+  position:relative;
 
-  margin-bottom: 23px;
+  margin-bottom:23px;
 
-  padding: 9px;
+  padding:9px;
 
-  border-radius: 31px;
+  border-radius:31px;
 
-  transform-style:
-    preserve-3d;
+  transform-style:preserve-3d;
 
-  transition:
-    transform .2s ease;
+  transition:transform .2s ease;
 
   background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.18),
-      rgba(255,255,255,.045)
-    );
+    linear-gradient(145deg,
+    rgba(255,255,255,.18),
+    rgba(255,255,255,.045));
 
-  border:
-    1px solid
-    rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.14);
 
   box-shadow:
-    0 30px 72px
-    rgba(0,0,0,.39);
+    0 30px 72px rgba(0,0,0,.39);
 
   animation:
-    photoFloat
-    4.4s ease-in-out
-    infinite;
+    photoFloat 4.4s ease-in-out infinite;
 }
 
-.photo {
-  width: 100%;
-  height: 355px;
+.photo{
+  width:100%;
+  height:355px;
 
-  display: block;
+  display:block;
 
-  object-fit: cover;
+  object-fit:cover;
 
-  border-radius: 23px;
+  border-radius:23px;
 
-  transform:
-    translateZ(18px);
+  transform:translateZ(18px);
 }
 
-.photoCaption {
-  padding:
-    14px 8px 6px;
+.photoCaption{
+  padding:14px 8px 6px;
 
-  font-family:
-    "Playfair Display",
-    serif;
+  font-family:"Playfair Display",serif;
+  font-style:italic;
 
-  font-style: italic;
+  font-size:15px;
 
-  font-size: 15px;
-
-  color:
-    rgba(255,255,255,.75);
+  color:rgba(255,255,255,.75);
 }
 
-.photoRose {
-  position: absolute;
+.photoRose{
+  position:absolute;
 
-  right: -15px;
-  bottom: -20px;
+  right:-15px;
+  bottom:-20px;
 
-  font-size: 54px;
+  font-size:54px;
 
   filter:
-    drop-shadow(
-      0 10px 12px
-      rgba(0,0,0,.35)
-    );
+    drop-shadow(0 10px 12px rgba(0,0,0,.35));
 
   animation:
-    roseFloat
-    3s ease-in-out
-    infinite;
+    roseFloat 3s ease-in-out infinite;
 }
 
 
-/* =========================================================
+/* =====================================================
    SAYFA 4
-========================================================= */
+===================================================== */
 
-.quoteMark {
-  margin-bottom: 24px;
+.quoteMark{
+  margin-bottom:24px;
 
-  font-family:
-    "Playfair Display",
-    serif;
+  font-family:"Playfair Display",serif;
 
-  font-size: 90px;
+  font-size:90px;
 
-  line-height: .5;
+  line-height:.5;
 
-  color:
-    rgba(255,255,255,.12);
+  color:rgba(255,255,255,.12);
 }
 
-.cinematicText {
-  max-width: 360px;
+.cinematicText{
+  max-width:360px;
 
-  margin-bottom: 32px;
+  margin-bottom:32px;
 
-  font-family:
-    "Playfair Display",
-    serif;
+  font-family:"Playfair Display",serif;
 
-  font-size:
-    clamp(23px,6vw,33px);
+  font-size:clamp(23px,6vw,33px);
 
-  line-height: 1.55;
+  line-height:1.55;
 }
 
 
-/* =========================================================
+/* =====================================================
    FINAL
-========================================================= */
+===================================================== */
 
-.finalStage {
-  width: 100%;
+.finalStage{
+  position:relative;
 
-  display: flex;
-  flex-direction: column;
+  width:100%;
+  height:100%;
 
-  align-items: center;
-  justify-content: center;
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
 }
 
-.finalSmall {
-  margin-bottom: 15px;
+.finalMain{
+  transition:
+    opacity .7s ease,
+    transform .7s ease,
+    filter .7s ease;
+}
 
-  font-size: 10px;
+.finalMain.hideFinal{
+  opacity:0 !important;
 
-  letter-spacing: 4px;
+  transform:
+    translateY(-12px)
+    scale(.94) !important;
 
-  text-transform: uppercase;
+  filter:blur(8px);
 
-  color:
-    rgba(255,255,255,.40);
+  pointer-events:none;
+}
+
+.finalSmall{
+  margin-bottom:15px;
+
+  font-size:10px;
+
+  letter-spacing:4px;
+
+  text-transform:uppercase;
+
+  color:rgba(255,255,255,.40);
 }
 
 
 /* DEV KALP */
 
-.giantHeart {
-  position: relative;
+.giantHeart{
+  position:relative;
 
-  margin-bottom: 8px;
+  margin-bottom:8px;
 
-  font-size:
-    clamp(115px,29vw,170px);
+  font-size:clamp(115px,29vw,170px);
 
-  line-height: 1;
+  line-height:1;
 
-  cursor: pointer;
+  cursor:pointer;
 
-  user-select: none;
+  user-select:none;
 
   filter:
-    drop-shadow(
-      0 18px 38px
-      rgba(255,48,111,.42)
-    );
+    drop-shadow(0 18px 38px rgba(255,48,111,.42));
 
   animation:
-    giantHeartBeat
-    1.25s ease-in-out
-    infinite;
+    giantHeartBeat 1.25s ease-in-out infinite;
 }
 
-.giantHeart::after {
-  content: "";
+.giantHeart::after{
+  content:"";
 
-  position: absolute;
+  position:absolute;
 
-  inset: 13%;
+  inset:13%;
 
-  border-radius: 50%;
+  border-radius:50%;
 
-  background:
-    rgba(255,60,120,.16);
+  background:rgba(255,60,120,.16);
 
-  filter:
-    blur(30px);
+  filter:blur(30px);
 
-  z-index: -1;
+  z-index:-1;
 }
 
 
 /* H -> HA -> HAV -> HAVA */
 
-.finalNameArea {
-  min-height: 79px;
+.finalNameArea{
+  min-height:79px;
 
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-#finalName {
-  min-width: 190px;
+#finalName{
+  min-width:190px;
 
-  display: inline-block;
+  display:inline-block;
 
-  font-family:
-    "Playfair Display",
-    serif;
+  font-family:"Playfair Display",serif;
 
-  font-size:
-    clamp(55px,13vw,80px);
+  font-size:clamp(55px,13vw,80px);
 
-  font-weight: 700;
+  font-weight:700;
 
-  line-height: 1;
+  line-height:1;
 
-  letter-spacing: -2px;
+  letter-spacing:-2px;
 
   background:
-    linear-gradient(
-      90deg,
-      #fff,
-      #ffc2d8,
-      #d3c0ff,
-      #fff
-    );
+    linear-gradient(90deg,
+    #fff,
+    #ffc2d8,
+    #d3c0ff,
+    #fff);
 
-  background-size: 230%;
+  background-size:230%;
 
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 
   animation:
-    gradientMove
-    5s linear infinite;
+    gradientMove 5s linear infinite;
 }
 
-#finalName.namePop {
+#finalName.namePop{
   animation:
     namePop .48s ease,
     gradientMove 5s linear infinite;
 }
 
-.goodText {
-  margin-bottom: 16px;
+.goodText{
+  margin-bottom:16px;
 
-  font-family:
-    "Playfair Display",
-    serif;
+  font-family:"Playfair Display",serif;
 
-  font-size:
-    clamp(34px,8vw,52px);
+  font-size:clamp(34px,8vw,52px);
 
-  opacity: 0;
+  opacity:0;
 
-  transform:
-    translateY(14px);
+  transform:translateY(14px);
 
   transition:
     opacity .8s ease,
     transform .8s ease;
 }
 
-.goodText.show {
-  opacity: 1;
-  transform: translateY(0);
+.goodText.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
-.finalMessage {
-  max-width: 340px;
+.finalMessage{
+  max-width:340px;
 
-  font-size: 15px;
+  font-size:15px;
 
-  line-height: 1.85;
+  line-height:1.85;
 
-  color:
-    rgba(255,255,255,.74);
+  color:rgba(255,255,255,.74);
 
-  opacity: 0;
+  opacity:0;
 
-  transform:
-    translateY(12px);
+  transform:translateY(12px);
 
-  transition:
-    .8s ease;
+  transition:.8s ease;
 }
 
-.finalMessage.show {
-  opacity: 1;
-  transform: translateY(0);
+.finalMessage.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
 
-/* =========================================================
-   IŞIKLA ÇİZİLEN H İMZASI
-========================================================= */
+/* =====================================================
+   H İMZASI
+===================================================== */
 
-.signatureWrap {
-  width: 100px;
-  height: 74px;
+.signatureWrap{
+  width:100px;
+  height:65px;
 
-  margin-top: 12px;
+  margin-top:10px;
 
-  opacity: 0;
+  opacity:0;
 
-  transition:
-    opacity .8s ease;
+  transition:opacity .8s ease;
 }
 
-.signatureWrap.show {
-  opacity: 1;
+.signatureWrap.show{
+  opacity:1;
 }
 
-.signature {
-  width: 100%;
-  height: 100%;
-
-  overflow: visible;
+.signature{
+  width:100%;
+  height:100%;
+  overflow:visible;
 }
 
-.signature path {
-  fill: none;
+.signature path{
+  fill:none;
 
-  stroke: url(#signatureGradient);
+  stroke:url(#signatureGradient);
 
-  stroke-width: 4;
+  stroke-width:4;
 
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  stroke-linecap:round;
+  stroke-linejoin:round;
 
   filter:
-    drop-shadow(
-      0 0 7px
-      rgba(255,120,170,.8)
-    );
+    drop-shadow(0 0 7px rgba(255,120,170,.8));
 
-  stroke-dasharray: 260;
-  stroke-dashoffset: 260;
+  stroke-dasharray:260;
+  stroke-dashoffset:260;
 }
 
-.signatureWrap.show path {
+.signatureWrap.show path{
   animation:
-    drawSignature
-    2.2s ease forwards;
+    drawSignature 2.2s ease forwards;
 }
 
 
-/* =========================================================
-   GİZLİ SON MESAJ
-========================================================= */
+/* =====================================================
+   KALBE 3 KEZ DOKUN
+===================================================== */
 
-.secretMessage {
-  position: absolute;
+.heartHint{
+  margin-top:8px;
 
-  left: 50%;
-  bottom: 23px;
+  display:flex;
 
-  width:
-    calc(100% - 42px);
+  align-items:center;
+  justify-content:center;
 
-  transform:
-    translate(-50%,22px)
-    scale(.96);
+  gap:7px;
 
-  padding:
-    18px 20px;
+  font-size:12px;
 
-  border-radius: 21px;
+  letter-spacing:.7px;
 
-  background:
-    rgba(12,8,14,.68);
+  color:rgba(255,255,255,.58);
 
-  border:
-    1px solid
-    rgba(255,255,255,.11);
+  opacity:0;
 
-  backdrop-filter:
-    blur(18px);
+  transform:translateY(12px);
 
-  -webkit-backdrop-filter:
-    blur(18px);
-
-  box-shadow:
-    0 18px 50px
-    rgba(0,0,0,.35);
-
-  opacity: 0;
-
-  visibility: hidden;
+  pointer-events:none;
 
   transition:
-    opacity .55s ease,
-    transform .55s ease,
-    visibility .55s ease;
+    opacity .8s ease,
+    transform .8s ease;
 }
 
-.secretMessage.show {
-  opacity: 1;
+.heartHint.show{
+  opacity:1;
+  transform:translateY(0);
+}
 
-  visibility: visible;
+.heartHint span{
+  display:inline-block;
+
+  animation:
+    hintHeart 1.25s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   GERÇEK SON MESAJ
+===================================================== */
+
+.secretFinal{
+  position:absolute;
+  inset:0;
+
+  padding:28px;
+
+  display:flex;
+  flex-direction:column;
+
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+
+  opacity:0;
+  visibility:hidden;
+
+  transform:scale(.92);
+
+  transition:
+    opacity 1s ease,
+    transform 1s cubic-bezier(.2,.8,.2,1),
+    visibility 1s ease;
+
+  z-index:50;
+}
+
+.secretFinal.show{
+  opacity:1;
+  visibility:visible;
+  transform:scale(1);
+}
+
+.secretGlow{
+  position:absolute;
+
+  width:300px;
+  height:300px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(circle,
+    rgba(255,71,126,.23),
+    rgba(155,109,255,.10) 46%,
+    transparent 72%);
+
+  filter:blur(40px);
+
+  pointer-events:none;
+
+  animation:
+    secretGlowPulse 3.5s ease-in-out infinite;
+}
+
+.secretRose{
+  position:relative;
+
+  margin-bottom:28px;
+
+  font-size:70px;
+
+  opacity:0;
 
   transform:
-    translate(-50%,0)
+    translateY(25px)
+    scale(.6);
+
+  filter:
+    drop-shadow(0 12px 20px rgba(0,0,0,.32));
+
+  transition:
+    opacity .8s ease .3s,
+    transform .8s cubic-bezier(.2,.8,.2,1) .3s;
+}
+
+.secretFinal.show .secretRose{
+  opacity:1;
+
+  transform:
+    translateY(0)
     scale(1);
 }
 
-.secretSmall {
-  font-size: 9px;
+.secretTitle{
+  position:relative;
 
-  letter-spacing: 3px;
+  max-width:390px;
 
-  text-transform: uppercase;
+  font-family:"Playfair Display",serif;
 
-  color:
-    rgba(255,255,255,.42);
+  font-size:clamp(31px,8vw,45px);
 
-  margin-bottom: 7px;
+  font-weight:600;
+
+  line-height:1.28;
+
+  letter-spacing:-1px;
+
+  color:#fff;
+
+  opacity:0;
+
+  transform:translateY(18px);
+
+  transition:
+    opacity .9s ease .8s,
+    transform .9s ease .8s;
 }
 
-.secretText {
-  font-family:
-    "Playfair Display",
-    serif;
-
-  font-size: 19px;
-
-  line-height: 1.55;
+.secretFinal.show .secretTitle{
+  opacity:1;
+  transform:translateY(0);
 }
 
+.secretLine{
+  width:0;
+  height:1px;
 
-/* =========================================================
-   MÜZİK BUTONU
-========================================================= */
-
-.musicButton {
-  position: absolute;
-
-  top: 67px;
-  right: 15px;
-
-  z-index: 120;
-
-  width: 42px;
-  height: 42px;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 50%;
-
-  cursor: pointer;
-
-  border:
-    1px solid
-    rgba(255,255,255,.12);
+  margin:27px auto;
 
   background:
-    rgba(0,0,0,.18);
-
-  backdrop-filter:
-    blur(15px);
-
-  color: white;
-
-  font-size: 16px;
-
-  opacity: 0;
-
-  pointer-events: none;
+    linear-gradient(90deg,
+    transparent,
+    #ff8fb4,
+    #c2acff,
+    transparent);
 
   transition:
-    opacity .4s ease,
-    transform .4s ease;
+    width 1.1s ease 1.45s;
 }
 
-.musicButton.visible {
-  opacity: 1;
-
-  pointer-events: auto;
+.secretFinal.show .secretLine{
+  width:115px;
 }
 
-.musicButton.playing {
+.secretLast{
+  position:relative;
+
+  max-width:380px;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:clamp(27px,7vw,39px);
+
+  line-height:1.45;
+
+  color:rgba(255,255,255,.88);
+
+  opacity:0;
+
+  transform:translateY(16px);
+
+  transition:
+    opacity .9s ease 1.7s,
+    transform .9s ease 1.7s;
+}
+
+.secretLast strong{
+  font-weight:700;
+
+  background:
+    linear-gradient(90deg,
+    #fff,
+    #ffb5cf,
+    #d3c1ff);
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.secretFinal.show .secretLast{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.secretHeart{
+  position:relative;
+
+  margin-top:27px;
+
+  font-size:48px;
+
+  opacity:0;
+
+  transform:scale(.4);
+
+  transition:
+    opacity .7s ease 2.35s,
+    transform .7s cubic-bezier(.2,.8,.2,1) 2.35s;
+}
+
+.secretFinal.show .secretHeart{
+  opacity:1;
+  transform:scale(1);
+
   animation:
-    musicPulse
-    1.8s infinite;
+    secretHeartBeat 1.3s ease-in-out 3s infinite;
 }
 
 
-/* =========================================================
+/* =====================================================
+   MÜZİK
+===================================================== */
+
+.musicButton{
+  position:absolute;
+
+  top:67px;
+  right:15px;
+
+  z-index:120;
+
+  width:42px;
+  height:42px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:50%;
+
+  cursor:pointer;
+
+  border:1px solid rgba(255,255,255,.12);
+
+  background:rgba(0,0,0,.18);
+
+  backdrop-filter:blur(15px);
+
+  color:#fff;
+
+  font-size:16px;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:.4s ease;
+}
+
+.musicButton.visible{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.musicButton.playing{
+  animation:
+    musicPulse 1.8s infinite;
+}
+
+
+/* =====================================================
    KARARMA
-========================================================= */
+===================================================== */
 
-.blackout {
-  position: fixed;
+.blackout{
+  position:fixed;
+  inset:0;
 
-  inset: 0;
+  z-index:9000;
 
-  z-index: 9000;
+  background:#000;
 
-  background: #000;
+  opacity:0;
 
-  opacity: 0;
+  pointer-events:none;
 
-  pointer-events: none;
-
-  transition:
-    opacity .62s ease;
+  transition:opacity .62s ease;
 }
 
-.blackout.active {
-  opacity: 1;
+.blackout.active{
+  opacity:1;
 }
 
 
-/* =========================================================
-   EMOJİ PATLAMALARI
-========================================================= */
+/* =====================================================
+   EMOJİLER
+===================================================== */
 
-.burst {
-  position: fixed;
+.burst{
+  position:fixed;
 
-  z-index: 20000;
+  z-index:20000;
 
-  pointer-events: none;
+  pointer-events:none;
 
-  user-select: none;
+  user-select:none;
 
   filter:
-    drop-shadow(
-      0 7px 12px
-      rgba(0,0,0,.22)
-    );
+    drop-shadow(0 7px 12px rgba(0,0,0,.22));
 
   animation:
-    burstFly
-    2.7s
-    cubic-bezier(.15,.75,.25,1)
-    forwards;
+    burstFly 2.7s cubic-bezier(.15,.75,.25,1) forwards;
 }
 
-.spark {
-  position: fixed;
+.spark{
+  position:fixed;
 
-  z-index: 19999;
+  z-index:19999;
 
-  width: 6px;
-  height: 6px;
+  width:6px;
+  height:6px;
 
-  border-radius: 50%;
+  border-radius:50%;
 
-  background: white;
+  background:#fff;
 
-  box-shadow:
-    0 0 13px white;
+  box-shadow:0 0 13px #fff;
 
-  pointer-events: none;
+  pointer-events:none;
 
   animation:
-    sparkFly
-    1.7s ease-out forwards;
+    sparkFly 1.7s ease-out forwards;
 }
 
 
-/* =========================================================
-   DOKUNMA IŞILTISI
-========================================================= */
+/* =====================================================
+   DOKUNMA PARILTISI
+===================================================== */
 
-.touchGlow {
-  position: fixed;
+.touchGlow{
+  position:fixed;
 
-  z-index: 22000;
+  z-index:22000;
 
-  width: 10px;
-  height: 10px;
+  width:10px;
+  height:10px;
 
-  border-radius: 50%;
+  border-radius:50%;
 
-  pointer-events: none;
+  pointer-events:none;
 
-  background: white;
+  background:#fff;
 
   box-shadow:
-    0 0 10px white,
+    0 0 10px #fff,
     0 0 25px #ff6d9f,
     0 0 45px #9b6dff;
 
-  transform:
-    translate(-50%,-50%);
+  transform:translate(-50%,-50%);
 
   animation:
     touchGlow .8s ease-out forwards;
 }
 
 
-/* =========================================================
+/* =====================================================
    ANİMASYONLAR
-========================================================= */
+===================================================== */
 
-@keyframes introLetter {
+@keyframes introLetter{
 
-  0% {
-    opacity: 0;
-
-    transform:
-      scale(.65)
-      rotateY(-18deg);
-
-    filter:
-      blur(15px);
+  0%{
+    opacity:0;
+    transform:scale(.65) rotateY(-18deg);
+    filter:blur(15px);
   }
 
-  23% {
-    opacity: 1;
+  23%{
+    opacity:1;
   }
 
-  55% {
-    opacity: 1;
-
-    transform:
-      scale(1)
-      rotateY(0);
-
-    filter:
-      blur(0);
+  55%{
+    opacity:1;
+    transform:scale(1) rotateY(0);
+    filter:blur(0);
   }
 
-  78% {
-    opacity: 1;
-
-    transform:
-      scale(1.04);
+  78%{
+    opacity:1;
+    transform:scale(1.04);
   }
 
-  100% {
-    opacity: 0;
-
-    transform:
-      scale(1.13);
-
-    filter:
-      blur(9px);
+  100%{
+    opacity:0;
+    transform:scale(1.13);
+    filter:blur(9px);
   }
 }
 
-
-@keyframes introGradient {
-
-  to {
-    background-position: 300%;
+@keyframes introGradient{
+  to{
+    background-position:300%;
   }
 }
 
+@keyframes introGlow{
 
-@keyframes introGlow {
-
-  0% {
-    opacity: 0;
-
-    transform:
-      scale(.5);
+  0%{
+    opacity:0;
+    transform:scale(.5);
   }
 
-  35% {
-    opacity: .82;
+  35%{
+    opacity:.82;
   }
 
-  70% {
-    opacity: .5;
+  70%{
+    opacity:.5;
   }
 
-  100% {
-    opacity: 0;
-
-    transform:
-      scale(1.45);
+  100%{
+    opacity:0;
+    transform:scale(1.45);
   }
 }
 
+@keyframes introBeam{
 
-@keyframes introBeam {
-
-  0% {
-    opacity: 0;
-
-    transform:
-      translateX(-150px)
-      rotate(10deg);
+  0%{
+    opacity:0;
+    transform:translateX(-150px) rotate(10deg);
   }
 
-  25% {
-    opacity: .8;
+  25%{
+    opacity:.8;
   }
 
-  70% {
-    opacity: .2;
+  70%{
+    opacity:.2;
   }
 
-  100% {
-    opacity: 0;
-
-    transform:
-      translateX(150px)
-      rotate(-10deg);
+  100%{
+    opacity:0;
+    transform:translateX(150px) rotate(-10deg);
   }
 }
 
-
-@keyframes introCaption {
-
-  to {
-    opacity: 1;
-
-    transform:
-      translateY(0);
+@keyframes introCaption{
+  to{
+    opacity:1;
+    transform:translateY(0);
   }
 }
 
-
-@keyframes orbOne {
-
-  to {
+@keyframes orbOne{
+  to{
     transform:
       translate(100px,70px)
       scale(1.13);
   }
 }
 
-
-@keyframes orbTwo {
-
-  to {
+@keyframes orbTwo{
+  to{
     transform:
       translate(-90px,-80px)
       scale(1.16);
   }
 }
 
+@keyframes backgroundRose{
 
-@keyframes backgroundRose {
-
-  from {
+  from{
     transform:
       translateY(0)
       rotate(-10deg);
   }
 
-  to {
+  to{
     transform:
       translateY(-35px)
       rotate(12deg);
   }
 }
 
+@keyframes petalFall{
 
-@keyframes petalFall {
-
-  0% {
+  0%{
     transform:
       translate3d(0,-30px,0)
       rotateX(0)
       rotateZ(0);
 
-    opacity: 0;
+    opacity:0;
   }
 
-  8% {
-    opacity:
-      var(--opacity);
+  8%{
+    opacity:var(--opacity);
   }
 
-  55% {
+  55%{
     transform:
-      translate3d(
-        var(--drift),
-        55vh,
-        0
-      )
+      translate3d(var(--drift),55vh,0)
       rotateX(180deg)
       rotateZ(180deg);
   }
 
-  100% {
+  100%{
     transform:
-      translate3d(
-        var(--drift2),
-        110vh,
-        0
-      )
+      translate3d(var(--drift2),110vh,0)
       rotateX(340deg)
       rotateZ(370deg);
 
-    opacity: 0;
+    opacity:0;
   }
 }
 
+@keyframes cardShine{
 
-@keyframes cardShine {
-
-  0%,
-  70% {
-    transform:
-      translateX(-135%);
+  0%,70%{
+    transform:translateX(-135%);
   }
 
-  100% {
-    transform:
-      translateX(135%);
+  100%{
+    transform:translateX(135%);
   }
 }
 
+@keyframes floating{
 
-@keyframes floating {
-
-  0%,
-  100% {
-    transform:
-      translateY(0);
+  0%,100%{
+    transform:translateY(0);
   }
 
-  50% {
-    transform:
-      translateY(-8px);
+  50%{
+    transform:translateY(-8px);
   }
 }
 
-
-@keyframes gradientMove {
-
-  to {
-    background-position: 230%;
+@keyframes gradientMove{
+  to{
+    background-position:230%;
   }
 }
 
+@keyframes photoFloat{
 
-@keyframes photoFloat {
-
-  0%,
-  100% {
+  0%,100%{
     transform:
       rotate(-1.2deg)
       translateY(0);
   }
 
-  50% {
+  50%{
     transform:
       rotate(-.2deg)
       translateY(-8px);
   }
 }
 
+@keyframes roseFloat{
 
-@keyframes roseFloat {
-
-  0%,
-  100% {
+  0%,100%{
     transform:
       rotate(16deg)
       translateY(0);
   }
 
-  50% {
+  50%{
     transform:
       rotate(12deg)
       translateY(-7px);
   }
 }
 
+@keyframes giantHeartBeat{
 
-@keyframes giantHeartBeat {
-
-  0%,
-  100% {
-    transform:
-      scale(1);
+  0%,100%{
+    transform:scale(1);
   }
 
-  18% {
-    transform:
-      scale(1.14);
+  18%{
+    transform:scale(1.14);
   }
 
-  35% {
-    transform:
-      scale(1);
+  35%{
+    transform:scale(1);
   }
 
-  51% {
-    transform:
-      scale(1.10);
+  51%{
+    transform:scale(1.10);
   }
 
-  70% {
-    transform:
-      scale(1);
+  70%{
+    transform:scale(1);
   }
 }
 
+@keyframes hintHeart{
 
-@keyframes namePop {
+  0%,100%{
+    transform:scale(1);
+  }
 
-  0% {
-    opacity: 0;
+  50%{
+    transform:scale(1.22);
+  }
+}
 
+@keyframes namePop{
+
+  0%{
+    opacity:0;
     transform:
       translateY(14px)
       scale(.88);
 
-    filter:
-      blur(6px);
+    filter:blur(6px);
   }
 
-  100% {
-    opacity: 1;
+  100%{
+    opacity:1;
 
     transform:
       translateY(0)
       scale(1);
 
-    filter:
-      blur(0);
+    filter:blur(0);
   }
 }
 
-
-@keyframes drawSignature {
-
-  to {
-    stroke-dashoffset: 0;
+@keyframes drawSignature{
+  to{
+    stroke-dashoffset:0;
   }
 }
 
+@keyframes secretGlowPulse{
 
-@keyframes burstFly {
+  0%,100%{
+    transform:scale(.9);
+    opacity:.6;
+  }
 
-  0% {
-    opacity: 0;
+  50%{
+    transform:scale(1.18);
+    opacity:1;
+  }
+}
+
+@keyframes secretHeartBeat{
+
+  0%,100%{
+    transform:scale(1);
+  }
+
+  25%{
+    transform:scale(1.18);
+  }
+
+  45%{
+    transform:scale(1);
+  }
+
+  60%{
+    transform:scale(1.12);
+  }
+}
+
+@keyframes burstFly{
+
+  0%{
+    opacity:0;
 
     transform:
       translate(0,0)
@@ -1822,140 +1685,142 @@ body {
       rotate(0);
   }
 
-  12% {
-    opacity: 1;
+  12%{
+    opacity:1;
   }
 
-  100% {
-    opacity: 0;
+  100%{
+    opacity:0;
 
     transform:
-      translate(
-        var(--x),
-        var(--y)
-      )
+      translate(var(--x),var(--y))
       scale(1.3)
       rotate(var(--r));
   }
 }
 
+@keyframes sparkFly{
 
-@keyframes sparkFly {
-
-  from {
-    opacity: 1;
-
-    transform:
-      scale(.3);
+  from{
+    opacity:1;
+    transform:scale(.3);
   }
 
-  to {
-    opacity: 0;
+  to{
+    opacity:0;
 
     transform:
-      translate(
-        var(--sx),
-        var(--sy)
-      )
+      translate(var(--sx),var(--sy))
       scale(1.6);
   }
 }
 
+@keyframes touchGlow{
 
-@keyframes touchGlow {
-
-  0% {
-    opacity: 1;
-
-    width: 8px;
-    height: 8px;
+  0%{
+    opacity:1;
+    width:8px;
+    height:8px;
   }
 
-  100% {
-    opacity: 0;
+  100%{
+    opacity:0;
+    width:75px;
+    height:75px;
+  }
+}
 
-    width: 75px;
-    height: 75px;
+@keyframes musicPulse{
+
+  0%,100%{
+    box-shadow:
+      0 0 0 0 rgba(255,71,124,.33);
+  }
+
+  50%{
+    box-shadow:
+      0 0 0 9px rgba(255,71,124,0);
   }
 }
 
 
-@keyframes musicPulse {
-
-  0%,
-  100% {
-    box-shadow:
-      0 0 0 0
-      rgba(255,71,124,.33);
-  }
-
-  50% {
-    box-shadow:
-      0 0 0 9px
-      rgba(255,71,124,0);
-  }
-}
-
-
-/* =========================================================
+/* =====================================================
    TELEFON
-========================================================= */
+===================================================== */
 
-@media (max-height: 720px) {
+@media(max-height:720px){
 
-  .card {
-    min-height: 590px;
-    height: 94vh;
+  .card{
+    min-height:590px;
+    height:94vh;
   }
 
-  .photo {
-    height: 285px;
+  .photo{
+    height:285px;
   }
 
-  .name {
-    font-size: 60px;
+  .name{
+    font-size:60px;
   }
 
-  .heading {
-    font-size: 29px;
+  .heading{
+    font-size:29px;
   }
 
-  .icon {
-    width: 66px;
-    height: 66px;
-
-    margin-bottom: 15px;
-
-    font-size: 28px;
+  .icon{
+    width:66px;
+    height:66px;
+    margin-bottom:15px;
+    font-size:28px;
   }
 
-  .giantHeart {
-    font-size: 103px;
+  .giantHeart{
+    font-size:100px;
   }
 
-  #finalName {
-    font-size: 54px;
+  #finalName{
+    font-size:52px;
   }
 
-  .goodText {
-    font-size: 35px;
+  .goodText{
+    font-size:34px;
   }
 
-  .signatureWrap {
-    height: 55px;
+  .signatureWrap{
+    height:48px;
+  }
+
+  .heartHint{
+    margin-top:4px;
+  }
+
+  .secretRose{
+    font-size:52px;
+    margin-bottom:18px;
+  }
+
+  .secretTitle{
+    font-size:29px;
+  }
+
+  .secretLine{
+    margin:20px auto;
+  }
+
+  .secretLast{
+    font-size:26px;
   }
 }
 
 </style>
 </head>
 
-
 <body>
 
 
-<!-- ======================================================
+<!-- =====================================================
      INTRO
-====================================================== -->
+===================================================== -->
 
 <div id="introOverlay">
 
@@ -1972,9 +1837,7 @@ body {
     </div>
 
     <div class="introCaption">
-
       Hava için özel olarak hazırlandı
-
     </div>
 
   </div>
@@ -1982,16 +1845,13 @@ body {
 </div>
 
 
-<!-- ======================================================
+<!-- =====================================================
      ARKA PLAN
-====================================================== -->
+===================================================== -->
 
-<div
-  class="background"
-  id="background">
+<div class="background" id="background">
 
   <div class="orb one"></div>
-
   <div class="orb two"></div>
 
   <div id="backgroundRoses"></div>
@@ -2001,16 +1861,12 @@ body {
 
 <div id="petalLayer"></div>
 
-
-<div
-  class="blackout"
-  id="blackout">
-</div>
+<div class="blackout" id="blackout"></div>
 
 
-<!-- ======================================================
-     ANA ALAN
-====================================================== -->
+<!-- =====================================================
+     ANA UYGULAMA
+===================================================== -->
 
 <div class="app">
 
@@ -2027,9 +1883,7 @@ body {
 </button>
 
 
-<div
-  class="card"
-  id="mainCard">
+<div class="card" id="mainCard">
 
 
 <div class="topbar">
@@ -2038,53 +1892,38 @@ body {
     Hava için
   </div>
 
-  <div
-    class="counter"
-    id="counter">
-
+  <div class="counter" id="counter">
     01 / 05
-
   </div>
 
 </div>
 
 
 <div class="progress">
-
-  <div
-    class="progressBar"
-    id="progressBar">
-  </div>
-
+  <div class="progressBar" id="progressBar"></div>
 </div>
 
 
 <div class="stage">
 
 
-<!-- ======================================================
-     1
-====================================================== -->
+<!-- =====================================================
+     SAYFA 1
+===================================================== -->
 
-<section
-  class="screen active"
-  id="screen1">
-
+<section class="screen active" id="screen1">
 
   <div class="icon">
     ✦
   </div>
 
-
   <div class="eyebrow">
     sadece sana
   </div>
 
-
   <div class="name">
     Hava.
   </div>
-
 
   <p class="introText">
 
@@ -2098,15 +1937,11 @@ body {
 
   </p>
 
-
   <div class="headphones">
 
-    🎧
-
-    Kulaklığın varsa tak
+    🎧 Kulaklığın varsa tak
 
   </div>
-
 
   <button
     class="button"
@@ -2119,14 +1954,11 @@ body {
 </section>
 
 
-<!-- ======================================================
-     2
-====================================================== -->
+<!-- =====================================================
+     SAYFA 2
+===================================================== -->
 
-<section
-  class="screen"
-  id="screen2">
-
+<section class="screen" id="screen2">
 
   <div class="eyebrow">
 
@@ -2135,17 +1967,14 @@ body {
 
   </div>
 
-
   <div
     class="photoContainer"
     id="photoContainer">
-
 
     <img
       src="foto.jpeg"
       class="photo"
       alt="Fotoğraf">
-
 
     <div class="photoCaption">
 
@@ -2154,15 +1983,11 @@ body {
 
     </div>
 
-
     <div class="photoRose">
-
       🌹
-
     </div>
 
   </div>
-
 
   <button
     class="button"
@@ -2175,26 +2000,19 @@ body {
 </section>
 
 
-<!-- ======================================================
-     3
-====================================================== -->
+<!-- =====================================================
+     SAYFA 3
+===================================================== -->
 
-<section
-  class="screen"
-  id="screen3">
-
+<section class="screen" id="screen3">
 
   <div class="icon">
     ✨
   </div>
 
-
   <div class="eyebrow">
-
     bunu söylemeden geçmek istemedim
-
   </div>
-
 
   <h2 class="heading">
 
@@ -2203,16 +2021,13 @@ body {
 
   </h2>
 
-
   <p class="paragraph">
 
-    Bazılarıysa
-    hiçbir şey yapmaz.
+    Bazılarıysa hiçbir şey yapmaz.
 
     <br><br>
 
-    Ama yine de insanın
-    aklında
+    Ama yine de insanın aklında
 
     <span class="white">
 
@@ -2222,7 +2037,6 @@ body {
     </span>
 
   </p>
-
 
   <button
     class="button"
@@ -2235,19 +2049,15 @@ body {
 </section>
 
 
-<!-- ======================================================
-     4
-====================================================== -->
+<!-- =====================================================
+     SAYFA 4
+===================================================== -->
 
-<section
-  class="screen"
-  id="screen4">
-
+<section class="screen" id="screen4">
 
   <div class="quoteMark">
     “
   </div>
-
 
   <div class="cinematicText">
 
@@ -2270,7 +2080,6 @@ body {
 
   </div>
 
-
   <button
     class="button"
     onclick="showFinal()">
@@ -2282,29 +2091,27 @@ body {
 </section>
 
 
-<!-- ======================================================
-     FINAL
-====================================================== -->
+<!-- =====================================================
+     SAYFA 5 - FINAL
+===================================================== -->
 
-<section
-  class="screen"
-  id="screen5">
-
+<section class="screen" id="screen5">
 
 <div class="finalStage">
 
 
-  <div class="finalSmall">
+  <div
+    class="finalSmall finalMain">
 
     ve son olarak...
 
   </div>
 
 
-  <!-- 3 KEZ DOKUNULABİLİR -->
+  <!-- ÜÇ KEZ DOKUNULACAK KALP -->
 
   <div
-    class="giantHeart"
+    class="giantHeart finalMain"
     id="giantHeart">
 
     ❤️
@@ -2312,7 +2119,8 @@ body {
   </div>
 
 
-  <div class="finalNameArea">
+  <div
+    class="finalNameArea finalMain">
 
     <span id="finalName"></span>
 
@@ -2320,7 +2128,7 @@ body {
 
 
   <div
-    class="goodText"
+    class="goodText finalMain"
     id="goodText">
 
     İyi ki varsın.
@@ -2329,7 +2137,7 @@ body {
 
 
   <p
-    class="finalMessage"
+    class="finalMessage finalMain"
     id="finalMessage">
 
     Bunu sana söylemenin
@@ -2339,10 +2147,10 @@ body {
   </p>
 
 
-  <!-- IŞIK H İMZASI -->
+  <!-- H IŞIK İMZASI -->
 
   <div
-    class="signatureWrap"
+    class="signatureWrap finalMain"
     id="signatureWrap">
 
     <svg
@@ -2372,7 +2180,6 @@ body {
 
       </defs>
 
-
       <path
         d="
         M25 10
@@ -2385,31 +2192,66 @@ body {
         C40 36,
         60 44,
         75 40
-        " />
+        "/>
 
     </svg>
 
   </div>
 
 
-  <!-- GİZLİ MESAJ -->
+  <!-- TÜM FINAL BİTİNCE GELİR -->
 
   <div
-    class="secretMessage"
+    class="heartHint finalMain"
+    id="heartHint">
+
+    <span>❤️</span>
+
+    Kalbe 3 kez dokun
+
+  </div>
+
+
+  <!-- GERÇEK SON -->
+
+  <div
+    class="secretFinal"
     id="secretMessage">
 
-    <div class="secretSmall">
 
-      bunu bulacağını düşünmemiştim
+    <div class="secretGlow"></div>
 
+
+    <div class="secretRose">
+      🌹
     </div>
 
-    <div class="secretText">
+
+    <div class="secretTitle">
 
       Bir gülümsemen bile
-      bütün bu uğraşa değerdi, Hava. 🌹
+      <br>
+      bütün bu uğraşa değerdi.
 
     </div>
+
+
+    <div class="secretLine"></div>
+
+
+    <div class="secretLast">
+
+      Sen hep gülümse,
+      <br>
+      <strong>Hava.</strong>
+
+    </div>
+
+
+    <div class="secretHeart">
+      ❤️
+    </div>
+
 
   </div>
 
@@ -2420,17 +2262,14 @@ body {
 
 
 </div>
-
 </div>
-
 </div>
-
 </div>
 
 
-<!-- ======================================================
+<!-- =====================================================
      MÜZİK
-====================================================== -->
+===================================================== -->
 
 <audio
   id="backgroundMusic"
@@ -2447,92 +2286,68 @@ body {
 
 <script>
 
-/* =========================================================
+/* =====================================================
    ELEMANLAR
-========================================================= */
+===================================================== */
 
 const music =
-  document.getElementById(
-    "backgroundMusic"
-  );
+  document.getElementById("backgroundMusic");
 
 const musicButton =
-  document.getElementById(
-    "musicButton"
-  );
+  document.getElementById("musicButton");
 
 const mainCard =
-  document.getElementById(
-    "mainCard"
-  );
+  document.getElementById("mainCard");
 
 const background =
-  document.getElementById(
-    "background"
-  );
+  document.getElementById("background");
 
 const photoContainer =
-  document.getElementById(
-    "photoContainer"
-  );
-
+  document.getElementById("photoContainer");
 
 music.volume = 0;
 
 
-/* =========================================================
+/* =====================================================
    INTRO
-========================================================= */
+===================================================== */
 
-window.addEventListener(
-  "load",
-  () => {
+window.addEventListener("load",()=>{
 
-    setTimeout(
-      () => {
+  setTimeout(()=>{
 
-        document
-          .getElementById(
-            "introOverlay"
-          )
-          .classList
-          .add("hide");
+    document
+      .getElementById("introOverlay")
+      .classList
+      .add("hide");
 
-      },
-      4900
-    );
+  },4900);
 
-  }
-);
+});
 
 
-/* =========================================================
+/* =====================================================
    TİTREŞİM
-========================================================= */
+===================================================== */
 
-function vibrate(pattern) {
+function vibrate(pattern){
 
-  if (
-    "vibrate"
-    in navigator
-  ) {
+  if("vibrate" in navigator){
 
-    navigator.vibrate(
-      pattern
-    );
+    navigator.vibrate(pattern);
 
   }
 
 }
 
 
-/* =========================================================
+/* =====================================================
    MÜZİK
-========================================================= */
+===================================================== */
 
-async function startMusic() {
+async function startMusic(){
 
-  try {
+  try{
 
     await music.play();
 
@@ -2548,54 +2363,41 @@ async function startMusic() {
 
   }
 
-  catch(error) {
+  catch(error){
 
-    console.log(
-      "Müzik başlatılamadı."
-    );
+    console.log("Müzik başlatılamadı.");
 
   }
 
 }
 
 
-function fadeMusicIn() {
+function fadeMusicIn(){
 
-  let volume = 0;
+  let volume=0;
 
-  const fade =
-    setInterval(
-      () => {
+  const fade=setInterval(()=>{
 
-        volume += .018;
+    volume+=.018;
 
-        if (
-          volume >= .42
-        ) {
+    if(volume>=.42){
 
-          volume = .42;
+      volume=.42;
 
-          clearInterval(
-            fade
-          );
+      clearInterval(fade);
 
-        }
+    }
 
-        music.volume =
-          volume;
+    music.volume=volume;
 
-      },
-      75
-    );
+  },75);
 
 }
 
 
-function toggleMusic() {
+function toggleMusic(){
 
-  if (
-    music.paused
-  ) {
+  if(music.paused){
 
     music.play();
 
@@ -2605,7 +2407,7 @@ function toggleMusic() {
 
   }
 
-  else {
+  else{
 
     music.pause();
 
@@ -2618,66 +2420,39 @@ function toggleMusic() {
 }
 
 
-/* =========================================================
-   DENEYİM BAŞLANGICI
-========================================================= */
+/* =====================================================
+   BAŞLA
+===================================================== */
 
-async function startExperience() {
+async function startExperience(){
 
-  vibrate(
-    [
-      70,
-      40,
-      120
-    ]
-  );
+  vibrate([70,40,120]);
 
   await startMusic();
 
   emojiExplosion(
-    [
-      "❤️",
-      "💗",
-      "💕",
-      "💖",
-      "🩷"
-    ],
+    ["❤️","💗","💕","💖","🩷"],
     28
   );
 
-  sparkles(
-    18
-  );
+  sparkles(18);
 
-  createPetals(
-    10
-  );
+  createPetals(10);
 
-  cinematicTransition(
-    1,
-    2
-  );
+  cinematicTransition(1,2);
 
 }
 
 
-/* =========================================================
-   DİĞER SAYFALAR
-========================================================= */
+/* =====================================================
+   SAYFALAR
+===================================================== */
 
-function nextPage(page) {
+function nextPage(page){
 
-  if (
-    page === 2
-  ) {
+  if(page===2){
 
-    vibrate(
-      [
-        40,
-        30,
-        70
-      ]
-    );
+    vibrate([40,30,70]);
 
     emojiExplosion(
       [
@@ -2693,28 +2468,16 @@ function nextPage(page) {
       44
     );
 
-    sparkles(
-      26
-    );
+    sparkles(26);
 
-    createPetals(
-      18
-    );
+    createPetals(18);
 
   }
 
 
-  if (
-    page === 3
-  ) {
+  if(page===3){
 
-    vibrate(
-      [
-        50,
-        35,
-        85
-      ]
-    );
+    vibrate([50,35,85]);
 
     emojiExplosion(
       [
@@ -2729,216 +2492,163 @@ function nextPage(page) {
       48
     );
 
-    sparkles(
-      30
-    );
+    sparkles(30);
 
-    createPetals(
-      14
-    );
+    createPetals(14);
 
   }
 
-
   cinematicTransition(
     page,
-    page + 1
+    page+1
   );
 
 }
 
 
-/* =========================================================
-   SİNEMATİK GEÇİŞ
-========================================================= */
+/* =====================================================
+   GEÇİŞ
+===================================================== */
 
-function cinematicTransition(
-  current,
-  next
-) {
+function cinematicTransition(current,next){
 
   const blackout =
-    document.getElementById(
-      "blackout"
-    );
+    document.getElementById("blackout");
 
   blackout
     .classList
     .add("active");
 
 
-  setTimeout(
-    () => {
+  setTimeout(()=>{
 
-      document
-        .getElementById(
-          "screen" + current
-        )
-        .classList
-        .remove("active");
+    document
+      .getElementById("screen"+current)
+      .classList
+      .remove("active");
 
+    document
+      .getElementById("screen"+next)
+      .classList
+      .add("active");
 
-      document
-        .getElementById(
-          "screen" + next
-        )
-        .classList
-        .add("active");
+    updateProgress(next);
+
+  },500);
 
 
-      updateProgress(
-        next
-      );
+  setTimeout(()=>{
 
-    },
-    500
-  );
+    blackout
+      .classList
+      .remove("active");
 
-
-  setTimeout(
-    () => {
-
-      blackout
-        .classList
-        .remove("active");
-
-    },
-    820
-  );
+  },820);
 
 }
 
 
-/* =========================================================
+/* =====================================================
    FINAL
-========================================================= */
+===================================================== */
 
-function showFinal() {
+function showFinal(){
 
   const blackout =
-    document.getElementById(
-      "blackout"
-    );
-
+    document.getElementById("blackout");
 
   blackout
     .classList
     .add("active");
 
 
-  setTimeout(
-    () => {
+  setTimeout(()=>{
 
-      document
-        .getElementById(
-          "screen4"
-        )
-        .classList
-        .remove("active");
+    document
+      .getElementById("screen4")
+      .classList
+      .remove("active");
 
+    document
+      .getElementById("screen5")
+      .classList
+      .add("active");
 
-      document
-        .getElementById(
-          "screen5"
-        )
-        .classList
-        .add("active");
+    updateProgress(5);
+
+  },620);
 
 
-      updateProgress(
-        5
-      );
+  setTimeout(()=>{
 
-    },
-    620
-  );
+    blackout
+      .classList
+      .remove("active");
 
 
-  setTimeout(
-    () => {
-
-      blackout
-        .classList
-        .remove("active");
-
-
-      vibrate(
-        [
-          90,
-          60,
-          90,
-          60,
-          180
-        ]
-      );
+    vibrate([
+      90,
+      60,
+      90,
+      60,
+      180
+    ]);
 
 
-      emojiExplosion(
-        [
-          "❤️",
-          "❤️",
-          "❤️",
-          "🌹",
-          "🌹",
-          "💖",
-          "💕",
-          "✨",
-          "🩷"
-        ],
-        75
-      );
+    emojiExplosion(
+      [
+        "❤️",
+        "❤️",
+        "❤️",
+        "🌹",
+        "🌹",
+        "💖",
+        "💕",
+        "✨",
+        "🩷"
+      ],
+      75
+    );
 
 
-      sparkles(
-        50
-      );
+    sparkles(50);
+
+    createPetals(30);
 
 
-      createPetals(
-        30
-      );
+    setTimeout(
+      animateFinalName,
+      500
+    );
 
-
-      setTimeout(
-        animateFinalName,
-        500
-      );
-
-    },
-    1150
-  );
+  },1150);
 
 }
 
 
-/* =========================================================
-   H -> HA -> HAV -> HAVA
-========================================================= */
+/* =====================================================
+   H -> Ha -> Hav -> Hava
+===================================================== */
 
-function animateFinalName() {
+function animateFinalName(){
 
   const element =
-    document.getElementById(
-      "finalName"
-    );
+    document.getElementById("finalName");
 
   const goodText =
-    document.getElementById(
-      "goodText"
-    );
+    document.getElementById("goodText");
 
   const finalMessage =
-    document.getElementById(
-      "finalMessage"
-    );
+    document.getElementById("finalMessage");
 
   const signature =
-    document.getElementById(
-      "signatureWrap"
-    );
+    document.getElementById("signatureWrap");
+
+  const heartHint =
+    document.getElementById("heartHint");
 
 
-  const steps = [
+  const steps=[
     "H",
     "Ha",
     "Hav",
@@ -2946,173 +2656,186 @@ function animateFinalName() {
   ];
 
 
-  let index = 0;
+  let index=0;
+
+  element.innerText="";
 
 
-  const timer =
-    setInterval(
-      () => {
+  const timer=setInterval(()=>{
 
 
-        element.innerText =
-          steps[index];
+    element.innerText=
+      steps[index];
 
 
-        element
-          .classList
-          .remove(
-            "namePop"
-          );
+    element
+      .classList
+      .remove("namePop");
 
 
-        void
-          element.offsetWidth;
+    void element.offsetWidth;
 
 
-        element
-          .classList
-          .add(
-            "namePop"
-          );
+    element
+      .classList
+      .add("namePop");
 
 
-        if (
-          steps[index]
-          ===
-          "Hava"
-        ) {
+    if(steps[index]==="Hava"){
 
-          vibrate(
-            90
-          );
+      vibrate(90);
 
-          sparkles(
-            34
-          );
+      sparkles(34);
 
-        }
+    }
 
 
-        index++;
+    index++;
 
 
-        if (
-          index >=
-          steps.length
-        ) {
+    if(index>=steps.length){
 
-          clearInterval(
-            timer
-          );
+      clearInterval(timer);
 
 
-          setTimeout(
-            () => {
+      setTimeout(()=>{
 
-              element.innerText =
-                "Hava.";
+        element.innerText="Hava.";
 
 
-              setTimeout(
-                () => {
+        /* İYİ Kİ VARSIN */
 
-                  goodText
-                    .classList
-                    .add(
-                      "show"
-                    );
+        setTimeout(()=>{
 
-
-                  vibrate(
-                    [
-                      65,
-                      35,
-                      110
-                    ]
-                  );
+          goodText
+            .classList
+            .add("show");
 
 
-                  setTimeout(
-                    () => {
-
-                      finalMessage
-                        .classList
-                        .add(
-                          "show"
-                        );
+          vibrate([
+            65,
+            35,
+            110
+          ]);
 
 
-                      setTimeout(
-                        () => {
+          /* ALT YAZI */
 
-                          signature
-                            .classList
-                            .add(
-                              "show"
-                            );
+          setTimeout(()=>{
 
-                          sparkles(
-                            22
-                          );
-
-                        },
-                        650
-                      );
+            finalMessage
+              .classList
+              .add("show");
 
 
-                    },
-                    550
-                  );
+            /* H İMZASI */
+
+            setTimeout(()=>{
+
+              signature
+                .classList
+                .add("show");
+
+              sparkles(22);
 
 
-                },
-                450
-              );
+              /*
+                İMZA BİTTİKTEN
+                SONRA:
+                KALBE 3 KEZ DOKUN
+              */
+
+              setTimeout(()=>{
+
+                heartHint
+                  .classList
+                  .add("show");
+
+                vibrate(50);
+
+              },2500);
 
 
-            },
-            430
-          );
-
-        }
+            },650);
 
 
-      },
-      650
-    );
+          },550);
+
+
+        },450);
+
+
+      },430);
+
+    }
+
+
+  },650);
 
 }
 
 
-/* =========================================================
-   DEV KALP - 3 DOKUNUŞTA GİZLİ MESAJ
-========================================================= */
+/* =====================================================
+   KALBE 3 KEZ DOKUNMA
+===================================================== */
 
-let heartTapCount = 0;
+let heartTapCount=0;
 
-let heartResetTimer = null;
+let heartResetTimer=null;
+
+let secretOpened=false;
 
 
 document
-  .getElementById(
-    "giantHeart"
-  )
+  .getElementById("giantHeart")
   .addEventListener(
     "click",
-    () => {
+    ()=>{
+
+
+      const heartHint =
+        document.getElementById("heartHint");
+
+
+      /*
+        Yazı çıkmadan
+        üçlü dokunma çalışmaz.
+      */
+
+      if(
+        !heartHint
+          .classList
+          .contains("show")
+        ||
+        secretOpened
+      ){
+
+        return;
+
+      }
 
 
       heartTapCount++;
 
 
-      vibrate(
-        45
-      );
+      vibrate(45);
+
+      sparkles(8);
 
 
-      sparkles(
-        8
-      );
+      const heart =
+        document.getElementById("giantHeart");
+
+
+      heart.style.transform=
+        "scale(1.16)";
+
+
+      setTimeout(()=>{
+
+        heart.style.transform="";
+
+      },130);
 
 
       clearTimeout(
@@ -3120,60 +2843,26 @@ document
       );
 
 
-      heartResetTimer =
-        setTimeout(
-          () => {
+      /*
+        2 saniyede 3 kez
+        dokunulmazsa sıfırla.
+      */
 
-            heartTapCount = 0;
+      heartResetTimer=
+        setTimeout(()=>{
 
-          },
-          1700
-        );
+          heartTapCount=0;
 
-
-      if (
-        heartTapCount >= 3
-      ) {
-
-        heartTapCount = 0;
+        },2000);
 
 
-        const secret =
-          document.getElementById(
-            "secretMessage"
-          );
+      if(heartTapCount>=3){
 
+        secretOpened=true;
 
-        secret
-          .classList
-          .add("show");
+        heartTapCount=0;
 
-
-        vibrate(
-          [
-            80,
-            40,
-            80,
-            40,
-            150
-          ]
-        );
-
-
-        emojiExplosion(
-          [
-            "❤️",
-            "🌹",
-            "✨",
-            "💖"
-          ],
-          38
-        );
-
-
-        createPetals(
-          20
-        );
+        openSecretFinal();
 
       }
 
@@ -3181,287 +2870,294 @@ document
   );
 
 
-/* =========================================================
-   İLERLEME
-========================================================= */
+/* =====================================================
+   GERÇEK SON FINAL
+===================================================== */
 
-function updateProgress(page) {
-
-  document
-    .getElementById(
-      "counter"
-    )
-    .innerText =
-
-    "0"
-    +
-    page
-    +
-    " / 05";
+function openSecretFinal(){
 
 
-  document
-    .getElementById(
-      "progressBar"
-    )
-    .style.width =
+  vibrate([
+    90,
+    60,
+    90,
+    60,
+    170
+  ]);
 
-    (
-      page * 20
-    )
-    +
-    "%";
+
+  /*
+    ÖNCE ESKİ FINAL
+    TAMAMEN KAYBOLSUN
+  */
+
+  const oldFinalItems =
+    document.querySelectorAll(
+      "#screen5 .finalMain"
+    );
+
+
+  oldFinalItems.forEach(
+    item=>{
+
+      item
+        .classList
+        .add("hideFinal");
+
+    }
+  );
+
+
+  emojiExplosion(
+    [
+      "❤️",
+      "🌹",
+      "💖",
+      "✨",
+      "🌹"
+    ],
+    40
+  );
+
+
+  sparkles(36);
+
+  createPetals(26);
+
+
+  /*
+    SONRA SON MESAJ
+  */
+
+  setTimeout(()=>{
+
+    const secret =
+      document.getElementById(
+        "secretMessage"
+      );
+
+
+    secret
+      .classList
+      .add("show");
+
+
+    setTimeout(()=>{
+
+      sparkles(28);
+
+      createPetals(15);
+
+    },1000);
+
+
+    setTimeout(()=>{
+
+      emojiExplosion(
+        [
+          "❤️",
+          "🌹",
+          "✨",
+          "💖"
+        ],
+        24
+      );
+
+    },2600);
+
+
+  },800);
 
 }
 
 
-/* =========================================================
+/* =====================================================
+   İLERLEME
+===================================================== */
+
+function updateProgress(page){
+
+  document
+    .getElementById("counter")
+    .innerText=
+    "0"+page+" / 05";
+
+
+  document
+    .getElementById("progressBar")
+    .style
+    .width=
+    (page*20)+"%";
+
+}
+
+
+/* =====================================================
    EMOJİ PATLAMASI
-========================================================= */
+===================================================== */
 
-function emojiExplosion(
-  items,
-  count
-) {
+function emojiExplosion(items,count){
 
-  for (
-    let i = 0;
-    i < count;
+  for(
+    let i=0;
+    i<count;
     i++
-  ) {
+  ){
 
-    setTimeout(
-      () => {
+    setTimeout(()=>{
 
-
-        const emoji =
-          document.createElement(
-            "div"
-          );
+      const emoji=
+        document.createElement("div");
 
 
-        emoji.className =
-          "burst";
+      emoji.className="burst";
 
 
-        emoji.innerText =
-
-          items[
-            Math.floor(
-              Math.random()
-              *
-              items.length
-            )
-          ];
-
-
-        emoji.style.left =
-
-          (
-            5
-            +
-            Math.random() * 90
+      emoji.innerText=
+        items[
+          Math.floor(
+            Math.random()*items.length
           )
-          +
-          "vw";
+        ];
 
 
-        emoji.style.top =
-
-          (
-            64
-            +
-            Math.random() * 29
-          )
-          +
-          "vh";
+      emoji.style.left=
+        (
+          5+
+          Math.random()*90
+        )+"vw";
 
 
-        emoji.style.fontSize =
-
-          (
-            18
-            +
-            Math.random() * 30
-          )
-          +
-          "px";
+      emoji.style.top=
+        (
+          64+
+          Math.random()*29
+        )+"vh";
 
 
-        emoji.style
-          .setProperty(
-
-            "--x",
-
-            (
-              -180
-              +
-              Math.random() * 360
-            )
-            +
-            "px"
-
-          );
+      emoji.style.fontSize=
+        (
+          18+
+          Math.random()*30
+        )+"px";
 
 
-        emoji.style
-          .setProperty(
-
-            "--y",
-
-            (
-              -260
-              -
-              Math.random() * 310
-            )
-            +
-            "px"
-
-          );
+      emoji.style.setProperty(
+        "--x",
+        (
+          -180+
+          Math.random()*360
+        )+"px"
+      );
 
 
-        emoji.style
-          .setProperty(
-
-            "--r",
-
-            (
-              -120
-              +
-              Math.random() * 240
-            )
-            +
-            "deg"
-
-          );
+      emoji.style.setProperty(
+        "--y",
+        (
+          -260-
+          Math.random()*310
+        )+"px"
+      );
 
 
-        document.body
-          .appendChild(
-            emoji
-          );
+      emoji.style.setProperty(
+        "--r",
+        (
+          -120+
+          Math.random()*240
+        )+"deg"
+      );
 
 
-        setTimeout(
-          () => {
-
-            emoji.remove();
-
-          },
-          2800
-        );
+      document.body
+        .appendChild(emoji);
 
 
-      },
-      i * 34
-    );
+      setTimeout(()=>{
+
+        emoji.remove();
+
+      },2800);
+
+
+    },i*34);
 
   }
 
 }
 
 
-/* =========================================================
+/* =====================================================
    PARILTILAR
-========================================================= */
+===================================================== */
 
-function sparkles(count) {
+function sparkles(count){
 
-  for (
-    let i = 0;
-    i < count;
+  for(
+    let i=0;
+    i<count;
     i++
-  ) {
+  ){
 
-    const spark =
-      document.createElement(
-        "span"
-      );
+    const spark=
+      document.createElement("span");
 
 
-    spark.className =
-      "spark";
+    spark.className="spark";
 
 
-    spark.style.left =
-
+    spark.style.left=
       (
-        28
-        +
-        Math.random() * 44
-      )
-      +
-      "vw";
+        28+
+        Math.random()*44
+      )+"vw";
 
 
-    spark.style.top =
-
+    spark.style.top=
       (
-        32
-        +
-        Math.random() * 40
-      )
-      +
-      "vh";
+        32+
+        Math.random()*40
+      )+"vh";
 
 
-    spark.style
-      .setProperty(
-
-        "--sx",
-
-        (
-          -210
-          +
-          Math.random() * 420
-        )
-        +
-        "px"
-
-      );
+    spark.style.setProperty(
+      "--sx",
+      (
+        -210+
+        Math.random()*420
+      )+"px"
+    );
 
 
-    spark.style
-      .setProperty(
-
-        "--sy",
-
-        (
-          -220
-          +
-          Math.random() * 350
-        )
-        +
-        "px"
-
-      );
+    spark.style.setProperty(
+      "--sy",
+      (
+        -220+
+        Math.random()*350
+      )+"px"
+    );
 
 
     document.body
-      .appendChild(
-        spark
-      );
+      .appendChild(spark);
 
 
-    setTimeout(
-      () => {
+    setTimeout(()=>{
 
-        spark.remove();
+      spark.remove();
 
-      },
-      1800
-    );
+    },1800);
 
   }
 
 }
 
 
-/* =========================================================
-   GERÇEK GÜL YAPRAKLARI
-========================================================= */
+/* =====================================================
+   GÜL YAPRAKLARI
+===================================================== */
 
-function createPetals(count) {
+function createPetals(count){
 
   const layer =
     document.getElementById(
@@ -3469,157 +3165,102 @@ function createPetals(count) {
     );
 
 
-  for (
-    let i = 0;
-    i < count;
+  for(
+    let i=0;
+    i<count;
     i++
-  ) {
+  ){
 
-    setTimeout(
-      () => {
+    setTimeout(()=>{
 
-
-        const petal =
-          document.createElement(
-            "span"
-          );
+      const petal=
+        document.createElement("span");
 
 
-        petal.className =
-          "petal";
+      petal.className="petal";
 
 
-        petal.style.left =
-
-          Math.random()
-          *
-          100
-          +
-          "vw";
+      petal.style.left=
+        Math.random()*100+"vw";
 
 
-        petal.style
-          .setProperty(
-
-            "--size",
-
-            (
-              13
-              +
-              Math.random() * 15
-            )
-            +
-            "px"
-
-          );
+      petal.style.setProperty(
+        "--size",
+        (
+          13+
+          Math.random()*15
+        )+"px"
+      );
 
 
-        petal.style
-          .setProperty(
-
-            "--fallTime",
-
-            (
-              5
-              +
-              Math.random() * 4
-            )
-            +
-            "s"
-
-          );
+      petal.style.setProperty(
+        "--fallTime",
+        (
+          5+
+          Math.random()*4
+        )+"s"
+      );
 
 
-        petal.style
-          .setProperty(
-
-            "--drift",
-
-            (
-              -80
-              +
-              Math.random() * 160
-            )
-            +
-            "px"
-
-          );
+      petal.style.setProperty(
+        "--drift",
+        (
+          -80+
+          Math.random()*160
+        )+"px"
+      );
 
 
-        petal.style
-          .setProperty(
-
-            "--drift2",
-
-            (
-              -130
-              +
-              Math.random() * 260
-            )
-            +
-            "px"
-
-          );
+      petal.style.setProperty(
+        "--drift2",
+        (
+          -130+
+          Math.random()*260
+        )+"px"
+      );
 
 
-        petal.style
-          .setProperty(
-
-            "--opacity",
-
-            (
-              .55
-              +
-              Math.random() * .35
-            )
-
-          );
+      petal.style.setProperty(
+        "--opacity",
+        (
+          .55+
+          Math.random()*.35
+        )
+      );
 
 
-        layer
-          .appendChild(
-            petal
-          );
+      layer
+        .appendChild(petal);
 
 
-        setTimeout(
-          () => {
+      setTimeout(()=>{
 
-            petal.remove();
+        petal.remove();
 
-          },
-          9500
-        );
+      },9500);
 
 
-      },
-      i * 110
-    );
+    },i*110);
 
   }
 
 }
 
 
-/* Arada hafif gül yaprakları */
+/* Arada hafif yaprak */
 
-setInterval(
-  () => {
+setInterval(()=>{
 
-    createPetals(
-      2
-    );
+  createPetals(2);
 
-  },
-  3400
-);
+},3400);
 
 
-/* =========================================================
-   ARKA PLAN GÜLLERİ
-========================================================= */
+/* =====================================================
+   ARKA PLAN GÜLLER
+===================================================== */
 
-function createBackgroundRoses() {
+function createBackgroundRoses(){
 
   const container =
     document.getElementById(
@@ -3627,93 +3268,62 @@ function createBackgroundRoses() {
     );
 
 
-  for (
-    let i = 0;
-    i < 23;
+  for(
+    let i=0;
+    i<23;
     i++
-  ) {
+  ){
 
-    const rose =
-      document.createElement(
-        "span"
-      );
+    const rose=
+      document.createElement("span");
 
 
-    rose.className =
+    rose.className=
       "backgroundRose";
 
 
-    rose.innerText =
-      "🌹";
+    rose.innerText="🌹";
 
 
-    rose.style.left =
-
-      Math.random()
-      *
-      100
-      +
-      "vw";
+    rose.style.left=
+      Math.random()*100+"vw";
 
 
-    rose.style.top =
-
-      Math.random()
-      *
-      100
-      +
-      "vh";
+    rose.style.top=
+      Math.random()*100+"vh";
 
 
-    rose.style.fontSize =
-
+    rose.style.fontSize=
       (
-        22
-        +
-        Math.random() * 44
-      )
-      +
-      "px";
+        22+
+        Math.random()*44
+      )+"px";
 
 
-    rose.style.opacity =
-
+    rose.style.opacity=
       (
-        .035
-        +
-        Math.random() * .06
+        .035+
+        Math.random()*.06
       );
 
 
-    rose.style
-      .setProperty(
-
-        "--duration",
-
-        (
-          7
-          +
-          Math.random() * 10
-        )
-        +
-        "s"
-
-      );
-
-
-    rose.style.animationDelay =
-
+    rose.style.setProperty(
+      "--duration",
       (
-        -Math.random() * 10
-      )
-      +
-      "s";
+        7+
+        Math.random()*10
+      )+"s"
+    );
+
+
+    rose.style.animationDelay=
+      (
+        -Math.random()*10
+      )+"s";
 
 
     container
-      .appendChild(
-        rose
-      );
+      .appendChild(rose);
 
   }
 
@@ -3723,104 +3333,84 @@ function createBackgroundRoses() {
 createBackgroundRoses();
 
 
-/* =========================================================
-   DOKUNULAN NOKTADA PARILTI
-========================================================= */
+/* =====================================================
+   DOKUNMA PARILTISI
+===================================================== */
 
 document.addEventListener(
   "pointerdown",
-  event => {
+  event=>{
 
-    const glow =
-      document.createElement(
-        "div"
-      );
+    const glow=
+      document.createElement("div");
 
 
-    glow.className =
+    glow.className=
       "touchGlow";
 
 
-    glow.style.left =
-      event.clientX
-      +
-      "px";
+    glow.style.left=
+      event.clientX+"px";
 
 
-    glow.style.top =
-      event.clientY
-      +
-      "px";
+    glow.style.top=
+      event.clientY+"px";
 
 
     document.body
-      .appendChild(
-        glow
-      );
+      .appendChild(glow);
 
 
-    setTimeout(
-      () => {
+    setTimeout(()=>{
 
-        glow.remove();
+      glow.remove();
 
-      },
-      850
-    );
+    },850);
 
   }
 );
 
 
-/* =========================================================
-   MASAÜSTÜ 3D PARALLAX
-========================================================= */
+/* =====================================================
+   MASAÜSTÜ PARALLAX
+===================================================== */
 
 document.addEventListener(
   "mousemove",
-  event => {
+  event=>{
 
-    const x =
+    const x=
       (
-        event.clientX
-        /
+        event.clientX/
         window.innerWidth
-        -
-        .5
+        -.5
       );
 
-    const y =
+    const y=
       (
-        event.clientY
-        /
+        event.clientY/
         window.innerHeight
-        -
-        .5
+        -.5
       );
 
 
-    mainCard.style.transform =
+    mainCard.style.transform=
+      `rotateY(${x*3.6}deg)
+       rotateX(${y*-3.2}deg)`;
 
-      `rotateY(${x * 3.6}deg)
-       rotateX(${y * -3.2}deg)`;
 
-
-    background.style.transform =
-
+    background.style.transform=
       `translate(
-        ${x * -16}px,
-        ${y * -13}px
+        ${x*-16}px,
+        ${y*-13}px
       )`;
 
 
-    if (
-      photoContainer
-    ) {
+    if(photoContainer){
 
-      photoContainer.style.transform =
-
-        `rotateY(${x * 3}deg)
-         rotateX(${y * -2.5}deg)`;
+      photoContainer.style.transform=
+        `rotateY(${x*3}deg)
+         rotateX(${y*-2.5}deg)`;
 
     }
 
@@ -3830,74 +3420,71 @@ document.addEventListener(
 
 document.addEventListener(
   "mouseleave",
-  () => {
+  ()=>{
 
-    mainCard.style.transform =
+    mainCard.style.transform=
       "rotateX(0) rotateY(0)";
 
-    background.style.transform =
+    background.style.transform=
       "translate(0,0)";
 
   }
 );
 
 
-/* =========================================================
-   TELEFON HAREKET SENSÖRÜ PARALLAX
-========================================================= */
+/* =====================================================
+   TELEFON PARALLAX
+===================================================== */
 
-function handleOrientation(event) {
+function handleOrientation(event){
 
-  if (
-    event.gamma == null
+  if(
+    event.gamma==null
     ||
-    event.beta == null
-  ) {
+    event.beta==null
+  ){
+
     return;
+
   }
 
 
-  const gamma =
+  const gamma=
+    Math.max(
+      -25,
+      Math.min(25,event.gamma)
+    );
+
+
+  const beta=
     Math.max(
       -25,
       Math.min(
         25,
-        event.gamma
+        event.beta-45
       )
     );
 
 
-  const beta =
-    Math.max(
-      -25,
-      Math.min(
-        25,
-        event.beta - 45
-      )
-    );
+  mainCard.style.transform=
+    `rotateY(${gamma/8}deg)
+     rotateX(${-beta/10}deg)`;
 
 
-  mainCard.style.transform =
-
-    `rotateY(${gamma / 8}deg)
-     rotateX(${-beta / 10}deg)`;
-
-
-  background.style.transform =
-
+  background.style.transform=
     `translate(
-      ${-gamma / 2}px,
-      ${-beta / 2}px
+      ${-gamma/2}px,
+      ${-beta/2}px
     )`;
 
 }
 
 
-if (
+if(
   typeof DeviceOrientationEvent
   !==
   "undefined"
-) {
+){
 
   window.addEventListener(
     "deviceorientation",

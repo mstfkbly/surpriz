@@ -6,6 +6,28 @@
 
   <title>Hava ✦</title>
 
+  <!-- H FAVICON -->
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href='data:image/svg+xml,
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <defs>
+        <linearGradient id="g" x1="0" x2="1">
+          <stop stop-color="%23ff477e"/>
+          <stop offset="1" stop-color="%239a6cff"/>
+        </linearGradient>
+      </defs>
+      <rect width="100" height="100" rx="26" fill="%230b0710"/>
+      <circle cx="50" cy="50" r="38" fill="url(%23g)" opacity=".35"/>
+      <text x="50" y="68"
+            text-anchor="middle"
+            font-family="serif"
+            font-size="60"
+            font-weight="700"
+            fill="white">H</text>
+    </svg>'>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -24,15 +46,14 @@
 
     :root {
       --white: #ffffff;
-      --soft: rgba(255,255,255,.76);
-      --muted: rgba(255,255,255,.42);
+      --soft: rgba(255,255,255,.78);
+      --muted: rgba(255,255,255,.45);
 
-      --pink: #ff4d87;
-      --pink2: #ff88ac;
-      --purple: #a276ff;
-      --wine: #6f0e32;
+      --pink: #ff477e;
+      --pink2: #ff8fb4;
+      --purple: #9a6cff;
 
-      --glass: rgba(255,255,255,.07);
+      --glass: rgba(255,255,255,.075);
       --border: rgba(255,255,255,.12);
     }
 
@@ -44,7 +65,6 @@
 
     body {
       min-height: 100vh;
-
       overflow: hidden;
 
       font-family: "Inter", sans-serif;
@@ -53,39 +73,35 @@
 
       background:
         radial-gradient(
-          circle at 18% 10%,
-          rgba(164, 18, 69, .35),
+          circle at 15% 10%,
+          rgba(185, 20, 81, .34),
           transparent 30%
         ),
-
         radial-gradient(
           circle at 90% 85%,
-          rgba(93, 57, 169, .28),
+          rgba(105, 63, 190, .27),
           transparent 34%
         ),
-
         linear-gradient(
           145deg,
           #050507,
-          #10070c 50%,
+          #12070d 50%,
           #060509
         );
     }
 
 
-    /* ==================================================
+    /* =========================
        ARKA PLAN
-    ================================================== */
+    ========================== */
 
     .background {
       position: fixed;
       inset: 0;
-
-      pointer-events: none;
-
       z-index: 0;
 
       overflow: hidden;
+      pointer-events: none;
     }
 
     .orb {
@@ -93,76 +109,79 @@
 
       border-radius: 50%;
 
-      filter: blur(100px);
+      filter: blur(110px);
 
       opacity: .34;
     }
 
     .orb.one {
-      width: 360px;
-      height: 360px;
+      width: 370px;
+      height: 370px;
 
-      top: -140px;
-      left: -130px;
+      left: -150px;
+      top: -150px;
 
-      background: #c51757;
+      background: #c31958;
 
-      animation: orbOne 12s ease-in-out infinite alternate;
+      animation:
+        orbOne
+        12s ease-in-out
+        infinite alternate;
     }
 
     .orb.two {
-      width: 420px;
-      height: 420px;
+      width: 430px;
+      height: 430px;
 
-      right: -160px;
+      right: -180px;
       bottom: -180px;
 
-      background: #6f45d5;
+      background: #7043d4;
 
-      animation: orbTwo 14s ease-in-out infinite alternate;
+      animation:
+        orbTwo
+        14s ease-in-out
+        infinite alternate;
     }
 
     #roses {
       position: absolute;
       inset: 0;
-
-      overflow: hidden;
     }
 
-    .bg-rose {
+    .background-rose {
       position: absolute;
 
       user-select: none;
 
-      opacity: .075;
-
-      filter: blur(.2px);
+      opacity: .07;
 
       animation:
-        roseMove
+        backgroundRose
         var(--duration)
         ease-in-out
         infinite alternate;
     }
 
 
-    /* ==================================================
-       ANA SAYFA
-    ================================================== */
+    /* =========================
+       ANA ALAN
+    ========================== */
 
     .app {
       position: relative;
 
       z-index: 5;
 
-      width: 100%;
       min-height: 100vh;
+
+      width: 100%;
+
+      padding: 18px;
 
       display: grid;
 
       place-items: center;
-
-      padding: 18px;
     }
 
     .shell {
@@ -171,21 +190,27 @@
       position: relative;
     }
 
+
+    /* =========================
+       ANA KART
+    ========================== */
+
     .card {
       width: 100%;
 
-      height: min(740px, 93vh);
+      height: min(750px, 93vh);
 
       min-height: 630px;
 
       position: relative;
 
-      border-radius: 36px;
-
       overflow: hidden;
 
-      background:
+      padding: 23px;
 
+      border-radius: 38px;
+
+      background:
         linear-gradient(
           145deg,
           rgba(255,255,255,.105),
@@ -193,23 +218,15 @@
         );
 
       border:
-
         1px solid
-        var(--border);
+        rgba(255,255,255,.13);
 
       backdrop-filter: blur(30px);
       -webkit-backdrop-filter: blur(30px);
 
       box-shadow:
-
-        0 40px 110px
-        rgba(0,0,0,.50),
-
-        inset
-        0 1px 0
-        rgba(255,255,255,.10);
-
-      padding: 23px;
+        0 42px 115px rgba(0,0,0,.52),
+        inset 0 1px 0 rgba(255,255,255,.10);
     }
 
     .card::before {
@@ -220,30 +237,31 @@
       inset: 0;
 
       background:
-
         linear-gradient(
           115deg,
           transparent 15%,
-          rgba(255,255,255,.065) 45%,
+          rgba(255,255,255,.07) 45%,
           transparent 72%
         );
 
-      transform: translateX(-130%);
+      transform: translateX(-135%);
 
-      animation: shine 8s infinite;
+      animation:
+        cardShine
+        8s infinite;
 
       pointer-events: none;
     }
 
 
-    /* ==================================================
-       ÜST ÇUBUK
-    ================================================== */
+    /* =========================
+       ÜST ALAN
+    ========================== */
 
     .topbar {
       position: relative;
 
-      z-index: 10;
+      z-index: 20;
 
       display: flex;
 
@@ -258,7 +276,8 @@
 
       text-transform: uppercase;
 
-      color: rgba(255,255,255,.52);
+      color:
+        rgba(255,255,255,.55);
     }
 
     .counter {
@@ -266,26 +285,27 @@
 
       letter-spacing: 1px;
 
-      color: rgba(255,255,255,.36);
+      color:
+        rgba(255,255,255,.36);
     }
 
     .progress {
       position: relative;
 
-      z-index: 10;
+      z-index: 20;
 
       width: 100%;
 
       height: 3px;
 
-      border-radius: 10px;
+      margin-top: 16px;
+
+      border-radius: 20px;
 
       overflow: hidden;
 
       background:
-        rgba(255,255,255,.06);
-
-      margin-top: 16px;
+        rgba(255,255,255,.065);
     }
 
     .progress-bar {
@@ -296,34 +316,30 @@
       border-radius: inherit;
 
       background:
-
         linear-gradient(
           90deg,
-          #ff477c,
-          #a473ff
+          #ff477e,
+          #9f6fff
         );
 
       box-shadow:
-
-        0 0 14px
-        rgba(255,71,124,.45);
+        0 0 15px
+        rgba(255,71,126,.45);
 
       transition:
-
-        width
-        .8s
+        width .8s
         cubic-bezier(.2,.8,.2,1);
     }
 
 
-    /* ==================================================
+    /* =========================
        EKRANLAR
-    ================================================== */
+    ========================== */
 
     .stage {
-      position: relative;
+      height: calc(100% - 50px);
 
-      height: calc(100% - 48px);
+      position: relative;
     }
 
     .screen {
@@ -345,19 +361,14 @@
       pointer-events: none;
 
       transform:
-        translateY(26px)
-        scale(.97);
+        translateY(28px)
+        scale(.965);
 
       filter: blur(9px);
 
       transition:
-
         opacity .75s ease,
-
-        transform
-        .75s
-        cubic-bezier(.2,.8,.2,1),
-
+        transform .75s cubic-bezier(.2,.8,.2,1),
         filter .75s ease;
     }
 
@@ -374,29 +385,28 @@
     }
 
 
-    /* ==================================================
-       AÇILIŞ
-    ================================================== */
+    /* =========================
+       GENEL İKON
+    ========================== */
 
-    .intro-symbol {
-      width: 84px;
-      height: 84px;
+    .icon {
+      width: 82px;
+      height: 82px;
 
       display: grid;
 
       place-items: center;
 
-      border-radius: 28px;
+      border-radius: 27px;
 
-      margin-bottom: 27px;
+      margin-bottom: 23px;
 
       font-size: 34px;
 
       background:
-
         linear-gradient(
           145deg,
-          rgba(255,255,255,.13),
+          rgba(255,255,255,.14),
           rgba(255,255,255,.04)
         );
 
@@ -405,52 +415,54 @@
         rgba(255,255,255,.11);
 
       box-shadow:
+        0 20px 52px
+        rgba(0,0,0,.26);
 
-        0 20px 55px
-        rgba(0,0,0,.25);
-
-      animation: floating 3.5s ease-in-out infinite;
+      animation:
+        floating
+        3.5s ease-in-out
+        infinite;
     }
 
-    .eyebrow {
-      font-size: 10px;
 
-      text-transform: uppercase;
+    /* =========================
+       YAZILAR
+    ========================== */
+
+    .eyebrow {
+      margin-bottom: 14px;
+
+      font-size: 10px;
 
       letter-spacing: 4px;
 
+      text-transform: uppercase;
+
       color:
         rgba(255,255,255,.43);
-
-      margin-bottom: 14px;
     }
 
     .name {
+      margin-bottom: 20px;
+
       font-family:
         "Playfair Display",
         serif;
 
       font-size:
-        clamp(
-          65px,
-          15vw,
-          90px
-        );
+        clamp(66px, 15vw, 92px);
 
       line-height: .92;
 
       letter-spacing: -3px;
 
-      margin-bottom: 20px;
-
       background:
-
         linear-gradient(
           95deg,
-          #fff,
-          #ffc4d8,
-          #d7c6ff,
-          #fff
+          #ffffff,
+          #ffc5d9,
+          #d9c8ff,
+          #ffffff
         );
 
       background-size: 250%;
@@ -464,57 +476,92 @@
         6s linear infinite;
     }
 
-    .intro-text {
+    .intro {
       max-width: 350px;
 
-      font-size: 15px;
+      margin-bottom: 25px;
 
-      line-height: 1.85;
+      font-size: 15.5px;
+
+      line-height: 1.9;
 
       color: var(--soft);
-
-      margin-bottom: 28px;
     }
 
     .headphones {
+      margin-bottom: 24px;
+
       display: inline-flex;
 
       align-items: center;
 
       gap: 8px;
 
-      margin-bottom: 24px;
-
       padding: 9px 14px;
 
       border-radius: 100px;
 
-      color:
-        rgba(255,255,255,.67);
-
       font-size: 12px;
+
+      color:
+        rgba(255,255,255,.68);
+
+      background:
+        rgba(255,255,255,.04);
 
       border:
         1px solid
         rgba(255,255,255,.08);
+    }
 
-      background:
-        rgba(255,255,255,.04);
+    .heading {
+      max-width: 365px;
+
+      margin-bottom: 20px;
+
+      font-family:
+        "Playfair Display",
+        serif;
+
+      font-size:
+        clamp(30px, 7vw, 42px);
+
+      line-height: 1.15;
+
+      letter-spacing: -1px;
+    }
+
+    .paragraph {
+      max-width: 350px;
+
+      margin-bottom: 28px;
+
+      font-size: 15.5px;
+
+      line-height: 1.9;
+
+      color: var(--soft);
+    }
+
+    .white {
+      color: white;
+
+      font-weight: 600;
     }
 
 
-    /* ==================================================
+    /* =========================
        BUTON
-    ================================================== */
+    ========================== */
 
     .button {
-      border: none;
+      min-width: 205px;
 
-      outline: none;
+      border: 0;
+
+      outline: 0;
 
       cursor: pointer;
-
-      min-width: 205px;
 
       padding: 16px 28px;
 
@@ -529,26 +576,18 @@
       font-weight: 600;
 
       background:
-
         linear-gradient(
           135deg,
-          #f53f79,
+          #f43f79,
           #9f6fff
         );
 
       box-shadow:
-
-        0 17px 45px
-        rgba(222,55,125,.29),
-
-        inset
-        0 1px 0
-        rgba(255,255,255,.24);
+        0 17px 45px rgba(222,55,125,.29),
+        inset 0 1px 0 rgba(255,255,255,.24);
 
       transition:
-
         transform .25s ease,
-
         box-shadow .25s ease;
     }
 
@@ -558,9 +597,8 @@
         scale(1.02);
 
       box-shadow:
-
         0 22px 52px
-        rgba(222,55,125,.38);
+        rgba(222,55,125,.40);
     }
 
     .button:active {
@@ -568,45 +606,39 @@
     }
 
 
-    /* ==================================================
+    /* =========================
        FOTOĞRAF
-    ================================================== */
+    ========================== */
 
     .photo-container {
-      width:
-        min(100%, 325px);
+      width: min(100%, 325px);
 
       position: relative;
 
-      margin-bottom: 22px;
+      margin-bottom: 23px;
 
       padding: 9px;
 
       border-radius: 31px;
 
       background:
-
         linear-gradient(
           145deg,
-          rgba(255,255,255,.17),
+          rgba(255,255,255,.18),
           rgba(255,255,255,.045)
         );
 
       border:
-
         1px solid
-        rgba(255,255,255,.13);
+        rgba(255,255,255,.14);
 
       box-shadow:
-
-        0 30px 70px
-        rgba(0,0,0,.37);
-
-      transform: rotate(-1.2deg);
+        0 30px 72px
+        rgba(0,0,0,.39);
 
       animation:
         photoFloat
-        4.3s ease-in-out
+        4.4s ease-in-out
         infinite;
     }
 
@@ -622,12 +654,11 @@
       padding: 1px;
 
       background:
-
         linear-gradient(
           135deg,
-          rgba(255,255,255,.28),
+          rgba(255,255,255,.30),
           transparent,
-          rgba(255,102,157,.25)
+          rgba(255,100,155,.28)
         );
 
       -webkit-mask:
@@ -654,7 +685,7 @@
 
     .photo-caption {
       padding:
-        14px 7px 5px;
+        14px 8px 6px;
 
       font-family:
         "Playfair Display",
@@ -665,24 +696,21 @@
       font-size: 15px;
 
       color:
-        rgba(255,255,255,.74);
+        rgba(255,255,255,.75);
     }
 
-    .floating-rose {
+    .photo-rose {
       position: absolute;
 
       right: -15px;
       bottom: -20px;
 
-      font-size: 53px;
-
-      transform:
-        rotate(16deg);
+      font-size: 54px;
 
       filter:
         drop-shadow(
           0 10px 12px
-          rgba(0,0,0,.32)
+          rgba(0,0,0,.35)
         );
 
       animation:
@@ -692,94 +720,44 @@
     }
 
 
-    /* ==================================================
-       METİN
-    ================================================== */
-
-    .heading {
-      max-width: 365px;
-
-      font-family:
-        "Playfair Display",
-        serif;
-
-      font-size:
-        clamp(
-          30px,
-          7vw,
-          42px
-        );
-
-      line-height: 1.15;
-
-      letter-spacing: -1px;
-
-      margin-bottom: 20px;
-    }
-
-    .paragraph {
-      max-width: 350px;
-
-      font-size: 15.5px;
-
-      line-height: 1.9;
-
-      color: var(--soft);
-
-      margin-bottom: 28px;
-    }
-
-    .white {
-      color: white;
-
-      font-weight: 600;
-    }
-
-
-    /* ==================================================
-       ARA SİNEMATİK EKRAN
-    ================================================== */
+    /* =========================
+       ALINTI
+    ========================== */
 
     .quote-mark {
+      margin-bottom: 24px;
+
       font-family:
         "Playfair Display",
         serif;
 
       font-size: 90px;
 
-      line-height: .6;
+      line-height: .5;
 
       color:
         rgba(255,255,255,.12);
-
-      margin-bottom: 25px;
     }
 
     .cinematic-text {
-      max-width: 350px;
+      max-width: 360px;
+
+      margin-bottom: 32px;
 
       font-family:
         "Playfair Display",
         serif;
 
       font-size:
-        clamp(
-          24px,
-          6vw,
-          34px
-        );
+        clamp(23px, 6vw, 33px);
 
       line-height: 1.55;
-
-      color: white;
-
-      margin-bottom: 32px;
     }
 
 
-    /* ==================================================
+    /* =========================
        FINAL
-    ================================================== */
+    ========================== */
 
     .final-stage {
       width: 100%;
@@ -788,67 +766,132 @@
 
       flex-direction: column;
 
+      align-items: center;
+
+      justify-content: center;
+    }
+
+    .final-small {
+      margin-bottom: 16px;
+
+      font-size: 10px;
+
+      letter-spacing: 4px;
+
+      text-transform: uppercase;
+
+      color:
+        rgba(255,255,255,.40);
+    }
+
+    .giant-heart {
+      margin-bottom: 10px;
+
+      font-size:
+        clamp(110px, 28vw, 165px);
+
+      line-height: 1;
+
+      filter:
+        drop-shadow(
+          0 18px 35px
+          rgba(255,48,111,.38)
+        );
+
+      animation:
+        giantHeartBeat
+        1.25s ease-in-out
+        infinite;
+    }
+
+
+    /* İSİM ANİMASYONU */
+
+    .name-animation-area {
+      min-height: 76px;
+
+      margin-bottom: 5px;
+
+      display: flex;
+
       justify-content: center;
       align-items: center;
     }
 
-    .final-small {
-      font-size: 10px;
+    #finalName {
+      display: inline-block;
 
-      text-transform: uppercase;
+      min-width: 180px;
 
-      letter-spacing: 4px;
-
-      color:
-        rgba(255,255,255,.40);
-
-      margin-bottom: 18px;
-    }
-
-    .giant-heart {
-      font-size:
-        clamp(
-          110px,
-          28vw,
-          165px
-        );
-
-      line-height: 1;
-
-      margin-bottom: 12px;
-
-      filter:
-
-        drop-shadow(
-          0 18px 32px
-          rgba(255,48,111,.34)
-        );
-
-      animation:
-
-        giantHeartBeat
-        1.25s
-        ease-in-out
-        infinite;
-    }
-
-    .final-title {
       font-family:
         "Playfair Display",
         serif;
 
       font-size:
-        clamp(
-          41px,
-          10vw,
-          62px
-        );
+        clamp(54px, 13vw, 78px);
+
+      font-weight: 700;
 
       line-height: 1;
 
       letter-spacing: -2px;
 
-      margin-bottom: 18px;
+      background:
+        linear-gradient(
+          90deg,
+          #fff,
+          #ffc2d8,
+          #d3c0ff,
+          #fff
+        );
+
+      background-size: 230%;
+
+      -webkit-background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+
+      animation:
+        gradientMove
+        5s linear infinite;
+    }
+
+    #finalName.name-pop {
+      animation:
+        namePop .48s ease,
+        gradientMove 5s linear infinite;
+    }
+
+
+    .good-text {
+      margin-bottom: 17px;
+
+      font-family:
+        "Playfair Display",
+        serif;
+
+      font-size:
+        clamp(34px, 8vw, 53px);
+
+      line-height: 1;
+
+      letter-spacing: -1px;
+
+      opacity: 0;
+
+      transform:
+        translateY(15px);
+
+      transition:
+        opacity .8s ease,
+        transform .8s ease;
+    }
+
+    .good-text.show {
+      opacity: 1;
+
+      transform:
+        translateY(0);
     }
 
     .final-message {
@@ -860,18 +903,50 @@
 
       color:
         rgba(255,255,255,.74);
+
+      opacity: 0;
+
+      transform:
+        translateY(12px);
+
+      transition:
+        opacity .8s ease,
+        transform .8s ease;
+    }
+
+    .final-message.show {
+      opacity: 1;
+
+      transform:
+        translateY(0);
     }
 
     .final-rose {
-      margin-top: 20px;
+      margin-top: 18px;
 
       font-size: 34px;
+
+      opacity: 0;
+
+      transform:
+        scale(.4);
+
+      transition:
+        opacity .7s ease,
+        transform .7s ease;
+    }
+
+    .final-rose.show {
+      opacity: 1;
+
+      transform:
+        scale(1);
     }
 
 
-    /* ==================================================
-       MÜZİK
-    ================================================== */
+    /* =========================
+       MÜZİK BUTONU
+    ========================== */
 
     .music-button {
       position: absolute;
@@ -879,10 +954,14 @@
       top: 67px;
       right: 15px;
 
-      z-index: 50;
+      z-index: 100;
 
       width: 42px;
       height: 42px;
+
+      display: grid;
+
+      place-items: center;
 
       border-radius: 50%;
 
@@ -893,7 +972,7 @@
         rgba(255,255,255,.12);
 
       background:
-        rgba(0,0,0,.17);
+        rgba(0,0,0,.18);
 
       backdrop-filter: blur(15px);
 
@@ -901,18 +980,14 @@
 
       font-size: 16px;
 
-      display: grid;
-
-      place-items: center;
-
       opacity: 0;
 
       pointer-events: none;
 
-      transform: translateY(-5px);
+      transform:
+        translateY(-6px);
 
-      transition:
-        .4s ease;
+      transition: .4s ease;
     }
 
     .music-button.visible {
@@ -920,7 +995,8 @@
 
       pointer-events: auto;
 
-      transform: translateY(0);
+      transform:
+        translateY(0);
     }
 
     .music-button.playing {
@@ -930,24 +1006,25 @@
     }
 
 
-    /* ==================================================
-       KARARMA
-    ================================================== */
+    /* =========================
+       SİNEMATİK KARARMA
+    ========================== */
 
     .blackout {
       position: fixed;
 
       inset: 0;
 
-      background: #000;
-
       z-index: 800;
+
+      background: #000;
 
       opacity: 0;
 
       pointer-events: none;
 
-      transition: opacity .65s ease;
+      transition:
+        opacity .62s ease;
     }
 
     .blackout.active {
@@ -955,9 +1032,9 @@
     }
 
 
-    /* ==================================================
+    /* =========================
        EMOJİLER
-    ================================================== */
+    ========================== */
 
     .burst {
       position: fixed;
@@ -969,14 +1046,12 @@
       user-select: none;
 
       filter:
-
         drop-shadow(
           0 7px 12px
           rgba(0,0,0,.22)
         );
 
       animation:
-
         burstFly
         2.7s
         cubic-bezier(.15,.75,.25,1)
@@ -1007,27 +1082,27 @@
     }
 
 
-    /* ==================================================
+    /* =========================
        ANİMASYONLAR
-    ================================================== */
+    ========================== */
 
     @keyframes orbOne {
       to {
         transform:
-          translate(100px, 70px)
-          scale(1.12);
+          translate(100px,70px)
+          scale(1.13);
       }
     }
 
     @keyframes orbTwo {
       to {
         transform:
-          translate(-90px, -80px)
-          scale(1.15);
+          translate(-90px,-80px)
+          scale(1.16);
       }
     }
 
-    @keyframes roseMove {
+    @keyframes backgroundRose {
       from {
         transform:
           translateY(0)
@@ -1041,16 +1116,16 @@
       }
     }
 
-    @keyframes shine {
+    @keyframes cardShine {
       0%,
       70% {
         transform:
-          translateX(-130%);
+          translateX(-135%);
       }
 
       100% {
         transform:
-          translateX(130%);
+          translateX(135%);
       }
     }
 
@@ -1070,7 +1145,7 @@
     @keyframes gradientMove {
       to {
         background-position:
-          250%;
+          230%;
       }
     }
 
@@ -1099,36 +1174,53 @@
 
       50% {
         transform:
-          rotate(13deg)
-          translateY(-6px);
+          rotate(12deg)
+          translateY(-7px);
       }
     }
 
     @keyframes giantHeartBeat {
       0%,
       100% {
-        transform:
-          scale(1);
+        transform: scale(1);
       }
 
       18% {
-        transform:
-          scale(1.13);
+        transform: scale(1.13);
       }
 
       35% {
-        transform:
-          scale(1);
+        transform: scale(1);
       }
 
       50% {
-        transform:
-          scale(1.10);
+        transform: scale(1.10);
       }
 
       70% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes namePop {
+      0% {
+        opacity: 0;
+
         transform:
+          translateY(14px)
+          scale(.88);
+
+        filter: blur(6px);
+      }
+
+      100% {
+        opacity: 1;
+
+        transform:
+          translateY(0)
           scale(1);
+
+        filter: blur(0);
       }
     }
 
@@ -1195,9 +1287,9 @@
     }
 
 
-    /* ==================================================
-       TELEFON
-    ================================================== */
+    /* =========================
+       MOBİL
+    ========================== */
 
     @media (max-height: 720px) {
 
@@ -1219,21 +1311,25 @@
         font-size: 29px;
       }
 
-      .intro-symbol {
+      .icon {
         width: 66px;
         height: 66px;
 
         font-size: 28px;
 
-        margin-bottom: 16px;
+        margin-bottom: 15px;
       }
 
       .giant-heart {
         font-size: 105px;
       }
 
-      .final-title {
-        font-size: 40px;
+      #finalName {
+        font-size: 55px;
+      }
+
+      .good-text {
+        font-size: 36px;
       }
     }
 
@@ -1257,8 +1353,7 @@
 </div>
 
 
-
-<!-- KARARMA EFEKTİ -->
+<!-- KARARMA -->
 
 <div
   class="blackout"
@@ -1266,15 +1361,14 @@
 </div>
 
 
-
-<!-- ANA UYGULAMA -->
+<!-- ANA ALAN -->
 
 <div class="app">
 
   <div class="shell">
 
 
-    <!-- MÜZİK BUTONU -->
+    <!-- MÜZİK -->
 
     <button
       class="music-button"
@@ -1288,8 +1382,6 @@
 
     <div class="card">
 
-
-      <!-- ÜST -->
 
       <div class="topbar">
 
@@ -1308,7 +1400,6 @@
       </div>
 
 
-
       <div class="progress">
 
         <div
@@ -1319,20 +1410,19 @@
       </div>
 
 
-
       <div class="stage">
 
 
-        <!-- ==================================================
-             1 - BAŞLANGIÇ
-        ================================================== -->
+        <!-- ======================
+             SAYFA 1
+        ======================= -->
 
         <section
           class="screen active"
           id="screen1">
 
 
-          <div class="intro-symbol">
+          <div class="icon">
             ✦
           </div>
 
@@ -1347,7 +1437,7 @@
           </div>
 
 
-          <p class="intro-text">
+          <p class="intro">
 
             Sana bunu sıradan bir mesaj
             olarak göndermek istemedim.
@@ -1382,9 +1472,9 @@
 
 
 
-        <!-- ==================================================
-             2 - FOTOĞRAF
-        ================================================== -->
+        <!-- ======================
+             SAYFA 2
+        ======================= -->
 
         <section
           class="screen"
@@ -1417,7 +1507,7 @@
             </div>
 
 
-            <div class="floating-rose">
+            <div class="photo-rose">
 
               🌹
 
@@ -1440,19 +1530,17 @@
 
 
 
-        <!-- ==================================================
-             3 - MESAJ
-        ================================================== -->
+        <!-- ======================
+             SAYFA 3
+        ======================= -->
 
         <section
           class="screen"
           id="screen3">
 
 
-          <div class="intro-symbol">
-
+          <div class="icon">
             ✨
-
           </div>
 
 
@@ -1473,17 +1561,18 @@
 
           <p class="paragraph">
 
-            Bazılarıysa hiçbir şey yapmaz.
+            Bazılarıysa
+            hiçbir şey yapmaz.
 
             <br><br>
 
-            Ama yine de
-            insanın aklında
+            Ama yine de insanın
+            aklında
 
             <span class="white">
 
-              diğerlerinden biraz daha
-              uzun kalır.
+              diğerlerinden biraz
+              daha uzun kalır.
 
             </span>
 
@@ -1503,9 +1592,9 @@
 
 
 
-        <!-- ==================================================
-             4 - SİNEMATİK
-        ================================================== -->
+        <!-- ======================
+             SAYFA 4
+        ======================= -->
 
         <section
           class="screen"
@@ -1513,9 +1602,7 @@
 
 
           <div class="quote-mark">
-
             “
-
           </div>
 
 
@@ -1526,14 +1613,15 @@
 
             <br><br>
 
-            Zaten benim amacım da
-            seni etkilemeye çalışmak değildi.
+            Zaten mesele
+            seni etkilemeye çalışmak değil.
 
             <br><br>
 
             <span class="white">
 
-              Sana biraz özen göstermekti.
+              Sana biraz özen
+              göstermekti.
 
             </span>
 
@@ -1553,9 +1641,9 @@
 
 
 
-        <!-- ==================================================
-             5 - FINAL
-        ================================================== -->
+        <!-- ======================
+             SAYFA 5 - FINAL
+        ======================= -->
 
         <section
           class="screen"
@@ -1579,16 +1667,27 @@
             </div>
 
 
-            <div class="final-title">
+            <!-- H → Ha → Hav → Hava -->
 
-              İyi ki varsın,
-              <br>
-              Hava.
+            <div class="name-animation-area">
+
+              <span id="finalName"></span>
 
             </div>
 
 
-            <p class="final-message">
+            <div
+              class="good-text"
+              id="goodText">
+
+              İyi ki varsın.
+
+            </div>
+
+
+            <p
+              class="final-message"
+              id="finalMessage">
 
               Bunu sana söylemenin
               sıradan bir yolunu
@@ -1597,7 +1696,9 @@
             </p>
 
 
-            <div class="final-rose">
+            <div
+              class="final-rose"
+              id="finalRose">
 
               🌹
 
@@ -1620,10 +1721,7 @@
 </div>
 
 
-
-<!-- ==================================================
-     MÜZİK
-================================================== -->
+<!-- MÜZİK -->
 
 <audio
   id="backgroundMusic"
@@ -1638,20 +1736,17 @@
 </audio>
 
 
-
 <script>
 
 
-  /* ==================================================
+  /* ==========================
      MÜZİK
-  ================================================== */
-
+  =========================== */
 
   const music =
     document.getElementById(
       "backgroundMusic"
     );
-
 
   const musicButton =
     document.getElementById(
@@ -1662,24 +1757,20 @@
   music.volume = 0;
 
 
-  let musicStarted = false;
-
-
   async function startMusic() {
 
     try {
 
       await music.play();
 
-      musicStarted = true;
 
-      musicButton
-        .classList
-        .add("visible");
+      musicButton.classList.add(
+        "visible"
+      );
 
-      musicButton
-        .classList
-        .add("playing");
+      musicButton.classList.add(
+        "playing"
+      );
 
 
       fadeMusicIn();
@@ -1689,7 +1780,7 @@
     catch (e) {
 
       console.log(
-        "Müzik başlatılamadı"
+        "Müzik oynatılamadı."
       );
 
     }
@@ -1697,14 +1788,14 @@
   }
 
 
-
   function fadeMusicIn() {
 
     let volume = 0;
 
 
-    const fade = setInterval(
-      () => {
+    const fade =
+      setInterval(() => {
+
 
         volume += .02;
 
@@ -1720,13 +1811,10 @@
 
         music.volume = volume;
 
-      },
 
-      80
-    );
+      }, 80);
 
   }
-
 
 
   function toggleMusic() {
@@ -1735,9 +1823,9 @@
 
       music.play();
 
-      musicButton
-        .classList
-        .add("playing");
+      musicButton.classList.add(
+        "playing"
+      );
 
     }
 
@@ -1745,9 +1833,9 @@
 
       music.pause();
 
-      musicButton
-        .classList
-        .remove("playing");
+      musicButton.classList.remove(
+        "playing"
+      );
 
     }
 
@@ -1755,22 +1843,19 @@
 
 
 
-  /* ==================================================
-     DENEYİMİ BAŞLAT
-  ================================================== */
-
+  /* ==========================
+     BAŞLANGIÇ
+  =========================== */
 
   async function startExperience() {
-
-
-    /*
-      Butona kullanıcı bastığı için
-      tarayıcı müziğe izin verir.
-    */
 
     await startMusic();
 
 
+    /*
+      İLK BUTON:
+      SADECE KALPLER
+    */
 
     emojiExplosion(
 
@@ -1778,12 +1863,16 @@
         "❤️",
         "💗",
         "💕",
-        "💖"
+        "💖",
+        "🩷"
       ],
 
-      25
+      28
 
     );
+
+
+    sparkles(15);
 
 
     cinematicTransition(
@@ -1795,17 +1884,16 @@
 
 
 
-  /* ==================================================
-     NORMAL SAYFA GEÇİŞLERİ
-  ================================================== */
-
+  /* ==========================
+     SAYFA GEÇİŞLERİ
+  =========================== */
 
   function nextPage(page) {
 
 
     /*
-      FOTOĞRAFTAN SONRA:
-      Kalp + Gül
+      İKİNCİ BUTON:
+      KALP + GÜL
     */
 
     if (page === 2) {
@@ -1820,23 +1908,22 @@
           "🌹",
           "🌹",
           "💖",
+          "🩷",
           "🌹"
         ],
 
-        42
+        45
 
       );
 
 
-      sparkles(22);
+      sparkles(24);
 
     }
 
 
-
     /*
-      SONRAKİ BUTON:
-      Daha yoğun
+      ÜÇÜNCÜ BUTON
     */
 
     if (page === 3) {
@@ -1850,15 +1937,16 @@
           "✨",
           "💕",
           "🌹",
-          "💖"
+          "💖",
+          "🩷"
         ],
 
-        45
+        48
 
       );
 
 
-      sparkles(28);
+      sparkles(30);
 
     }
 
@@ -1872,99 +1960,296 @@
 
 
 
-  /* ==================================================
+  /* ==========================
      FINAL
-  ================================================== */
-
+  =========================== */
 
   function showFinal() {
 
 
     const blackout =
-
       document.getElementById(
         "blackout"
       );
 
 
-    blackout
-      .classList
-      .add("active");
-
-
-    setTimeout(
-      () => {
-
-
-        document
-          .getElementById(
-            "screen4"
-          )
-          .classList
-          .remove("active");
-
-
-        document
-          .getElementById(
-            "screen5"
-          )
-          .classList
-          .add("active");
-
-
-        updateProgress(5);
-
-
-      },
-
-      650
+    blackout.classList.add(
+      "active"
     );
 
 
-    setTimeout(
-      () => {
+    setTimeout(() => {
 
 
-        blackout
-          .classList
-          .remove("active");
-
-
-        emojiExplosion(
-
-          [
-            "❤️",
-            "❤️",
-            "❤️",
-            "💖",
-            "🌹",
-            "🌹",
-            "💕",
-            "✨",
-            "💗"
-          ],
-
-          70
-
+      document
+        .getElementById(
+          "screen4"
+        )
+        .classList
+        .remove(
+          "active"
         );
 
 
-        sparkles(45);
+      document
+        .getElementById(
+          "screen5"
+        )
+        .classList
+        .add(
+          "active"
+        );
 
 
-      },
+      updateProgress(5);
 
-      1200
-    );
+
+    }, 620);
+
+
+    /*
+      EKRAN TEKRAR AÇILIYOR
+    */
+
+    setTimeout(() => {
+
+
+      blackout.classList.remove(
+        "active"
+      );
+
+
+      emojiExplosion(
+
+        [
+          "❤️",
+          "❤️",
+          "❤️",
+          "💖",
+          "🌹",
+          "🌹",
+          "💕",
+          "✨",
+          "💗",
+          "🩷"
+        ],
+
+        75
+
+      );
+
+
+      sparkles(48);
+
+
+      /*
+        İSİM ANİMASYONU
+      */
+
+      setTimeout(
+        animateFinalName,
+        500
+      );
+
+
+    }, 1150);
 
   }
 
 
 
-  /* ==================================================
-     SİNEMATİK GEÇİŞ
-  ================================================== */
+  /* ==========================
+     H -> Ha -> Hav -> Hava
+  =========================== */
 
+  function animateFinalName() {
+
+
+    const element =
+      document.getElementById(
+        "finalName"
+      );
+
+
+    const goodText =
+      document.getElementById(
+        "goodText"
+      );
+
+
+    const finalMessage =
+      document.getElementById(
+        "finalMessage"
+      );
+
+
+    const finalRose =
+      document.getElementById(
+        "finalRose"
+      );
+
+
+    const steps = [
+
+      "H",
+
+      "Ha",
+
+      "Hav",
+
+      "Hava"
+
+    ];
+
+
+    let index = 0;
+
+
+    element.innerText = "";
+
+
+    const timer =
+      setInterval(() => {
+
+
+        element.innerText =
+          steps[index];
+
+
+        /*
+          Pop animasyonunu
+          her seferinde yeniden çalıştır.
+        */
+
+        element.classList.remove(
+          "name-pop"
+        );
+
+
+        void element.offsetWidth;
+
+
+        element.classList.add(
+          "name-pop"
+        );
+
+
+        /*
+          Son Hava geldiğinde
+          küçük ekstra parıltı.
+        */
+
+        if (
+          steps[index] === "Hava"
+        ) {
+
+          sparkles(30);
+
+        }
+
+
+        index++;
+
+
+        if (
+          index >= steps.length
+        ) {
+
+
+          clearInterval(timer);
+
+
+          /*
+            HAVA SABİTLENİR
+          */
+
+          setTimeout(() => {
+
+
+            element.innerText =
+              "Hava.";
+
+
+            /*
+              İYİ Kİ VARSIN
+            */
+
+            setTimeout(() => {
+
+              goodText
+                .classList
+                .add(
+                  "show"
+                );
+
+
+              /*
+                ALT YAZI
+              */
+
+              setTimeout(() => {
+
+                finalMessage
+                  .classList
+                  .add(
+                    "show"
+                  );
+
+
+                /*
+                  SON GÜL
+                */
+
+                setTimeout(() => {
+
+                  finalRose
+                    .classList
+                    .add(
+                      "show"
+                    );
+
+
+                  /*
+                    SON KÜÇÜK PATLAMA
+                  */
+
+                  emojiExplosion(
+
+                    [
+                      "❤️",
+                      "🌹",
+                      "💖",
+                      "✨"
+                    ],
+
+                    25
+
+                  );
+
+
+                }, 500);
+
+
+              }, 550);
+
+
+            }, 500);
+
+
+          }, 450);
+
+        }
+
+
+      }, 650);
+
+  }
+
+
+
+  /* ==========================
+     SİNEMATİK GEÇİŞ
+  =========================== */
 
   function cinematicTransition(
     current,
@@ -1973,63 +2258,62 @@
 
 
     const blackout =
-
       document.getElementById(
         "blackout"
       );
 
 
-    blackout
-      .classList
-      .add("active");
-
-
-    setTimeout(
-      () => {
-
-
-        document
-          .getElementById(
-            "screen" + current
-          )
-          .classList
-          .remove("active");
-
-
-        document
-          .getElementById(
-            "screen" + next
-          )
-          .classList
-          .add("active");
-
-
-        updateProgress(next);
-
-
-      },
-
-      520
+    blackout.classList.add(
+      "active"
     );
 
 
-    setTimeout(
-      () => {
+    setTimeout(() => {
 
 
-        blackout
-          .classList
-          .remove("active");
+      document
+        .getElementById(
+          "screen" + current
+        )
+        .classList
+        .remove(
+          "active"
+        );
 
 
-      },
+      document
+        .getElementById(
+          "screen" + next
+        )
+        .classList
+        .add(
+          "active"
+        );
 
-      830
-    );
+
+      updateProgress(next);
+
+
+    }, 500);
+
+
+    setTimeout(() => {
+
+
+      blackout.classList.remove(
+        "active"
+      );
+
+
+    }, 820);
 
   }
 
 
+
+  /* ==========================
+     İLERLEME
+  =========================== */
 
   function updateProgress(page) {
 
@@ -2060,10 +2344,9 @@
 
 
 
-  /* ==================================================
-     EMOJİ PATLAMASI
-  ================================================== */
-
+  /* ==========================
+     EMOJİ
+  =========================== */
 
   function emojiExplosion(
     items,
@@ -2078,126 +2361,122 @@
     ) {
 
 
-      setTimeout(
-        () => {
+      setTimeout(() => {
 
 
-          const emoji =
-
-            document.createElement(
-              "div"
-            );
-
-
-          emoji.className =
-            "burst";
-
-
-          emoji.innerText =
-
-            items[
-              Math.floor(
-                Math.random()
-                *
-                items.length
-              )
-            ];
-
-
-          emoji.style.left =
-
-            (
-              6
-              +
-              Math.random() * 88
-            )
-            + "vw";
-
-
-          emoji.style.top =
-
-            (
-              66
-              +
-              Math.random() * 25
-            )
-            + "vh";
-
-
-          emoji.style.fontSize =
-
-            (
-              18
-              +
-              Math.random() * 30
-            )
-            + "px";
-
-
-          emoji.style.setProperty(
-
-            "--x",
-
-            (
-              -170
-              +
-              Math.random() * 340
-            )
-            + "px"
-
+        const emoji =
+          document.createElement(
+            "div"
           );
 
 
-          emoji.style.setProperty(
+        emoji.className =
+          "burst";
 
-            "--y",
 
-            (
-              -250
-              -
-              Math.random() * 300
+        emoji.innerText =
+
+          items[
+            Math.floor(
+              Math.random()
+              *
+              items.length
             )
-            + "px"
+          ];
 
+
+        emoji.style.left =
+
+          (
+            5
+            +
+            Math.random()
+            * 90
+          )
+          + "vw";
+
+
+        emoji.style.top =
+
+          (
+            65
+            +
+            Math.random()
+            * 28
+          )
+          + "vh";
+
+
+        emoji.style.fontSize =
+
+          (
+            18
+            +
+            Math.random()
+            * 30
+          )
+          + "px";
+
+
+        emoji.style.setProperty(
+
+          "--x",
+
+          (
+            -180
+            +
+            Math.random()
+            * 360
+          )
+          + "px"
+
+        );
+
+
+        emoji.style.setProperty(
+
+          "--y",
+
+          (
+            -260
+            -
+            Math.random()
+            * 310
+          )
+          + "px"
+
+        );
+
+
+        emoji.style.setProperty(
+
+          "--r",
+
+          (
+            -120
+            +
+            Math.random()
+            * 240
+          )
+          + "deg"
+
+        );
+
+
+        document.body
+          .appendChild(
+            emoji
           );
 
 
-          emoji.style.setProperty(
+        setTimeout(() => {
 
-            "--r",
+          emoji.remove();
 
-            (
-              -120
-              +
-              Math.random() * 240
-            )
-            + "deg"
-
-          );
+        }, 2800);
 
 
-          document
-            .body
-            .appendChild(
-              emoji
-            );
-
-
-          setTimeout(
-            () => {
-
-              emoji.remove();
-
-            },
-
-            2800
-          );
-
-
-        },
-
-        i * 34
-      );
+      }, i * 34);
 
     }
 
@@ -2205,10 +2484,9 @@
 
 
 
-  /* ==================================================
-     PARILTILAR
-  ================================================== */
-
+  /* ==========================
+     PARILTI
+  =========================== */
 
   function sparkles(count) {
 
@@ -2221,7 +2499,6 @@
 
 
       const spark =
-
         document.createElement(
           "span"
         );
@@ -2234,10 +2511,10 @@
       spark.style.left =
 
         (
-          30
+          28
           +
           Math.random()
-          * 40
+          * 44
         )
         + "vw";
 
@@ -2245,10 +2522,10 @@
       spark.style.top =
 
         (
-          35
+          33
           +
           Math.random()
-          * 35
+          * 38
         )
         + "vh";
 
@@ -2258,10 +2535,10 @@
         "--sx",
 
         (
-          -200
+          -210
           +
           Math.random()
-          * 400
+          * 420
         )
         + "px"
 
@@ -2273,32 +2550,27 @@
         "--sy",
 
         (
-          -200
+          -220
           +
           Math.random()
-          * 330
+          * 350
         )
         + "px"
 
       );
 
 
-      document
-        .body
+      document.body
         .appendChild(
           spark
         );
 
 
-      setTimeout(
-        () => {
+      setTimeout(() => {
 
-          spark.remove();
+        spark.remove();
 
-        },
-
-        1800
-      );
+      }, 1800);
 
     }
 
@@ -2306,16 +2578,14 @@
 
 
 
-  /* ==================================================
-     ARKA PLAN GÜLLERİ
-  ================================================== */
-
+  /* ==========================
+     ARKA PLAN GÜLLER
+  =========================== */
 
   function createBackgroundRoses() {
 
 
-    const container =
-
+    const roses =
       document.getElementById(
         "roses"
       );
@@ -2323,20 +2593,19 @@
 
     for (
       let i = 0;
-      i < 24;
+      i < 26;
       i++
     ) {
 
 
       const rose =
-
         document.createElement(
           "span"
         );
 
 
       rose.className =
-        "bg-rose";
+        "background-rose";
 
 
       rose.innerText =
@@ -2371,7 +2640,7 @@
       rose.style.opacity =
 
         (
-          .045
+          .04
           +
           Math.random()
           * .075
@@ -2402,10 +2671,9 @@
         + "s";
 
 
-      container
-        .appendChild(
-          rose
-        );
+      roses.appendChild(
+        rose
+      );
 
     }
 
@@ -2416,7 +2684,6 @@
 
 
 </script>
-
 
 </body>
 </html>

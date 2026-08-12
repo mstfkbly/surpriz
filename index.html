@@ -1,2185 +1,788 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Hava</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
-        rel="stylesheet"
-    >
-
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --white: #ffffff;
-            --soft-white: rgba(255,255,255,.78);
-            --muted: rgba(255,255,255,.48);
-
-            --rose: #ff477e;
-            --rose-light: #ff85a7;
-            --wine: #720026;
-            --purple: #8c52ff;
-
-            --glass: rgba(255,255,255,.075);
-            --border: rgba(255,255,255,.13);
-        }
-
-        html,
-        body {
-            width: 100%;
-            min-height: 100%;
-        }
-
-        body {
-            min-height: 100vh;
-
-            font-family: "DM Sans", sans-serif;
-
-            color: white;
-
-            background:
-                radial-gradient(
-                    circle at 15% 10%,
-                    rgba(150,0,55,.40),
-                    transparent 32%
-                ),
-
-                radial-gradient(
-                    circle at 90% 85%,
-                    rgba(99,43,180,.24),
-                    transparent 35%
-                ),
-
-                linear-gradient(
-                    145deg,
-                    #080509,
-                    #12070d 45%,
-                    #060507
-                );
-
-            overflow: hidden;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-
-        /* =========================
-           ARKA PLAN IŞIKLARI
-        ========================== */
-
-        .ambient {
-            position: fixed;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .orb {
-            position: absolute;
-
-            width: 420px;
-            height: 420px;
-
-            border-radius: 50%;
-
-            filter: blur(110px);
-
-            opacity: .27;
-        }
-
-        .orb.one {
-            background: #b30048;
-
-            left: -180px;
-            top: -160px;
-
-            animation: orbMove1 12s ease-in-out infinite alternate;
-        }
-
-        .orb.two {
-            background: #702fff;
-
-            right: -190px;
-            bottom: -170px;
-
-            animation: orbMove2 14s ease-in-out infinite alternate;
-        }
-
-
-        /* =========================
-           ARKA PLAN GÜLLER
-        ========================== */
-
-        #roseBackground {
-            position: fixed;
-
-            inset: 0;
-
-            overflow: hidden;
-
-            pointer-events: none;
-
-            z-index: 0;
-        }
-
-        .background-rose {
-            position: absolute;
-
-            opacity: .08;
-
-            filter: blur(.2px);
-
-            animation:
-                backgroundRoseMove
-                var(--duration)
-                ease-in-out
-                infinite alternate;
-        }
-
-
-        /* =========================
-           ANA ALAN
-        ========================== */
-
-        .app {
-            width: 100%;
-            min-height: 100vh;
-
-            padding: 20px;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            position: relative;
-
-            z-index: 5;
-        }
-
-        .container {
-            width: min(94vw, 465px);
-
-            position: relative;
-        }
-
-
-        /* =========================
-           KART
-        ========================== */
-
-        .card {
-
-            width: 100%;
-
-            height: min(760px, 91vh);
-
-            min-height: 620px;
-
-            position: relative;
-
-            border-radius: 36px;
-
-            overflow: hidden;
-
-            background:
-
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,.11),
-                    rgba(255,255,255,.035)
-                );
-
-            border:
-                1px solid
-                rgba(255,255,255,.13);
-
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-
-            box-shadow:
-
-                0 40px 100px
-                rgba(0,0,0,.50),
-
-                inset 0 1px 0
-                rgba(255,255,255,.10);
-
-            padding: 25px;
-        }
-
-
-        .card::before {
-
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-
-                linear-gradient(
-                    115deg,
-                    transparent 20%,
-                    rgba(255,255,255,.055) 46%,
-                    transparent 70%
-                );
-
-            transform: translateX(-140%);
-
-            animation: shine 7s infinite;
-
-            pointer-events: none;
-        }
-
-
-        /* =========================
-           ÜST BÖLÜM
-        ========================== */
-
-        .header {
-
-            display: flex;
-
-            justify-content: space-between;
-            align-items: center;
-
-            position: relative;
-
-            z-index: 20;
-        }
-
-        .label {
-
-            font-size: 10px;
-
-            letter-spacing: 2.8px;
-
-            text-transform: uppercase;
-
-            color: rgba(255,255,255,.62);
-        }
-
-        .counter {
-
-            font-size: 11px;
-
-            color: rgba(255,255,255,.38);
-
-            letter-spacing: 1px;
-        }
-
-
-        /* =========================
-           İLERLEME
-        ========================== */
-
-        .progress {
-
-            margin-top: 17px;
-
-            height: 3px;
-
-            width: 100%;
-
-            background: rgba(255,255,255,.07);
-
-            border-radius: 20px;
-
-            overflow: hidden;
-
-            position: relative;
-
-            z-index: 20;
-        }
-
-        .progress-line {
-
-            height: 100%;
-
-            width: 25%;
-
-            border-radius: inherit;
-
-            background:
-
-                linear-gradient(
-                    90deg,
-                    #ff477e,
-                    #b76cff
-                );
-
-            box-shadow:
-
-                0 0 15px
-                rgba(255,71,126,.5);
-
-            transition: width .7s cubic-bezier(.2,.8,.2,1);
-        }
-
-
-        /* =========================
-           SAYFALAR
-        ========================== */
-
-        .screens {
-
-            position: relative;
-
-            height: calc(100% - 60px);
-        }
-
-        .screen {
-
-            position: absolute;
-
-            inset: 0;
-
-            padding: 20px 5px 5px;
-
-            display: flex;
-
-            flex-direction: column;
-
-            align-items: center;
-
-            justify-content: center;
-
-            text-align: center;
-
-            opacity: 0;
-
-            pointer-events: none;
-
-            transform:
-                translateY(24px)
-                scale(.97);
-
-            filter: blur(9px);
-
-            transition:
-
-                opacity .7s ease,
-
-                transform .7s
-                cubic-bezier(.2,.8,.2,1),
-
-                filter .7s ease;
-        }
-
-
-        .screen.active {
-
-            opacity: 1;
-
-            pointer-events: auto;
-
-            transform:
-                translateY(0)
-                scale(1);
-
-            filter: blur(0);
-        }
-
-
-        /* =========================
-           İKON
-        ========================== */
-
-        .icon {
-
-            width: 78px;
-            height: 78px;
-
-            border-radius: 26px;
-
-            display: flex;
-
-            justify-content: center;
-            align-items: center;
-
-            margin-bottom: 24px;
-
-            font-size: 35px;
-
-            background:
-
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,.14),
-                    rgba(255,255,255,.045)
-                );
-
-            border:
-
-                1px solid
-                rgba(255,255,255,.10);
-
-            box-shadow:
-
-                0 20px 50px
-                rgba(0,0,0,.26);
-
-            animation:
-                iconFloat
-                3.5s ease-in-out
-                infinite;
-        }
-
-
-        /* =========================
-           YAZILAR
-        ========================== */
-
-        .mini {
-
-            text-transform: uppercase;
-
-            letter-spacing: 3.5px;
-
-            font-size: 10px;
-
-            color: rgba(255,255,255,.45);
-
-            margin-bottom: 15px;
-        }
-
-
-        .main-name {
-
-            font-family: "Playfair Display", serif;
-
-            font-size:
-                clamp(60px, 15vw, 88px);
-
-            line-height: .95;
-
-            letter-spacing: -3px;
-
-            margin-bottom: 18px;
-
-            background:
-
-                linear-gradient(
-                    100deg,
-                    #ffffff,
-                    #ffc4d8,
-                    #ffffff
-                );
-
-            background-size: 220%;
-
-            -webkit-background-clip: text;
-
-            -webkit-text-fill-color: transparent;
-
-            animation:
-                textGlow
-                5s linear infinite;
-        }
-
-
-        .heading {
-
-            max-width: 370px;
-
-            font-family: "Playfair Display", serif;
-
-            font-size:
-                clamp(30px, 7vw, 41px);
-
-            line-height: 1.12;
-
-            letter-spacing: -.9px;
-
-            margin-bottom: 20px;
-        }
-
-
-        .text {
-
-            max-width: 350px;
-
-            font-size: 15.5px;
-
-            line-height: 1.85;
-
-            color: var(--soft-white);
-
-            margin-bottom: 28px;
-        }
-
-
-        .strong {
-
-            color: #fff;
-
-            font-weight: 600;
-        }
-
-
-        /* =========================
-           BUTON
-        ========================== */
-
-        .button {
-
-            min-width: 190px;
-
-            padding: 15px 29px;
-
-            border: 0;
-
-            border-radius: 100px;
-
-            cursor: pointer;
-
-            color: white;
-
-            font-family: inherit;
-
-            font-size: 14px;
-
-            font-weight: 600;
-
-            letter-spacing: .2px;
-
-            background:
-
-                linear-gradient(
-                    135deg,
-                    #f6437c,
-                    #9f67ff
-                );
-
-            box-shadow:
-
-                0 15px 40px
-                rgba(223,52,129,.30),
-
-                inset 0 1px 0
-                rgba(255,255,255,.25);
-
-            transition:
-                transform .25s ease,
-                box-shadow .25s ease;
-        }
-
-
-        .button:hover {
-
-            transform:
-                translateY(-3px)
-                scale(1.02);
-
-            box-shadow:
-
-                0 20px 48px
-                rgba(223,52,129,.40);
-        }
-
-
-        .button:active {
-
-            transform:
-                scale(.96);
-        }
-
-
-        /* =========================
-           FOTOĞRAF
-        ========================== */
-
-        .photo-box {
-
-            width: min(100%, 310px);
-
-            position: relative;
-
-            margin-bottom: 23px;
-
-            padding: 8px;
-
-            border-radius: 30px;
-
-            background:
-
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,.18),
-                    rgba(255,255,255,.045)
-                );
-
-            border:
-                1px solid
-                rgba(255,255,255,.15);
-
-            box-shadow:
-
-                0 30px 65px
-                rgba(0,0,0,.34);
-
-            transform: rotate(-1.5deg);
-
-            animation:
-                photoFloat
-                4.5s ease-in-out
-                infinite;
-        }
-
-
-        .photo-box::after {
-
-            content: "🌹";
-
-            position: absolute;
-
-            right: -13px;
-            bottom: -17px;
-
-            font-size: 50px;
-
-            transform: rotate(15deg);
-
-            filter:
-
-                drop-shadow(
-                    0 9px 9px
-                    rgba(0,0,0,.32)
-                );
-        }
-
-
-        .photo {
-
-            width: 100%;
-
-            height: 330px;
-
-            object-fit: cover;
-
-            display: block;
-
-            border-radius: 23px;
-        }
-
-
-        .photo-info {
-
-            padding:
-                13px 8px 7px;
-
-            font-family:
-                "Playfair Display",
-                serif;
-
-            font-style: italic;
-
-            color:
-                rgba(255,255,255,.76);
-
-            font-size: 15px;
-        }
-
-
-        /* =========================
-           FINAL
-        ========================== */
-
-        .final-name {
-
-            font-family:
-                "Playfair Display",
-                serif;
-
-            font-size:
-                clamp(57px, 14vw, 82px);
-
-            margin-bottom: 16px;
-
-            background:
-
-                linear-gradient(
-                    90deg,
-                    #fff,
-                    #ffbfd5,
-                    #c5adff,
-                    #fff
-                );
-
-            background-size: 250%;
-
-            -webkit-background-clip: text;
-
-            -webkit-text-fill-color: transparent;
-
-            animation:
-                textGlow
-                5s linear infinite;
-        }
-
-
-        .final-line {
-
-            width: 75px;
-
-            height: 1px;
-
-            margin:
-                4px auto
-                22px;
-
-            background:
-
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    #ff94b6,
-                    transparent
-                );
-        }
-
-
-        .final-message {
-
-            max-width: 350px;
-
-            font-family:
-                "Playfair Display",
-                serif;
-
-            font-size: 20px;
-
-            line-height: 1.65;
-
-            color: rgba(255,255,255,.92);
-
-            min-height: 100px;
-
-            margin-bottom: 17px;
-        }
-
-
-        /* =========================
-           MÜZİK
-        ========================== */
-
-        .music {
-
-            position: absolute;
-
-            top: 78px;
-            right: 16px;
-
-            z-index: 80;
-
-            width: 42px;
-            height: 42px;
-
-            border-radius: 50%;
-
-            border:
-
-                1px solid
-                rgba(255,255,255,.13);
-
-            background:
-                rgba(0,0,0,.16);
-
-            backdrop-filter: blur(14px);
-
-            color: white;
-
-            cursor: pointer;
-
-            display: grid;
-
-            place-items: center;
-
-            font-size: 16px;
-
-            transition: .25s;
-        }
-
-
-        .music.playing {
-
-            animation:
-                musicPulse
-                1.8s ease-in-out
-                infinite;
-        }
-
-
-        /* =========================
-           EMOJİ PATLAMASI
-        ========================== */
-
-        .burst {
-
-            position: fixed;
-
-            z-index: 500;
-
-            pointer-events: none;
-
-            user-select: none;
-
-            filter:
-
-                drop-shadow(
-                    0 7px 10px
-                    rgba(0,0,0,.20)
-                );
-
-            animation:
-                burstAnimation
-                2.7s
-                cubic-bezier(.15,.75,.25,1)
-                forwards;
-        }
-
-
-        .spark {
-
-            position: fixed;
-
-            width: 6px;
-            height: 6px;
-
-            border-radius: 50%;
-
-            z-index: 490;
-
-            pointer-events: none;
-
-            background: white;
-
-            box-shadow:
-                0 0 12px white;
-
-            animation:
-                sparkAnimation
-                1.7s ease-out
-                forwards;
-        }
-
-
-        /* =========================
-           ANİMASYONLAR
-        ========================== */
-
-        @keyframes orbMove1 {
-
-            to {
-
-                transform:
-                    translate(
-                        100px,
-                        90px
-                    )
-                    scale(1.15);
-            }
-        }
-
-
-        @keyframes orbMove2 {
-
-            to {
-
-                transform:
-                    translate(
-                        -70px,
-                        -100px
-                    )
-                    scale(1.18);
-            }
-        }
-
-
-        @keyframes backgroundRoseMove {
-
-            from {
-
-                transform:
-                    translateY(0)
-                    rotate(-10deg)
-                    scale(1);
-            }
-
-            to {
-
-                transform:
-                    translateY(-35px)
-                    rotate(12deg)
-                    scale(1.10);
-            }
-        }
-
-
-        @keyframes shine {
-
-            0%,
-            68% {
-
-                transform:
-                    translateX(-140%);
-            }
-
-            100% {
-
-                transform:
-                    translateX(140%);
-            }
-        }
-
-
-        @keyframes iconFloat {
-
-            0%,
-            100% {
-
-                transform:
-                    translateY(0);
-            }
-
-            50% {
-
-                transform:
-                    translateY(-8px);
-            }
-        }
-
-
-        @keyframes photoFloat {
-
-            0%,
-            100% {
-
-                transform:
-                    rotate(-1.5deg)
-                    translateY(0);
-            }
-
-            50% {
-
-                transform:
-                    rotate(-.5deg)
-                    translateY(-7px);
-            }
-        }
-
-
-        @keyframes textGlow {
-
-            to {
-
-                background-position:
-                    250%;
-            }
-        }
-
-
-        @keyframes musicPulse {
-
-            0%,
-            100% {
-
-                box-shadow:
-
-                    0 0 0
-                    0
-                    rgba(255,71,126,.30);
-            }
-
-            50% {
-
-                box-shadow:
-
-                    0 0 0
-                    9px
-                    rgba(255,71,126,0);
-            }
-        }
-
-
-        @keyframes burstAnimation {
-
-            0% {
-
-                opacity: 0;
-
-                transform:
-
-                    translate(0,0)
-
-                    scale(.25)
-
-                    rotate(0deg);
-            }
-
-            13% {
-
-                opacity: 1;
-            }
-
-            100% {
-
-                opacity: 0;
-
-                transform:
-
-                    translate(
-                        var(--x),
-                        var(--y)
-                    )
-
-                    scale(1.3)
-
-                    rotate(
-                        var(--rotate)
-                    );
-            }
-        }
-
-
-        @keyframes sparkAnimation {
-
-            from {
-
-                opacity: 1;
-
-                transform:
-                    scale(.3);
-            }
-
-            to {
-
-                opacity: 0;
-
-                transform:
-
-                    translate(
-                        var(--sx),
-                        var(--sy)
-                    )
-
-                    scale(1.5);
-            }
-        }
-
-
-        /* =========================
-           TELEFON
-        ========================== */
-
-        @media
-        (max-height: 720px) {
-
-            .card {
-
-                min-height: 590px;
-
-                height: 94vh;
-            }
-
-            .photo {
-
-                height: 280px;
-            }
-
-            .main-name {
-
-                font-size: 60px;
-            }
-
-            .heading {
-
-                font-size: 29px;
-            }
-
-            .icon {
-
-                width: 65px;
-                height: 65px;
-
-                font-size: 29px;
-
-                margin-bottom: 15px;
-            }
-        }
-
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hava</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg1: #07070b;
+      --bg2: #140811;
+      --bg3: #09060a;
+      --white: #ffffff;
+      --soft: rgba(255,255,255,0.82);
+      --muted: rgba(255,255,255,0.54);
+      --glass: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.14);
+      --pink: #ff4f93;
+      --pink2: #ff80af;
+      --purple: #8f63ff;
+      --shadow: 0 30px 80px rgba(0,0,0,0.45);
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      color: var(--white);
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255,79,147,0.22), transparent 28%),
+        radial-gradient(circle at 85% 80%, rgba(143,99,255,0.22), transparent 28%),
+        linear-gradient(145deg, var(--bg1), var(--bg2) 55%, var(--bg3));
+      position: relative;
+    }
+
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .orb {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      filter: blur(95px);
+      opacity: 0.33;
+      animation: orbMove 10s ease-in-out infinite alternate;
+    }
+
+    .orb.one {
+      background: #ff2f80;
+      top: -90px;
+      left: -80px;
+    }
+
+    .orb.two {
+      background: #8157ff;
+      right: -100px;
+      bottom: -100px;
+      animation-delay: 1.5s;
+    }
+
+    .rose-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .rose-bg span {
+      position: absolute;
+      opacity: 0.10;
+      animation: roseDrift var(--d) ease-in-out infinite alternate;
+      user-select: none;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .shell {
+      width: min(94vw, 470px);
+      position: relative;
+    }
+
+    .music-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 50;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.10);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: 0.25s ease;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .music-btn.playing {
+      box-shadow: 0 0 0 0 rgba(255,79,147,0.4);
+      animation: musicPulse 1.8s infinite;
+    }
+
+    .music-toast {
+      position: absolute;
+      top: 64px;
+      right: 10px;
+      z-index: 50;
+      max-width: 220px;
+      font-size: 12px;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.88);
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+      transition: 0.3s ease;
+    }
+
+    .music-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card {
+      min-height: 710px;
+      height: min(92vh, 710px);
+      border-radius: 34px;
+      overflow: hidden;
+      position: relative;
+      padding: 22px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+      border: 1px solid var(--border);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: var(--shadow);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 15%, rgba(255,255,255,0.07) 45%, transparent 72%);
+      transform: translateX(-120%);
+      animation: sheen 7s infinite;
+      pointer-events: none;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 14px;
+    }
+
+    .tag {
+      font-size: 11px;
+      letter-spacing: 2.6px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.66);
+    }
+
+    .step {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      font-weight: 600;
+    }
+
+    .progress {
+      width: 100%;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .progress > span {
+      display: block;
+      height: 100%;
+      width: 25%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--pink), var(--purple));
+      transition: width 0.55s ease;
+    }
+
+    .stage {
+      position: relative;
+      height: calc(100% - 52px);
+    }
+
+    .screen {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(24px) scale(0.97);
+      filter: blur(8px);
+      transition: 0.65s ease;
+      padding: 8px 4px;
+    }
+
+    .screen.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+
+    .mini-icon {
+      width: 82px;
+      height: 82px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 36px;
+      margin-bottom: 18px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.07));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 18px 44px rgba(0,0,0,0.22);
+      animation: floaty 3.2s ease-in-out infinite;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.52);
+      margin-bottom: 12px;
+    }
+
+    .hero-name,
+    .final-name {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      background: linear-gradient(90deg, #fff, #ffd2e5, #d9ccff, #fff);
+      background-size: 240%;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: gradientMove 5s linear infinite;
+    }
+
+    .hero-name {
+      font-size: clamp(64px, 14vw, 86px);
+      line-height: 0.92;
+      margin-bottom: 14px;
+    }
+
+    .title {
+      font-size: clamp(30px, 7vw, 40px);
+      line-height: 1.12;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      max-width: 360px;
+    }
+
+    .text {
+      max-width: 350px;
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--soft);
+      margin-bottom: 26px;
+    }
+
+    .photo-wrap {
+      width: min(100%, 320px);
+      padding: 10px;
+      border-radius: 28px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.16), rgba(255,255,255,0.07));
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 24px 52px rgba(0,0,0,0.28);
+      transform: rotate(-1.5deg);
+      margin-bottom: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-wrap::after {
+      content: "🌹";
+      position: absolute;
+      right: 8px;
+      bottom: 4px;
+      font-size: 36px;
+      opacity: 0.95;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 20px;
+      display: block;
+    }
+
+    .photo-note {
+      font-size: 14px;
+      color: rgba(255,255,255,0.78);
+      padding: 10px 6px 2px;
+    }
+
+    .btn {
+      min-width: 185px;
+      border: none;
+      cursor: pointer;
+      padding: 15px 28px;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      box-shadow: 0 16px 38px rgba(255,79,147,0.28);
+      transition: 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 18px 46px rgba(255,79,147,0.38);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .final-name {
+      font-size: clamp(50px, 11vw, 72px);
+      margin-bottom: 6px;
+    }
+
+    .line {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+      margin: 0 auto 18px;
+    }
+
+    .typed {
+      max-width: 345px;
+      min-height: 112px;
+      font-size: 19px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.96);
+      font-family: "Cormorant Garamond", serif;
+      margin-bottom: 18px;
+    }
+
+    .mega-heart {
+      font-size: clamp(84px, 18vw, 132px);
+      line-height: 1;
+      margin: 8px 0 8px;
+      animation: heartBeat 1.3s infinite;
+      filter: drop-shadow(0 12px 28px rgba(255,79,147,0.28));
+    }
+
+    .good-text {
+      font-size: clamp(34px, 8vw, 56px);
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+      letter-spacing: -0.8px;
+    }
+
+    .soft-end {
+      max-width: 340px;
+      color: rgba(255,255,255,0.84);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    .burst {
+      position: fixed;
+      z-index: 999;
+      pointer-events: none;
+      user-select: none;
+      animation: burstUp 2.5s ease-out forwards;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.22));
+    }
+
+    .spark {
+      position: fixed;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 0 12px rgba(255,255,255,0.88);
+      z-index: 998;
+      pointer-events: none;
+      animation: sparkFly 1.7s ease-out forwards;
+    }
+
+    @keyframes orbMove {
+      to {
+        transform: translate(40px, 35px) scale(1.12);
+      }
+    }
+
+    @keyframes roseDrift {
+      from {
+        transform: translateY(0) rotate(-10deg);
+      }
+      to {
+        transform: translateY(-18px) rotate(9deg);
+      }
+    }
+
+    @keyframes sheen {
+      0%, 65% {
+        transform: translateX(-120%);
+      }
+      100% {
+        transform: translateX(120%);
+      }
+    }
+
+    @keyframes floaty {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes gradientMove {
+      to {
+        background-position: 240%;
+      }
+    }
+
+    @keyframes burstUp {
+      0% {
+        opacity: 0;
+        transform: translate(0,0) scale(0.3) rotate(0deg);
+      }
+      15% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--x), var(--y)) scale(1.18) rotate(var(--r));
+      }
+    }
+
+    @keyframes sparkFly {
+      0% {
+        opacity: 1;
+        transform: scale(0.2);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--sx), var(--sy)) scale(1.6);
+      }
+    }
+
+    @keyframes heartBeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.14);
+      }
+    }
+
+    @keyframes musicPulse {
+      0%,100% {
+        box-shadow: 0 0 0 0 rgba(255,79,147,0.38);
+      }
+      50% {
+        box-shadow: 0 0 0 9px rgba(255,79,147,0);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .card {
+        min-height: 660px;
+        height: 92vh;
+        border-radius: 28px;
+        padding: 18px;
+      }
+
+      .text {
+        font-size: 15px;
+      }
+
+      .btn {
+        min-width: 170px;
+      }
+    }
+  </style>
 </head>
-
-
 <body>
 
-
-<div class="ambient">
-
+  <div class="bg-layer">
     <div class="orb one"></div>
-
     <div class="orb two"></div>
-
-</div>
-
-
-<div id="roseBackground"></div>
-
-
-<div class="app">
-
-    <div class="container">
-
-
-        <!-- MÜZİK -->
-
-        <button
-            class="music"
-            id="musicButton"
-            onclick="toggleMusic()"
-            title="Müzik">
-
-            ♪
-
-        </button>
-
-
-
-        <div class="card">
-
-
-            <div class="header">
-
-                <div class="label">
-
-                    Hava için
-
-                </div>
-
-
-                <div
-                    class="counter"
-                    id="counter">
-
-                    01 / 04
-
-                </div>
-
-            </div>
-
-
-
-            <div class="progress">
-
-                <div
-                    class="progress-line"
-                    id="progress">
-
-                </div>
-
-            </div>
-
-
-
-            <div class="screens">
-
-
-                <!-- =======================
-                     SAYFA 1
-                ======================== -->
-
-                <section
-                    class="screen active"
-                    id="screen1">
-
-
-                    <div class="icon">
-
-                        🌹
-
-                    </div>
-
-
-                    <div class="mini">
-
-                        sana küçük bir şey
-
-                    </div>
-
-
-                    <h1 class="main-name">
-
-                        Hava.
-
-                    </h1>
-
-
-                    <p class="text">
-
-                        Sana sadece mesaj yazmak
-                        fazla sıradan geldi.
-
-                        <br><br>
-
-                        O yüzden birkaç dakikanı
-                        biraz daha
-
-                        <span class="strong">
-
-                            özel
-
-                        </span>
-
-                        hale getirmek istedim.
-
-                    </p>
-
-
-                    <button
-                        class="button"
-                        onclick="nextPage(1)">
-
-                        Başlayalım
-
-                    </button>
-
-
-                </section>
-
-
-
-
-                <!-- =======================
-                     SAYFA 2
-                ======================== -->
-
-                <section
-                    class="screen"
-                    id="screen2">
-
-
-                    <div class="photo-box">
-
-                        <img
-                            src="foto.jpg"
-                            class="photo"
-                            alt="Fotoğraf"
-                        >
-
-
-                        <div class="photo-info">
-
-                            Bazı kareler
-                            sadece fotoğraf değildir.
-
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        class="button"
-                        onclick="nextPage(2)">
-
-                        Devam et
-
-                    </button>
-
-
-                </section>
-
-
-
-
-                <!-- =======================
-                     SAYFA 3
-                ======================== -->
-
-                <section
-                    class="screen"
-                    id="screen3">
-
-
-                    <div class="icon">
-
-                        ✦
-
-                    </div>
-
-
-                    <div class="mini">
-
-                        bunu söylemeden geçmek istemedim
-
-                    </div>
-
-
-                    <h2 class="heading">
-
-                        Bazı insanlar
-                        dikkat çekmeye çalışır.
-
-                    </h2>
-
-
-                    <p class="text">
-
-                        Bazılarıysa
-                        bunun için hiçbir şey yapmaz.
-
-                        <br><br>
-
-                        Yine de fark edilir.
-
-                        <br><br>
-
-                        <span class="strong">
-
-                            Senin gibi.
-
-                        </span>
-
-                    </p>
-
-
-                    <button
-                        class="button"
-                        onclick="nextPage(3)">
-
-                        Son bir şey
-
-                    </button>
-
-
-                </section>
-
-
-
-
-                <!-- =======================
-                     SAYFA 4
-                ======================== -->
-
-                <section
-                    class="screen"
-                    id="screen4">
-
-
-                    <div class="mini">
-
-                        sadece sana
-
-                    </div>
-
-
-                    <div class="final-name">
-
-                        Hava
-
-                    </div>
-
-
-                    <div class="final-line"></div>
-
-
-                    <div
-                        class="final-message"
-                        id="finalMessage">
-
-                    </div>
-
-
-                    <p class="text">
-
-                        Eğer buraya kadar gelip
-                        içinden küçücük de olsa
-
-                        <span class="strong">
-
-                            “vay be...”
-
-                        </span>
-
-                        dediysen,
-
-                        <br>
-
-                        bu sayfa tam olarak
-                        yapması gerekeni yaptı.
-
-                    </p>
-
-
-                    <div
-                        style="
-                        font-size:31px;
-                        margin-top:3px;">
-
-                        🌹
-
-                    </div>
-
-
-                </section>
-
-
-            </div>
-
-
+    <div class="rose-bg" id="roseBg"></div>
+  </div>
+
+  <div class="app">
+    <div class="shell">
+
+      <button class="music-btn" id="musicBtn" onclick="toggleMusic()">♪</button>
+      <div class="music-toast" id="musicToast">
+        Tarayıcı sesi engellediyse ilk dokunuşta müzik otomatik başlar.
+      </div>
+
+      <div class="card">
+        <div class="topbar">
+          <div class="tag">Sadece Hava için</div>
+          <div class="step" id="stepText">01 / 04</div>
         </div>
 
+        <div class="progress">
+          <span id="progressFill"></span>
+        </div>
+
+        <div class="stage">
+
+          <!-- 1 -->
+          <section class="screen active" id="screen1">
+            <div class="mini-icon">🌹</div>
+            <div class="eyebrow">küçük bir sürpriz</div>
+            <div class="hero-name">Hava</div>
+            <p class="text">
+              Sana klasik bir mesaj atmak istemedim.
+              Biraz daha özenli, biraz daha akılda kalan
+              bir şey hazırlamak istedim.
+            </p>
+            <button class="btn" onclick="nextScreen(1, 'hearts')">Dokun</button>
+          </section>
+
+          <!-- 2 -->
+          <section class="screen" id="screen2">
+            <div class="photo-wrap">
+              <img src="foto.jpeg" alt="Fotoğraf">
+              <div class="photo-note">Bazı kareler sadece fotoğraf değildir.</div>
+            </div>
+            <button class="btn" onclick="nextScreen(2, 'mix')">Devam et</button>
+          </section>
+
+          <!-- 3 -->
+          <section class="screen" id="screen3">
+            <div class="mini-icon">✨</div>
+            <div class="eyebrow">kısa ama net</div>
+            <div class="title">
+              Bazı insanlar dikkat çekmeye çalışır.
+            </div>
+            <p class="text">
+              Bazılarıysa hiçbir şey yapmasa bile fark edilir.
+              <br><br>
+              Sanırım sen o ikinci gruptasın.
+            </p>
+            <button class="btn" onclick="nextScreen(3, 'final')">Son bir şey</button>
+          </section>
+
+          <!-- 4 -->
+          <section class="screen" id="screen4">
+            <div class="eyebrow">final</div>
+            <div class="final-name">Hava</div>
+            <div class="line"></div>
+
+            <div class="typed" id="typedText"></div>
+
+            <div class="mega-heart">❤️</div>
+            <div class="good-text">İyi ki varsın</div>
+
+            <p class="soft-end">
+              Eğer içinden küçücük de olsa bir
+              <strong>“vay be”</strong>
+              geçtiyse, tam istediğim şey buydu.
+            </p>
+          </section>
+
+        </div>
+      </div>
     </div>
+  </div>
 
-</div>
+  <audio id="bgMusic" autoplay playsinline preload="auto" loop>
+    <source src="muzik.mp3" type="audio/mpeg">
+  </audio>
 
-
-
-<!-- ===========================
-     MÜZİK
-============================ -->
-
-<audio
-    id="backgroundMusic"
-    autoplay
-    playsinline
-    preload="auto"
-    loop>
-
-    <source
-        src="muzik.mp3"
-        type="audio/mpeg"
-    >
-
-</audio>
-
-
-
-<script>
-
-
-    /* ===========================
-       MÜZİK
-    ============================ */
-
-
-    const music =
-        document.getElementById(
-            "backgroundMusic"
-        );
-
-
-    const musicButton =
-        document.getElementById(
-            "musicButton"
-        );
-
+  <script>
+    const music = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicBtn");
+    const musicToast = document.getElementById("musicToast");
 
     music.volume = 0.42;
 
+    async function tryStartMusic() {
+      try {
+        await music.play();
+        musicBtn.classList.add("playing");
+        musicBtn.textContent = "♫";
+      } catch (e) {
+        musicToast.classList.add("show");
+      }
+    }
 
-    async function tryAutoplay() {
-
+    async function startMusicAfterInteraction() {
+      if (music.paused) {
         try {
-
-            await music.play();
-
-            musicButton.classList.add(
-                "playing"
-            );
-
-            musicButton.innerHTML = "♫";
-
-        }
-
-        catch (error) {
-
-            /*
-              Telefon / Chrome / Safari
-              sesli autoplay'i engellerse
-              ilk kullanıcı dokunuşunda
-              müzik başlatılır.
-            */
-
-        }
-
+          await music.play();
+          musicBtn.classList.add("playing");
+          musicBtn.textContent = "♫";
+          musicToast.classList.remove("show");
+        } catch (e) {}
+      }
     }
 
+    window.addEventListener("load", () => {
+      setTimeout(tryStartMusic, 250);
+    });
 
-    window.addEventListener(
-        "load",
-        () => {
-
-            setTimeout(
-                tryAutoplay,
-                350
-            );
-
-        }
-    );
-
-
-    async function startMusicAfterTouch() {
-
-        if (music.paused) {
-
-            try {
-
-                await music.play();
-
-                musicButton.classList.add(
-                    "playing"
-                );
-
-                musicButton.innerHTML = "♫";
-
-            }
-
-            catch (e) {}
-
-        }
-
-    }
-
-
-    document.addEventListener(
-
-        "pointerdown",
-
-        startMusicAfterTouch,
-
-        {
-            once: true
-        }
-
-    );
-
+    document.addEventListener("pointerdown", startMusicAfterInteraction, { once: true });
 
     function toggleMusic() {
-
-        if (music.paused) {
-
-            music.play();
-
-            musicButton.classList.add(
-                "playing"
-            );
-
-            musicButton.innerHTML = "♫";
-
-        }
-
-        else {
-
-            music.pause();
-
-            musicButton.classList.remove(
-                "playing"
-            );
-
-            musicButton.innerHTML = "♪";
-
-        }
-
+      if (music.paused) {
+        music.play().then(() => {
+          musicBtn.classList.add("playing");
+          musicBtn.textContent = "♫";
+          musicToast.classList.remove("show");
+        }).catch(() => {
+          musicToast.classList.add("show");
+        });
+      } else {
+        music.pause();
+        musicBtn.classList.remove("playing");
+        musicBtn.textContent = "♪";
+      }
     }
 
+    function createRoseBackground() {
+      const roseBg = document.getElementById("roseBg");
 
-
-    /* ===========================
-       SAYFA GEÇİŞİ
-    ============================ */
-
-
-    function nextPage(page) {
-
-
-        startMusicAfterTouch();
-
-
-        /*
-          1. BUTON
-          Kalpler
-        */
-
-        if (page === 1) {
-
-            emojiExplosion(
-
-                [
-                    "❤️",
-                    "💗",
-                    "💕",
-                    "💖",
-                    "🩷"
-                ],
-
-                28
-
-            );
-
-        }
-
-
-        /*
-          2. BUTON
-          Kalp + Gül
-        */
-
-        if (page === 2) {
-
-            emojiExplosion(
-
-                [
-                    "❤️",
-                    "💗",
-                    "🌹",
-                    "🌹",
-                    "💕",
-                    "🩷",
-                    "🌹"
-                ],
-
-                40
-
-            );
-
-            sparkles(22);
-
-        }
-
-
-        /*
-          3. BUTON
-          Final
-        */
-
-        if (page === 3) {
-
-            emojiExplosion(
-
-                [
-                    "❤️",
-                    "💗",
-                    "💕",
-                    "💖",
-                    "🌹",
-                    "🌹",
-                    "✨",
-                    "🩷",
-                    "🌹"
-                ],
-
-                55
-
-            );
-
-            sparkles(32);
-
-        }
-
-
-
-        const oldScreen =
-
-            document.getElementById(
-                "screen" + page
-            );
-
-
-        const next = page + 1;
-
-
-        oldScreen.classList.remove(
-            "active"
-        );
-
-
-        setTimeout(
-            () => {
-
-
-                document
-                    .getElementById(
-                        "screen" + next
-                    )
-                    .classList.add(
-                        "active"
-                    );
-
-
-                document
-                    .getElementById(
-                        "counter"
-                    )
-                    .innerText =
-
-                    "0" + next + " / 04";
-
-
-                document
-                    .getElementById(
-                        "progress"
-                    )
-                    .style.width =
-
-                    (
-                        next * 25
-                    )
-                    + "%";
-
-
-                if (next === 4) {
-
-                    typeFinalText();
-
-                }
-
-
-            },
-
-            400
-
-        );
-
+      for (let i = 0; i < 20; i++) {
+        const rose = document.createElement("span");
+        rose.textContent = "🌹";
+        rose.style.left = (Math.random() * 100) + "vw";
+        rose.style.top = (Math.random() * 100) + "vh";
+        rose.style.fontSize = (22 + Math.random() * 32) + "px";
+        rose.style.opacity = (0.07 + Math.random() * 0.11);
+        rose.style.setProperty("--d", (6 + Math.random() * 6) + "s");
+        rose.style.animationDelay = (-Math.random() * 8) + "s";
+        roseBg.appendChild(rose);
+      }
     }
 
+    let typedDone = false;
 
+    function nextScreen(current, effectType) {
+      startMusicAfterInteraction();
+      runEffect(effectType);
 
-    /* ===========================
-       EMOJİLER
-    ============================ */
+      document.getElementById("screen" + current).classList.remove("active");
+      const next = current + 1;
 
+      setTimeout(() => {
+        document.getElementById("screen" + next).classList.add("active");
+        document.getElementById("stepText").textContent = "0" + next + " / 04";
+        document.getElementById("progressFill").style.width = (next * 25) + "%";
 
-    function emojiExplosion(
-        items,
-        count
-    ) {
-
-
-        for (
-            let i = 0;
-            i < count;
-            i++
-        ) {
-
-
-            setTimeout(
-                () => {
-
-
-                    const emoji =
-
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    emoji.className =
-                        "burst";
-
-
-                    emoji.innerText =
-
-                        items[
-                            Math.floor(
-                                Math.random()
-                                *
-                                items.length
-                            )
-                        ];
-
-
-                    emoji.style.left =
-
-                        (
-                            8
-                            +
-                            Math.random() * 84
-                        )
-                        + "vw";
-
-
-                    emoji.style.top =
-
-                        (
-                            68
-                            +
-                            Math.random() * 20
-                        )
-                        + "vh";
-
-
-                    emoji.style.fontSize =
-
-                        (
-                            18
-                            +
-                            Math.random() * 27
-                        )
-                        + "px";
-
-
-                    emoji.style.setProperty(
-
-                        "--x",
-
-                        (
-                            -150
-                            +
-                            Math.random()
-                            * 300
-                        )
-                        + "px"
-
-                    );
-
-
-                    emoji.style.setProperty(
-
-                        "--y",
-
-                        (
-                            -240
-                            -
-                            Math.random()
-                            * 260
-                        )
-                        + "px"
-
-                    );
-
-
-                    emoji.style.setProperty(
-
-                        "--rotate",
-
-                        (
-                            -100
-                            +
-                            Math.random()
-                            * 200
-                        )
-                        + "deg"
-
-                    );
-
-
-                    document.body
-                        .appendChild(
-                            emoji
-                        );
-
-
-                    setTimeout(
-                        () => {
-
-                            emoji.remove();
-
-                        },
-
-                        2800
-                    );
-
-
-                },
-
-                i * 37
-            );
-
+        if (next === 4 && !typedDone) {
+          typeWriter(
+            "typedText",
+            "Bazı insanlara sıradan bir mesaj yetmez. Çünkü bazı insanlar, farkında olmadan bile insanın aklında diğerlerinden biraz daha fazla kalır.",
+            30
+          );
+          typedDone = true;
         }
-
+      }, 320);
     }
 
+    function runEffect(type) {
+      if (type === "hearts") {
+        spawnBurst(["❤️", "💖", "💕", "💗", "🩷"], 24);
+      }
 
+      if (type === "mix") {
+        spawnBurst(["❤️", "💖", "💕", "🌹", "🌹", "🩷", "✨"], 34);
+        spawnSparkles(16);
+      }
 
-    /* ===========================
-       PARILTILAR
-    ============================ */
-
-
-    function sparkles(count) {
-
-
-        for (
-            let i = 0;
-            i < count;
-            i++
-        ) {
-
-
-            const spark =
-
-                document.createElement(
-                    "span"
-                );
-
-
-            spark.className =
-                "spark";
-
-
-            spark.style.left =
-
-                (
-                    30
-                    +
-                    Math.random() * 40
-                )
-                + "vw";
-
-
-            spark.style.top =
-
-                (
-                    40
-                    +
-                    Math.random() * 25
-                )
-                + "vh";
-
-
-            spark.style.setProperty(
-
-                "--sx",
-
-                (
-                    -180
-                    +
-                    Math.random() * 360
-                )
-                + "px"
-
-            );
-
-
-            spark.style.setProperty(
-
-                "--sy",
-
-                (
-                    -180
-                    +
-                    Math.random() * 300
-                )
-                + "px"
-
-            );
-
-
-            document.body
-                .appendChild(
-                    spark
-                );
-
-
-            setTimeout(
-                () => {
-
-                    spark.remove();
-
-                },
-
-                1800
-            );
-
-        }
-
+      if (type === "final") {
+        spawnBurst(["❤️", "💖", "💕", "🌹", "🌹", "✨", "🩷", "💫"], 48);
+        spawnSparkles(28);
+      }
     }
 
+    function spawnBurst(items, count) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          const el = document.createElement("div");
+          el.className = "burst";
+          el.textContent = items[Math.floor(Math.random() * items.length)];
 
+          el.style.left = (10 + Math.random() * 80) + "vw";
+          el.style.top = (66 + Math.random() * 20) + "vh";
+          el.style.fontSize = (18 + Math.random() * 22) + "px";
 
-    /* ===========================
-       ARKA PLAN GÜLLER
-    ============================ */
+          el.style.setProperty("--x", (-140 + Math.random() * 280) + "px");
+          el.style.setProperty("--y", (-160 - Math.random() * 220) + "px");
+          el.style.setProperty("--r", (-90 + Math.random() * 180) + "deg");
 
+          document.body.appendChild(el);
 
-    function createBackgroundRoses() {
-
-
-        const area =
-
-            document.getElementById(
-                "roseBackground"
-            );
-
-
-        for (
-            let i = 0;
-            i < 24;
-            i++
-        ) {
-
-
-            const rose =
-
-                document.createElement(
-                    "div"
-                );
-
-
-            rose.className =
-                "background-rose";
-
-
-            rose.innerText =
-                "🌹";
-
-
-            rose.style.left =
-
-                Math.random()
-                * 100
-                + "vw";
-
-
-            rose.style.top =
-
-                Math.random()
-                * 100
-                + "vh";
-
-
-            rose.style.fontSize =
-
-                (
-                    25
-                    +
-                    Math.random()
-                    * 48
-                )
-                + "px";
-
-
-            rose.style.setProperty(
-
-                "--duration",
-
-                (
-                    7
-                    +
-                    Math.random()
-                    * 9
-                )
-                + "s"
-
-            );
-
-
-            rose.style.animationDelay =
-
-                (
-                    -Math.random()
-                    * 10
-                )
-                + "s";
-
-
-            area.appendChild(
-                rose
-            );
-
-        }
-
+          setTimeout(() => el.remove(), 2500);
+        }, i * 40);
+      }
     }
 
-
-
-    /* ===========================
-       FINAL YAZI
-    ============================ */
-
-
-    let finalTyped = false;
-
-
-    function typeFinalText() {
-
-
-        if (finalTyped) {
-
-            return;
-
-        }
-
-
-        finalTyped = true;
-
-
-        const text =
-
-            "Bazı insanlara sıradan bir mesaj yetmez. Çünkü bazı insanlar, farkında olmadan bile insanın aklında diğerlerinden biraz daha fazla kalır.";
-
-
-        const element =
-
-            document.getElementById(
-                "finalMessage"
-            );
-
-
-        element.innerHTML = "";
-
-
-        let index = 0;
-
-
-        const typing =
-
-            setInterval(
-                () => {
-
-
-                    element.innerHTML +=
-                        text.charAt(
-                            index
-                        );
-
-
-                    index++;
-
-
-                    if (
-                        index
-                        >=
-                        text.length
-                    ) {
-
-                        clearInterval(
-                            typing
-                        );
-
-                    }
-
-
-                },
-
-                32
-            );
-
+    function spawnSparkles(count) {
+      for (let i = 0; i < count; i++) {
+        const spark = document.createElement("div");
+        spark.className = "spark";
+        spark.style.left = (32 + Math.random() * 36) + "vw";
+        spark.style.top = (35 + Math.random() * 32) + "vh";
+        spark.style.setProperty("--sx", (-160 + Math.random() * 320) + "px");
+        spark.style.setProperty("--sy", (-150 + Math.random() * 260) + "px");
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 1700);
+      }
     }
 
+    function typeWriter(id, text, speed) {
+      const target = document.getElementById(id);
+      let i = 0;
+      target.textContent = "";
 
+      const timer = setInterval(() => {
+        target.textContent += text.charAt(i);
+        i++;
+        if (i >= text.length) {
+          clearInterval(timer);
+        }
+      }, speed);
+    }
 
-    createBackgroundRoses();
-
-
-</script>
-
-
+    createRoseBackground();
+  </script>
 </body>
 </html>

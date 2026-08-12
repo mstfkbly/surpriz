@@ -18,17 +18,35 @@
           <stop offset="1" stop-color="%239a6cff"/>
         </linearGradient>
       </defs>
-      <rect width="100" height="100" rx="26" fill="%23070609"/>
-      <circle cx="50" cy="50" r="38" fill="url(%23g)" opacity=".35"/>
-      <text x="50" y="68"
-            text-anchor="middle"
-            font-family="serif"
-            font-size="60"
-            font-weight="700"
-            fill="white">H</text>
+
+      <rect
+        width="100"
+        height="100"
+        rx="26"
+        fill="%23070609"
+      />
+
+      <circle
+        cx="50"
+        cy="50"
+        r="38"
+        fill="url(%23g)"
+        opacity=".35"
+      />
+
+      <text
+        x="50"
+        y="68"
+        text-anchor="middle"
+        font-family="serif"
+        font-size="60"
+        font-weight="700"
+        fill="white"
+      >H</text>
     </svg>'>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
+
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
@@ -37,6 +55,7 @@
   >
 
   <style>
+
     * {
       margin: 0;
       padding: 0;
@@ -51,66 +70,109 @@
 
     body {
       min-height: 100vh;
+
       overflow: hidden;
-      font-family: "Inter", sans-serif;
+
+      font-family:
+        "Inter",
+        sans-serif;
+
       color: white;
 
       background:
-        radial-gradient(circle at 15% 10%, rgba(185,20,81,.34), transparent 30%),
-        radial-gradient(circle at 90% 85%, rgba(105,63,190,.27), transparent 34%),
-        linear-gradient(145deg, #050507, #12070d 50%, #060509);
+
+        radial-gradient(
+          circle at 15% 10%,
+          rgba(185,20,81,.34),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 90% 85%,
+          rgba(105,63,190,.27),
+          transparent 34%
+        ),
+
+        linear-gradient(
+          145deg,
+          #050507,
+          #12070d 50%,
+          #060509
+        );
     }
 
+
     /* =====================================================
-       SİNEMATİK INTRO
+       SİNEMATİK H INTRO
     ====================================================== */
 
     #introOverlay {
+
       position: fixed;
+
       inset: 0;
+
       z-index: 9999;
 
       background: #000;
 
       display: flex;
+
       justify-content: center;
+
       align-items: center;
 
       overflow: hidden;
 
       transition:
+
         opacity 1s ease,
+
         visibility 1s ease;
     }
 
+
     #introOverlay.hide {
+
       opacity: 0;
+
       visibility: hidden;
+
       pointer-events: none;
     }
 
+
     .intro-cinematic {
+
       position: relative;
+
       width: 100%;
+
       height: 100%;
 
       display: flex;
+
       justify-content: center;
+
       align-items: center;
     }
 
+
     .intro-glow {
+
       position: absolute;
 
-      width: 330px;
-      height: 330px;
+      width: 340px;
+
+      height: 340px;
 
       border-radius: 50%;
 
       background:
+
         radial-gradient(
           circle,
-          rgba(255,42,108,.30),
+          rgba(255,42,108,.31),
           rgba(157,71,255,.10) 45%,
           transparent 70%
         );
@@ -119,15 +181,29 @@
 
       opacity: 0;
 
-      animation: introGlow 4.8s ease forwards;
+      animation:
+
+        introGlow
+        4.8s ease
+        forwards;
     }
 
+
     .intro-letter {
+
       position: relative;
 
-      font-family: "Playfair Display", serif;
+      font-family:
+        "Playfair Display",
+        serif;
 
-      font-size: clamp(170px, 42vw, 340px);
+      font-size:
+
+        clamp(
+          170px,
+          42vw,
+          340px
+        );
 
       font-weight: 700;
 
@@ -136,7 +212,9 @@
       color: transparent;
 
       -webkit-text-stroke:
-        2px rgba(255,255,255,.14);
+
+        2px
+        rgba(255,255,255,.14);
 
       opacity: 0;
 
@@ -144,20 +222,26 @@
         scale(.82);
 
       animation:
+
         introH
-        4.7s cubic-bezier(.2,.8,.2,1)
+        4.7s
+        cubic-bezier(.2,.8,.2,1)
         forwards;
     }
 
+
     .intro-letter::before {
+
       content: "H";
 
       position: absolute;
+
       inset: 0;
 
       color: transparent;
 
       background:
+
         linear-gradient(
           90deg,
           #ff174f,
@@ -172,22 +256,32 @@
       -webkit-background-clip: text;
 
       filter:
-        drop-shadow(0 0 25px rgba(255,42,108,.55));
+
+        drop-shadow(
+          0 0 25px
+          rgba(255,42,108,.55)
+        );
 
       animation:
+
         introGradient
-        2.4s linear infinite;
+        2.4s linear
+        infinite;
     }
 
+
     .intro-line {
+
       position: absolute;
 
       width: 2px;
+
       height: 130vh;
 
       top: -15vh;
 
       background:
+
         linear-gradient(
           transparent,
           rgba(255,255,255,.85),
@@ -197,30 +291,40 @@
 
       opacity: 0;
 
-      filter:
-        blur(.2px);
-
       animation:
+
         lineFlash
-        2.6s ease forwards;
+        2.6s ease
+        forwards;
     }
 
+
     .intro-line.one {
+
       left: 42%;
+
       animation-delay: .35s;
     }
 
+
     .intro-line.two {
+
       left: 50%;
+
       animation-delay: .52s;
     }
 
+
     .intro-line.three {
+
       left: 58%;
+
       animation-delay: .72s;
     }
 
+
     .intro-title {
+
       position: absolute;
 
       bottom: 19%;
@@ -231,190 +335,173 @@
 
       text-transform: uppercase;
 
-      color: rgba(255,255,255,.72);
+      color:
+
+        rgba(
+          255,
+          255,
+          255,
+          .72
+        );
 
       opacity: 0;
 
-      transform: translateY(12px);
+      transform:
+        translateY(12px);
 
       animation:
+
         introText
-        1.1s ease forwards;
+        1.1s ease
+        forwards;
 
       animation-delay: 3.6s;
     }
 
-    @keyframes introH {
-      0% {
-        opacity: 0;
-        transform:
-          scale(.65)
-          rotateY(-18deg);
-        filter: blur(15px);
-      }
-
-      22% {
-        opacity: 1;
-      }
-
-      55% {
-        opacity: 1;
-        transform:
-          scale(1)
-          rotateY(0);
-        filter: blur(0);
-      }
-
-      78% {
-        opacity: 1;
-        transform: scale(1.04);
-      }
-
-      100% {
-        opacity: 0;
-        transform:
-          scale(1.12);
-        filter: blur(8px);
-      }
-    }
-
-    @keyframes introGradient {
-      to {
-        background-position: 300%;
-      }
-    }
-
-    @keyframes introGlow {
-      0% {
-        opacity: 0;
-        transform: scale(.5);
-      }
-
-      35% {
-        opacity: .8;
-      }
-
-      70% {
-        opacity: .5;
-      }
-
-      100% {
-        opacity: 0;
-        transform: scale(1.4);
-      }
-    }
-
-    @keyframes lineFlash {
-      0% {
-        opacity: 0;
-        transform:
-          translateX(-140px)
-          rotate(10deg);
-      }
-
-      25% {
-        opacity: .8;
-      }
-
-      65% {
-        opacity: .25;
-      }
-
-      100% {
-        opacity: 0;
-        transform:
-          translateX(140px)
-          rotate(-10deg);
-      }
-    }
-
-    @keyframes introText {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
 
     /* =====================================================
        ARKA PLAN
     ====================================================== */
 
     .background {
+
       position: fixed;
+
       inset: 0;
+
       z-index: 0;
+
       overflow: hidden;
+
       pointer-events: none;
     }
 
+
     .orb {
+
       position: absolute;
+
       border-radius: 50%;
+
       filter: blur(110px);
+
       opacity: .34;
     }
 
+
     .orb.one {
+
       width: 370px;
+
       height: 370px;
+
       left: -150px;
+
       top: -150px;
+
       background: #c31958;
-      animation: orbOne 12s ease-in-out infinite alternate;
+
+      animation:
+
+        orbOne
+        12s ease-in-out
+        infinite alternate;
     }
+
 
     .orb.two {
+
       width: 430px;
+
       height: 430px;
+
       right: -180px;
+
       bottom: -180px;
+
       background: #7043d4;
-      animation: orbTwo 14s ease-in-out infinite alternate;
+
+      animation:
+
+        orbTwo
+        14s ease-in-out
+        infinite alternate;
     }
 
+
     #roses {
+
       position: absolute;
+
       inset: 0;
     }
 
+
     .background-rose {
+
       position: absolute;
+
       opacity: .07;
+
       user-select: none;
 
       animation:
+
         backgroundRose
         var(--duration)
         ease-in-out
         infinite alternate;
     }
 
+
     /* =====================================================
        ANA ALAN
     ====================================================== */
 
     .app {
+
       position: relative;
+
       z-index: 5;
 
       width: 100%;
+
       min-height: 100vh;
 
       padding: 18px;
 
       display: grid;
+
       place-items: center;
     }
 
+
     .shell {
-      width: min(94vw, 470px);
+
+      width:
+        min(
+          94vw,
+          470px
+        );
+
       position: relative;
     }
 
+
+    /* =====================================================
+       CAM KART
+    ====================================================== */
+
     .card {
+
       width: 100%;
 
-      height: min(750px, 93vh);
+      height:
+        min(
+          750px,
+          93vh
+        );
+
       min-height: 630px;
 
       position: relative;
@@ -426,6 +513,7 @@
       border-radius: 38px;
 
       background:
+
         linear-gradient(
           145deg,
           rgba(255,255,255,.105),
@@ -433,23 +521,36 @@
         );
 
       border:
-        1px solid rgba(255,255,255,.13);
+
+        1px solid
+        rgba(255,255,255,.13);
 
       backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
+
+      -webkit-backdrop-filter:
+        blur(30px);
 
       box-shadow:
-        0 42px 115px rgba(0,0,0,.52),
-        inset 0 1px 0 rgba(255,255,255,.10);
+
+        0 42px 115px
+        rgba(0,0,0,.52),
+
+        inset
+        0 1px 0
+        rgba(255,255,255,.10);
     }
 
+
     .card::before {
+
       content: "";
 
       position: absolute;
+
       inset: 0;
 
       background:
+
         linear-gradient(
           115deg,
           transparent 15%,
@@ -457,124 +558,210 @@
           transparent 72%
         );
 
-      transform: translateX(-135%);
+      transform:
+        translateX(-135%);
 
-      animation: cardShine 8s infinite;
+      animation:
+
+        cardShine
+        8s infinite;
 
       pointer-events: none;
     }
 
+
     /* =====================================================
-       ÜST
+       ÜST ALAN
     ====================================================== */
 
     .topbar {
+
       position: relative;
+
       z-index: 20;
 
       display: flex;
-      justify-content: space-between;
+
+      justify-content:
+        space-between;
+
       align-items: center;
     }
 
+
     .brand {
+
       font-size: 10px;
+
       letter-spacing: 3px;
+
       text-transform: uppercase;
-      color: rgba(255,255,255,.55);
+
+      color:
+
+        rgba(
+          255,
+          255,
+          255,
+          .55
+        );
     }
+
 
     .counter {
+
       font-size: 11px;
+
       letter-spacing: 1px;
-      color: rgba(255,255,255,.36);
+
+      color:
+
+        rgba(
+          255,
+          255,
+          255,
+          .36
+        );
     }
 
+
     .progress {
+
       position: relative;
+
       z-index: 20;
 
       width: 100%;
+
       height: 3px;
 
       margin-top: 16px;
 
       border-radius: 20px;
+
       overflow: hidden;
 
       background:
-        rgba(255,255,255,.065);
+
+        rgba(
+          255,
+          255,
+          255,
+          .065
+        );
     }
 
+
     .progress-bar {
+
       height: 100%;
+
       width: 20%;
 
       border-radius: inherit;
 
       background:
+
         linear-gradient(
           90deg,
           #ff477e,
           #9f6fff
         );
 
+      box-shadow:
+
+        0 0 15px
+        rgba(255,71,126,.45);
+
       transition:
-        width .8s cubic-bezier(.2,.8,.2,1);
+
+        width
+        .8s
+        cubic-bezier(.2,.8,.2,1);
     }
+
 
     /* =====================================================
        SAYFALAR
     ====================================================== */
 
     .stage {
-      height: calc(100% - 50px);
+
+      height:
+        calc(
+          100% - 50px
+        );
+
       position: relative;
     }
 
+
     .screen {
+
       position: absolute;
+
       inset: 0;
 
       display: flex;
+
       flex-direction: column;
 
       justify-content: center;
+
       align-items: center;
 
       text-align: center;
 
       opacity: 0;
+
       pointer-events: none;
 
       transform:
+
         translateY(28px)
         scale(.965);
 
       filter: blur(9px);
 
       transition:
+
         opacity .75s ease,
-        transform .75s cubic-bezier(.2,.8,.2,1),
+
+        transform
+        .75s
+        cubic-bezier(.2,.8,.2,1),
+
         filter .75s ease;
     }
 
+
     .screen.active {
+
       opacity: 1;
+
       pointer-events: auto;
 
       transform:
+
         translateY(0)
         scale(1);
 
       filter: blur(0);
     }
 
+
+    /* =====================================================
+       İKON
+    ====================================================== */
+
     .icon {
+
       width: 82px;
+
       height: 82px;
 
       display: grid;
+
       place-items: center;
 
       border-radius: 27px;
@@ -584,6 +771,7 @@
       font-size: 34px;
 
       background:
+
         linear-gradient(
           145deg,
           rgba(255,255,255,.14),
@@ -591,40 +779,71 @@
         );
 
       border:
-        1px solid rgba(255,255,255,.11);
+
+        1px solid
+        rgba(255,255,255,.11);
 
       box-shadow:
-        0 20px 52px rgba(0,0,0,.26);
 
-      animation: floating 3.5s ease-in-out infinite;
+        0 20px 52px
+        rgba(0,0,0,.26);
+
+      animation:
+
+        floating
+        3.5s ease-in-out
+        infinite;
     }
 
+
+    /* =====================================================
+       YAZILAR
+    ====================================================== */
+
     .eyebrow {
+
       margin-bottom: 14px;
 
       font-size: 10px;
+
       letter-spacing: 4px;
 
       text-transform: uppercase;
 
-      color: rgba(255,255,255,.43);
+      color:
+
+        rgba(
+          255,
+          255,
+          255,
+          .43
+        );
     }
 
+
     .name {
+
       margin-bottom: 20px;
 
       font-family:
+
         "Playfair Display",
         serif;
 
       font-size:
-        clamp(66px, 15vw, 92px);
+
+        clamp(
+          66px,
+          15vw,
+          92px
+        );
 
       line-height: .92;
 
       letter-spacing: -3px;
 
       background:
+
         linear-gradient(
           95deg,
           #fff,
@@ -636,63 +855,107 @@
       background-size: 250%;
 
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+
+      -webkit-text-fill-color:
+        transparent;
 
       animation:
+
         gradientMove
-        6s linear infinite;
+        6s linear
+        infinite;
     }
 
+
     .intro {
+
       max-width: 350px;
 
       margin-bottom: 25px;
 
       font-size: 15.5px;
+
       line-height: 1.9;
 
-      color: rgba(255,255,255,.78);
+      color:
+
+        rgba(
+          255,
+          255,
+          255,
+          .78
+        );
     }
 
+
     .headphones {
+
       margin-bottom: 24px;
 
       display: inline-flex;
+
       align-items: center;
 
       gap: 8px;
 
-      padding: 9px 14px;
+      padding:
+
+        9px 14px;
 
       border-radius: 100px;
 
       font-size: 12px;
 
-      color: rgba(255,255,255,.68);
+      color:
+
+        rgba(
+          255,
+          255,
+          255,
+          .68
+        );
 
       background:
-        rgba(255,255,255,.04);
+
+        rgba(
+          255,
+          255,
+          255,
+          .04
+        );
 
       border:
-        1px solid rgba(255,255,255,.08);
+
+        1px solid
+        rgba(255,255,255,.08);
     }
 
+
     .heading {
+
       max-width: 365px;
 
       margin-bottom: 20px;
 
       font-family:
+
         "Playfair Display",
         serif;
 
       font-size:
-        clamp(30px, 7vw, 42px);
+
+        clamp(
+          30px,
+          7vw,
+          42px
+        );
 
       line-height: 1.15;
     }
 
+
     .paragraph {
+
       max-width: 350px;
 
       margin-bottom: 28px;
@@ -702,27 +965,41 @@
       line-height: 1.9;
 
       color:
-        rgba(255,255,255,.78);
+
+        rgba(
+          255,
+          255,
+          255,
+          .78
+        );
     }
 
+
     .white {
+
       color: white;
+
       font-weight: 600;
     }
+
 
     /* =====================================================
        BUTON
     ====================================================== */
 
     .button {
+
       min-width: 205px;
 
       border: 0;
+
       outline: 0;
 
       cursor: pointer;
 
-      padding: 16px 28px;
+      padding:
+
+        16px 28px;
 
       border-radius: 100px;
 
@@ -731,9 +1008,11 @@
       font-family: inherit;
 
       font-size: 14px;
+
       font-weight: 600;
 
       background:
+
         linear-gradient(
           135deg,
           #f43f79,
@@ -741,30 +1020,55 @@
         );
 
       box-shadow:
-        0 17px 45px rgba(222,55,125,.29),
-        inset 0 1px 0 rgba(255,255,255,.24);
+
+        0 17px 45px
+        rgba(222,55,125,.29),
+
+        inset
+        0 1px 0
+        rgba(255,255,255,.24);
 
       transition:
+
         transform .25s ease,
+
         box-shadow .25s ease;
     }
 
+
     .button:hover {
+
       transform:
+
         translateY(-3px)
         scale(1.02);
+
+      box-shadow:
+
+        0 22px 52px
+        rgba(222,55,125,.4);
     }
+
 
     .button:active {
-      transform: scale(.96);
+
+      transform:
+        scale(.96);
     }
 
+
     /* =====================================================
-       FOTO
+       FOTOĞRAF
     ====================================================== */
 
     .photo-container {
-      width: min(100%, 325px);
+
+      width:
+
+        min(
+          100%,
+          325px
+        );
 
       position: relative;
 
@@ -775,6 +1079,7 @@
       border-radius: 31px;
 
       background:
+
         linear-gradient(
           145deg,
           rgba(255,255,255,.18),
@@ -782,19 +1087,27 @@
         );
 
       border:
-        1px solid rgba(255,255,255,.14);
+
+        1px solid
+        rgba(255,255,255,.14);
 
       box-shadow:
-        0 30px 72px rgba(0,0,0,.39);
+
+        0 30px 72px
+        rgba(0,0,0,.39);
 
       animation:
+
         photoFloat
         4.4s ease-in-out
         infinite;
     }
 
+
     .photo {
+
       width: 100%;
+
       height: 355px;
 
       display: block;
@@ -804,11 +1117,15 @@
       border-radius: 23px;
     }
 
+
     .photo-caption {
+
       padding:
+
         14px 8px 6px;
 
       font-family:
+
         "Playfair Display",
         serif;
 
@@ -817,31 +1134,51 @@
       font-size: 15px;
 
       color:
-        rgba(255,255,255,.75);
+
+        rgba(
+          255,
+          255,
+          255,
+          .75
+        );
     }
 
+
     .photo-rose {
+
       position: absolute;
 
       right: -15px;
+
       bottom: -20px;
 
       font-size: 54px;
 
+      filter:
+
+        drop-shadow(
+          0 10px 12px
+          rgba(0,0,0,.35)
+        );
+
       animation:
+
         roseFloat
         3s ease-in-out
         infinite;
     }
 
+
     /* =====================================================
-       4. SAYFA
+       SAYFA 4
     ====================================================== */
 
     .quote-mark {
+
       margin-bottom: 24px;
 
       font-family:
+
         "Playfair Display",
         serif;
 
@@ -850,39 +1187,59 @@
       line-height: .5;
 
       color:
-        rgba(255,255,255,.12);
+
+        rgba(
+          255,
+          255,
+          255,
+          .12
+        );
     }
 
+
     .cinematic-text {
+
       max-width: 360px;
 
       margin-bottom: 32px;
 
       font-family:
+
         "Playfair Display",
         serif;
 
       font-size:
-        clamp(23px, 6vw, 33px);
+
+        clamp(
+          23px,
+          6vw,
+          33px
+        );
 
       line-height: 1.55;
     }
+
 
     /* =====================================================
        FINAL
     ====================================================== */
 
     .final-stage {
+
       width: 100%;
 
       display: flex;
+
       flex-direction: column;
 
       align-items: center;
+
       justify-content: center;
     }
 
+
     .final-small {
+
       margin-bottom: 15px;
 
       font-size: 10px;
@@ -892,54 +1249,84 @@
       text-transform: uppercase;
 
       color:
-        rgba(255,255,255,.40);
+
+        rgba(
+          255,
+          255,
+          255,
+          .40
+        );
     }
 
+
     .giant-heart {
+
       margin-bottom: 10px;
 
       font-size:
-        clamp(110px, 28vw, 165px);
+
+        clamp(
+          110px,
+          28vw,
+          165px
+        );
 
       line-height: 1;
 
       filter:
+
         drop-shadow(
           0 18px 35px
           rgba(255,48,111,.38)
         );
 
       animation:
+
         giantHeartBeat
         1.25s ease-in-out
         infinite;
     }
 
+
     .name-animation-area {
+
       min-height: 76px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
     }
 
+
     #finalName {
+
       display: inline-block;
 
       min-width: 180px;
 
       font-family:
+
         "Playfair Display",
         serif;
 
       font-size:
-        clamp(54px, 13vw, 78px);
+
+        clamp(
+          54px,
+          13vw,
+          78px
+        );
 
       font-weight: 700;
 
       line-height: 1;
 
+      letter-spacing: -2px;
+
       background:
+
         linear-gradient(
           90deg,
           #fff,
@@ -951,28 +1338,46 @@
       background-size: 230%;
 
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+
+      -webkit-text-fill-color:
+        transparent;
 
       animation:
+
         gradientMove
-        5s linear infinite;
+        5s linear
+        infinite;
     }
+
 
     #finalName.name-pop {
+
       animation:
+
         namePop .48s ease,
-        gradientMove 5s linear infinite;
+
+        gradientMove
+        5s linear
+        infinite;
     }
 
+
     .good-text {
+
       margin-bottom: 17px;
 
       font-family:
+
         "Playfair Display",
         serif;
 
       font-size:
-        clamp(34px, 8vw, 53px);
+
+        clamp(
+          34px,
+          8vw,
+          53px
+        );
 
       opacity: 0;
 
@@ -983,12 +1388,18 @@
         .8s ease;
     }
 
+
     .good-text.show {
+
       opacity: 1;
-      transform: translateY(0);
+
+      transform:
+        translateY(0);
     }
 
+
     .final-message {
+
       max-width: 340px;
 
       font-size: 15px;
@@ -996,7 +1407,13 @@
       line-height: 1.85;
 
       color:
-        rgba(255,255,255,.74);
+
+        rgba(
+          255,
+          255,
+          255,
+          .74
+        );
 
       opacity: 0;
 
@@ -1007,12 +1424,18 @@
         .8s ease;
     }
 
+
     .final-message.show {
+
       opacity: 1;
-      transform: translateY(0);
+
+      transform:
+        translateY(0);
     }
 
+
     .final-rose {
+
       margin-top: 18px;
 
       font-size: 34px;
@@ -1026,27 +1449,36 @@
         .7s ease;
     }
 
+
     .final-rose.show {
+
       opacity: 1;
-      transform: scale(1);
+
+      transform:
+        scale(1);
     }
 
+
     /* =====================================================
-       MÜZİK
+       MÜZİK BUTONU
     ====================================================== */
 
     .music-button {
+
       position: absolute;
 
       top: 67px;
+
       right: 15px;
 
       z-index: 100;
 
       width: 42px;
+
       height: 42px;
 
       display: grid;
+
       place-items: center;
 
       border-radius: 50%;
@@ -1054,10 +1486,18 @@
       cursor: pointer;
 
       border:
-        1px solid rgba(255,255,255,.12);
+
+        1px solid
+        rgba(255,255,255,.12);
 
       background:
-        rgba(0,0,0,.18);
+
+        rgba(
+          0,
+          0,
+          0,
+          .18
+        );
 
       backdrop-filter: blur(15px);
 
@@ -1069,26 +1509,36 @@
 
       pointer-events: none;
 
-      transition: .4s ease;
+      transition:
+        .4s ease;
     }
 
+
     .music-button.visible {
+
       opacity: 1;
+
       pointer-events: auto;
     }
 
+
     .music-button.playing {
+
       animation:
+
         musicPulse
         1.8s infinite;
     }
 
+
     /* =====================================================
-       GEÇİŞ
+       KARARMA
     ====================================================== */
 
     .blackout {
+
       position: fixed;
+
       inset: 0;
 
       z-index: 800;
@@ -1103,34 +1553,51 @@
         opacity .62s ease;
     }
 
+
     .blackout.active {
+
       opacity: 1;
     }
 
+
     /* =====================================================
-       EMOJİ
+       EMOJİLER
     ====================================================== */
 
     .burst {
+
       position: fixed;
 
       z-index: 1000;
 
       pointer-events: none;
 
+      user-select: none;
+
+      filter:
+
+        drop-shadow(
+          0 7px 12px
+          rgba(0,0,0,.22)
+        );
+
       animation:
+
         burstFly
         2.7s
         cubic-bezier(.15,.75,.25,1)
         forwards;
     }
 
+
     .spark {
+
       position: fixed;
 
       z-index: 999;
 
       width: 6px;
+
       height: 6px;
 
       border-radius: 50%;
@@ -1138,241 +1605,604 @@
       background: white;
 
       box-shadow:
-        0 0 13px white;
+
+        0 0 13px
+        white;
 
       pointer-events: none;
 
       animation:
+
         sparkFly
         1.7s ease-out
         forwards;
     }
 
+
     /* =====================================================
-       KEYFRAMES
+       ANİMASYONLAR
     ====================================================== */
 
-    @keyframes orbOne {
-      to {
+    @keyframes introH {
+
+      0% {
+
+        opacity: 0;
+
         transform:
-          translate(100px,70px)
+
+          scale(.65)
+          rotateY(-18deg);
+
+        filter:
+          blur(15px);
+      }
+
+
+      22% {
+
+        opacity: 1;
+      }
+
+
+      55% {
+
+        opacity: 1;
+
+        transform:
+
+          scale(1)
+          rotateY(0);
+
+        filter:
+          blur(0);
+      }
+
+
+      78% {
+
+        opacity: 1;
+
+        transform:
+          scale(1.04);
+      }
+
+
+      100% {
+
+        opacity: 0;
+
+        transform:
+          scale(1.12);
+
+        filter:
+          blur(8px);
+      }
+    }
+
+
+    @keyframes introGradient {
+
+      to {
+
+        background-position:
+          300%;
+      }
+    }
+
+
+    @keyframes introGlow {
+
+      0% {
+
+        opacity: 0;
+
+        transform:
+          scale(.5);
+      }
+
+
+      35% {
+
+        opacity: .8;
+      }
+
+
+      70% {
+
+        opacity: .5;
+      }
+
+
+      100% {
+
+        opacity: 0;
+
+        transform:
+          scale(1.4);
+      }
+    }
+
+
+    @keyframes lineFlash {
+
+      0% {
+
+        opacity: 0;
+
+        transform:
+
+          translateX(-140px)
+          rotate(10deg);
+      }
+
+
+      25% {
+
+        opacity: .8;
+      }
+
+
+      65% {
+
+        opacity: .25;
+      }
+
+
+      100% {
+
+        opacity: 0;
+
+        transform:
+
+          translateX(140px)
+          rotate(-10deg);
+      }
+    }
+
+
+    @keyframes introText {
+
+      to {
+
+        opacity: 1;
+
+        transform:
+          translateY(0);
+      }
+    }
+
+
+    @keyframes orbOne {
+
+      to {
+
+        transform:
+
+          translate(
+            100px,
+            70px
+          )
+
           scale(1.13);
       }
     }
 
+
     @keyframes orbTwo {
+
       to {
+
         transform:
-          translate(-90px,-80px)
+
+          translate(
+            -90px,
+            -80px
+          )
+
           scale(1.16);
       }
     }
 
+
     @keyframes backgroundRose {
+
       from {
+
         transform:
+
           translateY(0)
           rotate(-10deg);
       }
 
+
       to {
+
         transform:
+
           translateY(-35px)
           rotate(12deg);
       }
     }
 
+
     @keyframes cardShine {
+
       0%,
       70% {
+
         transform:
           translateX(-135%);
       }
 
+
       100% {
+
         transform:
           translateX(135%);
       }
     }
 
+
     @keyframes floating {
+
       0%,
       100% {
-        transform: translateY(0);
+
+        transform:
+          translateY(0);
       }
+
 
       50% {
-        transform: translateY(-8px);
+
+        transform:
+          translateY(-8px);
       }
     }
+
 
     @keyframes gradientMove {
+
       to {
-        background-position: 230%;
+
+        background-position:
+          230%;
       }
     }
 
+
     @keyframes photoFloat {
+
       0%,
       100% {
+
         transform:
+
           rotate(-1.2deg)
           translateY(0);
       }
 
+
       50% {
+
         transform:
+
           rotate(-.2deg)
           translateY(-8px);
       }
     }
 
+
     @keyframes roseFloat {
+
       0%,
       100% {
+
         transform:
+
           rotate(16deg)
           translateY(0);
       }
 
+
       50% {
+
         transform:
+
           rotate(12deg)
           translateY(-7px);
       }
     }
 
+
     @keyframes giantHeartBeat {
+
       0%,
       100% {
-        transform: scale(1);
+
+        transform:
+          scale(1);
       }
+
 
       18% {
-        transform: scale(1.13);
+
+        transform:
+          scale(1.13);
       }
+
 
       35% {
-        transform: scale(1);
+
+        transform:
+          scale(1);
       }
+
 
       50% {
-        transform: scale(1.10);
+
+        transform:
+          scale(1.10);
       }
+
 
       70% {
-        transform: scale(1);
+
+        transform:
+          scale(1);
       }
     }
+
 
     @keyframes namePop {
+
       0% {
+
         opacity: 0;
+
         transform:
+
           translateY(14px)
           scale(.88);
-        filter: blur(6px);
+
+        filter:
+          blur(6px);
       }
 
+
       100% {
+
         opacity: 1;
+
         transform:
+
           translateY(0)
           scale(1);
-        filter: blur(0);
+
+        filter:
+          blur(0);
       }
     }
 
+
     @keyframes burstFly {
+
       0% {
+
         opacity: 0;
 
         transform:
+
           translate(0,0)
-          scale(.25);
+          scale(.25)
+          rotate(0deg);
       }
 
+
       12% {
+
         opacity: 1;
       }
 
+
       100% {
+
         opacity: 0;
 
         transform:
+
           translate(
             var(--x),
             var(--y)
           )
+
           scale(1.3)
-          rotate(var(--r));
-      }
-    }
 
-    @keyframes sparkFly {
-      from {
-        opacity: 1;
-      }
-
-      to {
-        opacity: 0;
-
-        transform:
-          translate(
-            var(--sx),
-            var(--sy)
+          rotate(
+            var(--r)
           );
       }
     }
 
+
+    @keyframes sparkFly {
+
+      from {
+
+        opacity: 1;
+
+        transform:
+          scale(.3);
+      }
+
+
+      to {
+
+        opacity: 0;
+
+        transform:
+
+          translate(
+            var(--sx),
+            var(--sy)
+          )
+
+          scale(1.5);
+      }
+    }
+
+
     @keyframes musicPulse {
-      50% {
+
+      0%,
+      100% {
+
         box-shadow:
+
+          0 0 0 0
+          rgba(255,71,124,.32);
+      }
+
+
+      50% {
+
+        box-shadow:
+
           0 0 0 9px
           rgba(255,71,124,0);
       }
     }
+
+
+    /* =====================================================
+       MOBİL
+    ====================================================== */
+
+    @media (max-height: 720px) {
+
+      .card {
+
+        min-height: 590px;
+
+        height: 94vh;
+      }
+
+
+      .photo {
+
+        height: 290px;
+      }
+
+
+      .name {
+
+        font-size: 60px;
+      }
+
+
+      .heading {
+
+        font-size: 29px;
+      }
+
+
+      .icon {
+
+        width: 66px;
+
+        height: 66px;
+
+        font-size: 28px;
+
+        margin-bottom: 15px;
+      }
+
+
+      .giant-heart {
+
+        font-size: 105px;
+      }
+
+
+      #finalName {
+
+        font-size: 55px;
+      }
+
+
+      .good-text {
+
+        font-size: 36px;
+      }
+    }
+
   </style>
 </head>
 
+
 <body>
 
-<!-- SİNEMATİK INTRO -->
+
+<!-- =====================================================
+     SİNEMATİK INTRO
+====================================================== -->
 
 <div id="introOverlay">
 
   <div class="intro-cinematic">
 
+
     <div class="intro-glow"></div>
 
+
     <div class="intro-line one"></div>
+
     <div class="intro-line two"></div>
+
     <div class="intro-line three"></div>
 
+
     <div class="intro-letter">
+
       H
+
     </div>
 
+
     <div class="intro-title">
+
       Hava için özel olarak hazırlandı
+
     </div>
+
 
   </div>
 
 </div>
 
 
-<!-- ARKA PLAN -->
+
+<!-- =====================================================
+     ARKA PLAN
+====================================================== -->
 
 <div class="background">
 
+
   <div class="orb one"></div>
+
   <div class="orb two"></div>
+
 
   <div id="roses"></div>
 
+
 </div>
 
+
+
+<!-- SİNEMATİK KARARMA -->
 
 <div
   class="blackout"
@@ -1380,10 +2210,18 @@
 </div>
 
 
+
+<!-- =====================================================
+     ANA SAYFA
+====================================================== -->
+
 <div class="app">
+
 
   <div class="shell">
 
+
+    <!-- MÜZİK BUTONU -->
 
     <button
       class="music-button"
@@ -1395,14 +2233,19 @@
     </button>
 
 
+
     <div class="card">
 
 
       <div class="topbar">
 
+
         <div class="brand">
+
           Hava için
+
         </div>
+
 
         <div
           class="counter"
@@ -1412,7 +2255,9 @@
 
         </div>
 
+
       </div>
+
 
 
       <div class="progress">
@@ -1425,10 +2270,14 @@
       </div>
 
 
+
       <div class="stage">
 
 
-        <!-- 1 -->
+
+        <!-- =====================================================
+             SAYFA 1
+        ====================================================== -->
 
         <section
           class="screen active"
@@ -1436,17 +2285,23 @@
 
 
           <div class="icon">
+
             ✦
+
           </div>
 
 
           <div class="eyebrow">
+
             sadece sana
+
           </div>
 
 
           <div class="name">
+
             Hava.
+
           </div>
 
 
@@ -1484,7 +2339,10 @@
         </section>
 
 
-        <!-- 2 -->
+
+        <!-- =====================================================
+             SAYFA 2 FOTOĞRAF
+        ====================================================== -->
 
         <section
           class="screen"
@@ -1539,7 +2397,10 @@
         </section>
 
 
-        <!-- 3 -->
+
+        <!-- =====================================================
+             SAYFA 3
+        ====================================================== -->
 
         <section
           class="screen"
@@ -1547,7 +2408,9 @@
 
 
           <div class="icon">
+
             ✨
+
           </div>
 
 
@@ -1573,7 +2436,8 @@
 
             <br><br>
 
-            Ama yine de insanın aklında
+            Ama yine de insanın
+            aklında
 
             <span class="white">
 
@@ -1597,7 +2461,10 @@
         </section>
 
 
-        <!-- 4 -->
+
+        <!-- =====================================================
+             SAYFA 4
+        ====================================================== -->
 
         <section
           class="screen"
@@ -1605,7 +2472,9 @@
 
 
           <div class="quote-mark">
+
             “
+
           </div>
 
 
@@ -1643,7 +2512,10 @@
         </section>
 
 
-        <!-- 5 FINAL -->
+
+        <!-- =====================================================
+             SAYFA 5 FINAL
+        ====================================================== -->
 
         <section
           class="screen"
@@ -1711,12 +2583,20 @@
 
       </div>
 
+
     </div>
+
 
   </div>
 
+
 </div>
 
+
+
+<!-- =====================================================
+     MÜZİK
+====================================================== -->
 
 <audio
   id="backgroundMusic"
@@ -1724,77 +2604,35 @@
   loop
   playsinline>
 
+
   <source
     src="muzik.mp3"
     type="audio/mpeg">
 
+
 </audio>
+
 
 
 <script>
 
-  /* =========================
-     INTRO
-  ========================== */
 
-  window.addEventListener(
-    "load",
-    () => {
-
-      setTimeout(() => {
-
-        document
-          .getElementById(
-            "introOverlay"
-          )
-          .classList
-          .add("hide");
-
-      }, 4900);
-
-    }
-  );
+  /* =====================================================
+     TİTREŞİM
+  ====================================================== */
 
 
-  /* =========================
-     MÜZİK
-  ========================== */
-
-  const music =
-    document.getElementById(
-      "backgroundMusic"
-    );
-
-  const musicButton =
-    document.getElementById(
-      "musicButton"
-    );
-
-  music.volume = 0;
+  function vibrate(pattern) {
 
 
-  async function startMusic() {
+    if (
+      "vibrate"
+      in navigator
+    ) {
 
-    try {
 
-      await music.play();
-
-      musicButton
-        .classList
-        .add("visible");
-
-      musicButton
-        .classList
-        .add("playing");
-
-      fadeMusicIn();
-
-    }
-
-    catch (e) {
-
-      console.log(
-        "Müzik başlamadı"
+      navigator.vibrate(
+        pattern
       );
 
     }
@@ -1802,64 +2640,235 @@
   }
 
 
+
+  /* =====================================================
+     INTRO
+  ====================================================== */
+
+
+  window.addEventListener(
+
+    "load",
+
+    () => {
+
+
+      setTimeout(
+        () => {
+
+
+          document
+            .getElementById(
+              "introOverlay"
+            )
+            .classList
+            .add(
+              "hide"
+            );
+
+
+        },
+
+        4900
+
+      );
+
+
+    }
+
+  );
+
+
+
+  /* =====================================================
+     MÜZİK
+  ====================================================== */
+
+
+  const music =
+
+    document.getElementById(
+      "backgroundMusic"
+    );
+
+
+  const musicButton =
+
+    document.getElementById(
+      "musicButton"
+    );
+
+
+  music.volume = 0;
+
+
+
+  async function startMusic() {
+
+
+    try {
+
+
+      await music.play();
+
+
+      musicButton
+        .classList
+        .add(
+          "visible"
+        );
+
+
+      musicButton
+        .classList
+        .add(
+          "playing"
+        );
+
+
+      fadeMusicIn();
+
+
+    }
+
+
+    catch (error) {
+
+
+      console.log(
+        "Müzik başlamadı."
+      );
+
+
+    }
+
+  }
+
+
+
   function fadeMusicIn() {
+
 
     let volume = 0;
 
+
     const fade =
-      setInterval(() => {
 
-        volume += .02;
+      setInterval(
+        () => {
 
-        if (volume >= .42) {
 
-          volume = .42;
+          volume += .02;
 
-          clearInterval(fade);
 
-        }
+          if (
+            volume >= .42
+          ) {
 
-        music.volume = volume;
 
-      }, 80);
+            volume = .42;
+
+
+            clearInterval(
+              fade
+            );
+
+
+          }
+
+
+          music.volume =
+            volume;
+
+
+        },
+
+        80
+
+      );
 
   }
+
 
 
   function toggleMusic() {
 
-    if (music.paused) {
+
+    if (
+      music.paused
+    ) {
+
 
       music.play();
 
+
       musicButton
         .classList
-        .add("playing");
+        .add(
+          "playing"
+        );
+
 
     }
 
+
     else {
+
 
       music.pause();
 
+
       musicButton
         .classList
-        .remove("playing");
+        .remove(
+          "playing"
+        );
+
 
     }
 
   }
 
 
-  /* =========================
-     BAŞLA
-  ========================== */
+
+  /* =====================================================
+     DENEYİMİ BAŞLAT
+  ====================================================== */
+
 
   async function startExperience() {
 
+
+    /*
+      HAFİF AÇILIŞ TİTREŞİMİ
+    */
+
+    vibrate(
+      [
+        70,
+        40,
+        120
+      ]
+    );
+
+
+    /*
+      Kullanıcı butona bastığı
+      için müzik güvenilir şekilde
+      başlayabilir.
+    */
+
     await startMusic();
 
+
+
+    /*
+      İLK BUTON:
+      KALPLER
+    */
+
     emojiExplosion(
+
       [
         "❤️",
         "💗",
@@ -1867,10 +2876,16 @@
         "💖",
         "🩷"
       ],
+
       28
+
     );
 
-    sparkles(15);
+
+    sparkles(
+      15
+    );
+
 
     cinematicTransition(
       1,
@@ -1880,15 +2895,39 @@
   }
 
 
-  /* =========================
-     GEÇİŞ
-  ========================== */
 
-  function nextPage(page) {
+  /* =====================================================
+     SAYFALAR
+  ====================================================== */
 
-    if (page === 2) {
+
+  function nextPage(
+    page
+  ) {
+
+
+    /*
+      FOTOĞRAF SONRASI
+
+      KALP + GÜL
+    */
+
+    if (
+      page === 2
+    ) {
+
+
+      vibrate(
+        [
+          40,
+          30,
+          65
+        ]
+      );
+
 
       emojiExplosion(
+
         [
           "❤️",
           "💗",
@@ -1900,17 +2939,40 @@
           "🩷",
           "🌹"
         ],
+
         45
+
       );
 
-      sparkles(24);
+
+      sparkles(
+        24
+      );
 
     }
 
 
-    if (page === 3) {
+
+    /*
+      ÜÇÜNCÜ BUTON
+    */
+
+    if (
+      page === 3
+    ) {
+
+
+      vibrate(
+        [
+          50,
+          35,
+          80
+        ]
+      );
+
 
       emojiExplosion(
+
         [
           "❤️",
           "💗",
@@ -1921,20 +2983,34 @@
           "💖",
           "🩷"
         ],
+
         48
+
       );
 
-      sparkles(30);
+
+      sparkles(
+        30
+      );
 
     }
 
 
     cinematicTransition(
+
       page,
+
       page + 1
+
     );
 
   }
+
+
+
+  /* =====================================================
+     SİNEMATİK SAYFA GEÇİŞİ
+  ====================================================== */
 
 
   function cinematicTransition(
@@ -1942,57 +3018,92 @@
     next
   ) {
 
+
     const blackout =
+
       document.getElementById(
         "blackout"
       );
 
+
     blackout
       .classList
-      .add("active");
+      .add(
+        "active"
+      );
 
 
-    setTimeout(() => {
-
-      document
-        .getElementById(
-          "screen" + current
-        )
-        .classList
-        .remove("active");
+    setTimeout(
+      () => {
 
 
-      document
-        .getElementById(
-          "screen" + next
-        )
-        .classList
-        .add("active");
+        document
+          .getElementById(
+            "screen"
+            +
+            current
+          )
+          .classList
+          .remove(
+            "active"
+          );
 
 
-      updateProgress(next);
+        document
+          .getElementById(
+            "screen"
+            +
+            next
+          )
+          .classList
+          .add(
+            "active"
+          );
 
-    }, 500);
+
+        updateProgress(
+          next
+        );
 
 
-    setTimeout(() => {
+      },
 
-      blackout
-        .classList
-        .remove("active");
+      500
 
-    }, 820);
+    );
+
+
+    setTimeout(
+      () => {
+
+
+        blackout
+          .classList
+          .remove(
+            "active"
+          );
+
+
+      },
+
+      820
+
+    );
 
   }
 
 
-  /* =========================
+
+  /* =====================================================
      FINAL
-  ========================== */
+  ====================================================== */
+
 
   function showFinal() {
 
+
     const blackout =
+
       document.getElementById(
         "blackout"
       );
@@ -2000,205 +3111,401 @@
 
     blackout
       .classList
-      .add("active");
-
-
-    setTimeout(() => {
-
-      document
-        .getElementById(
-          "screen4"
-        )
-        .classList
-        .remove("active");
-
-
-      document
-        .getElementById(
-          "screen5"
-        )
-        .classList
-        .add("active");
-
-
-      updateProgress(5);
-
-    }, 620);
-
-
-    setTimeout(() => {
-
-      blackout
-        .classList
-        .remove("active");
-
-
-      emojiExplosion(
-        [
-          "❤️",
-          "❤️",
-          "❤️",
-          "💖",
-          "🌹",
-          "🌹",
-          "💕",
-          "✨",
-          "💗",
-          "🩷"
-        ],
-        75
+      .add(
+        "active"
       );
 
 
-      sparkles(48);
+
+    setTimeout(
+      () => {
 
 
-      setTimeout(
-        animateFinalName,
-        500
-      );
+        document
+          .getElementById(
+            "screen4"
+          )
+          .classList
+          .remove(
+            "active"
+          );
 
-    }, 1150);
+
+        document
+          .getElementById(
+            "screen5"
+          )
+          .classList
+          .add(
+            "active"
+          );
+
+
+        updateProgress(
+          5
+        );
+
+
+      },
+
+      620
+
+    );
+
+
+
+    /*
+      DEV KALP
+      ORTAYA ÇIKTIĞI ANDA
+    */
+
+    setTimeout(
+      () => {
+
+
+        blackout
+          .classList
+          .remove(
+            "active"
+          );
+
+
+        /*
+          KALP ATIŞI GİBİ
+          TİTREŞİM
+        */
+
+        vibrate(
+
+          [
+            90,
+            60,
+            90,
+            60,
+            180
+          ]
+
+        );
+
+
+        /*
+          BÜYÜK FINAL
+        */
+
+        emojiExplosion(
+
+          [
+            "❤️",
+            "❤️",
+            "❤️",
+            "💖",
+            "🌹",
+            "🌹",
+            "💕",
+            "✨",
+            "💗",
+            "🩷"
+          ],
+
+          75
+
+        );
+
+
+        sparkles(
+          48
+        );
+
+
+        /*
+          H -> HA -> HAV -> HAVA
+        */
+
+        setTimeout(
+
+          animateFinalName,
+
+          500
+
+        );
+
+
+      },
+
+      1150
+
+    );
 
   }
 
 
-  /* =========================
+
+  /* =====================================================
      H -> Ha -> Hav -> Hava
-  ========================== */
+  ====================================================== */
+
 
   function animateFinalName() {
 
+
     const element =
+
       document.getElementById(
         "finalName"
       );
 
+
     const goodText =
+
       document.getElementById(
         "goodText"
       );
 
+
     const finalMessage =
+
       document.getElementById(
         "finalMessage"
       );
 
+
     const finalRose =
+
       document.getElementById(
         "finalRose"
       );
 
 
     const steps = [
+
       "H",
+
       "Ha",
+
       "Hav",
+
       "Hava"
+
     ];
 
 
     let index = 0;
 
-    element.innerText = "";
+
+    element.innerText =
+      "";
 
 
     const timer =
-      setInterval(() => {
 
-        element.innerText =
-          steps[index];
-
-
-        element
-          .classList
-          .remove("name-pop");
+      setInterval(
+        () => {
 
 
-        void element.offsetWidth;
+          element.innerText =
+
+            steps[
+              index
+            ];
 
 
-        element
-          .classList
-          .add("name-pop");
+          /*
+            HER YENİ HARFTE
+            POP ANİMASYONU
+          */
+
+          element
+            .classList
+            .remove(
+              "name-pop"
+            );
 
 
-        if (
-          steps[index] === "Hava"
-        ) {
-
-          sparkles(30);
-
-        }
+          void
+            element.offsetWidth;
 
 
-        index++;
+          element
+            .classList
+            .add(
+              "name-pop"
+            );
 
 
-        if (
-          index >= steps.length
-        ) {
+          /*
+            HAVA TAMAMLANDIĞINDA
+            HAFİF TİTREŞİM +
+            PARILTI
+          */
 
-          clearInterval(timer);
-
-
-          setTimeout(() => {
-
-            element.innerText =
-              "Hava.";
-
-
-            setTimeout(() => {
-
-              goodText
-                .classList
-                .add("show");
+          if (
+            steps[index]
+            ===
+            "Hava"
+          ) {
 
 
-              setTimeout(() => {
-
-                finalMessage
-                  .classList
-                  .add("show");
+            vibrate(
+              100
+            );
 
 
-                setTimeout(() => {
+            sparkles(
+              30
+            );
 
-                  finalRose
-                    .classList
-                    .add("show");
+          }
 
 
-                  emojiExplosion(
-                    [
-                      "❤️",
-                      "🌹",
-                      "💖",
-                      "✨"
-                    ],
-                    25
-                  );
+          index++;
 
-                }, 500);
 
-              }, 550);
 
-            }, 500);
+          if (
+            index
+            >=
+            steps.length
+          ) {
 
-          }, 450);
 
-        }
+            clearInterval(
+              timer
+            );
 
-      }, 650);
+
+
+            setTimeout(
+              () => {
+
+
+                element.innerText =
+                  "Hava.";
+
+
+
+                /*
+                  İYİ Kİ VARSIN
+                */
+
+                setTimeout(
+                  () => {
+
+
+                    goodText
+                      .classList
+                      .add(
+                        "show"
+                      );
+
+
+                    vibrate(
+                      [
+                        70,
+                        40,
+                        120
+                      ]
+                    );
+
+
+
+                    /*
+                      ALT MESAJ
+                    */
+
+                    setTimeout(
+                      () => {
+
+
+                        finalMessage
+                          .classList
+                          .add(
+                            "show"
+                          );
+
+
+
+                        /*
+                          GÜL
+                        */
+
+                        setTimeout(
+                          () => {
+
+
+                            finalRose
+                              .classList
+                              .add(
+                                "show"
+                              );
+
+
+                            /*
+                              SON KÜÇÜK PATLAMA
+                            */
+
+                            emojiExplosion(
+
+                              [
+                                "❤️",
+                                "🌹",
+                                "💖",
+                                "✨"
+                              ],
+
+                              25
+
+                            );
+
+
+                          },
+
+                          500
+
+                        );
+
+
+                      },
+
+                      550
+
+                    );
+
+
+                  },
+
+                  500
+
+                );
+
+
+              },
+
+              450
+
+            );
+
+          }
+
+
+        },
+
+        650
+
+      );
 
   }
 
 
-  /* =========================
-     İLERLEME
-  ========================== */
 
-  function updateProgress(page) {
+  /* =====================================================
+     İLERLEME
+  ====================================================== */
+
+
+  function updateProgress(
+    page
+  ) {
+
 
     document
       .getElementById(
@@ -2207,8 +3514,10 @@
       .innerText =
 
       "0"
-      + page
-      + " / 05";
+      +
+      page
+      +
+      " / 05";
 
 
     document
@@ -2218,140 +3527,197 @@
       .style.width =
 
       (
-        page * 20
+        page
+        *
+        20
       )
-      + "%";
+      +
+      "%";
 
   }
 
 
-  /* =========================
-     EMOJİ
-  ========================== */
+
+  /* =====================================================
+     EMOJİ PATLAMALARI
+  ====================================================== */
+
 
   function emojiExplosion(
     items,
     count
   ) {
 
+
     for (
       let i = 0;
       i < count;
       i++
     ) {
 
-      setTimeout(() => {
 
-        const emoji =
-          document.createElement(
-            "div"
-          );
+      setTimeout(
+        () => {
 
 
-        emoji.className =
-          "burst";
+          const emoji =
+
+            document.createElement(
+              "div"
+            );
 
 
-        emoji.innerText =
-          items[
-            Math.floor(
+          emoji.className =
+            "burst";
+
+
+          emoji.innerText =
+
+            items[
+              Math.floor(
+                Math.random()
+                *
+                items.length
+              )
+            ];
+
+
+          emoji.style.left =
+
+            (
+              5
+              +
               Math.random()
               *
-              items.length
+              90
             )
-          ];
-
-
-        emoji.style.left =
-          (
-            5
             +
-            Math.random()
-            * 90
-          )
-          + "vw";
+            "vw";
 
 
-        emoji.style.top =
-          (
-            65
+          emoji.style.top =
+
+            (
+              65
+              +
+              Math.random()
+              *
+              28
+            )
             +
-            Math.random()
-            * 28
-          )
-          + "vh";
+            "vh";
 
 
-        emoji.style.fontSize =
-          (
-            18
+          emoji.style.fontSize =
+
+            (
+              18
+              +
+              Math.random()
+              *
+              30
+            )
             +
-            Math.random()
-            * 30
-          )
-          + "px";
+            "px";
 
 
-        emoji.style.setProperty(
-          "--x",
-          (
-            -180
-            +
-            Math.random()
-            * 360
-          )
-          + "px"
-        );
+          emoji.style
+            .setProperty(
+
+              "--x",
+
+              (
+                -180
+                +
+                Math.random()
+                *
+                360
+              )
+              +
+              "px"
+
+            );
 
 
-        emoji.style.setProperty(
-          "--y",
-          (
-            -260
-            -
-            Math.random()
-            * 310
-          )
-          + "px"
-        );
+          emoji.style
+            .setProperty(
+
+              "--y",
+
+              (
+                -260
+                -
+                Math.random()
+                *
+                310
+              )
+              +
+              "px"
+
+            );
 
 
-        emoji.style.setProperty(
-          "--r",
-          (
-            -120
-            +
-            Math.random()
-            * 240
-          )
-          + "deg"
-        );
+          emoji.style
+            .setProperty(
+
+              "--r",
+
+              (
+                -120
+                +
+                Math.random()
+                *
+                240
+              )
+              +
+              "deg"
+
+            );
 
 
-        document.body
-          .appendChild(
-            emoji
+          document.body
+            .appendChild(
+              emoji
+            );
+
+
+          setTimeout(
+            () => {
+
+
+              emoji.remove();
+
+
+            },
+
+            2800
+
           );
 
 
-        setTimeout(() => {
+        },
 
-          emoji.remove();
+        i
+        *
+        34
 
-        }, 2800);
-
-      }, i * 34);
+      );
 
     }
 
   }
 
 
-  /* =========================
-     PARILTI
-  ========================== */
 
-  function sparkles(count) {
+  /* =====================================================
+     PARILTILAR
+  ====================================================== */
+
+
+  function sparkles(
+    count
+  ) {
+
 
     for (
       let i = 0;
@@ -2359,7 +3725,9 @@
       i++
     ) {
 
+
       const spark =
+
         document.createElement(
           "span"
         );
@@ -2370,47 +3738,65 @@
 
 
       spark.style.left =
+
         (
           28
           +
           Math.random()
-          * 44
+          *
+          44
         )
-        + "vw";
+        +
+        "vw";
 
 
       spark.style.top =
+
         (
           33
           +
           Math.random()
-          * 38
+          *
+          38
         )
-        + "vh";
+        +
+        "vh";
 
 
-      spark.style.setProperty(
-        "--sx",
-        (
-          -210
+      spark.style
+        .setProperty(
+
+          "--sx",
+
+          (
+            -210
+            +
+            Math.random()
+            *
+            420
+          )
           +
-          Math.random()
-          * 420
-        )
-        + "px"
-      );
+          "px"
+
+        );
 
 
-      spark.style.setProperty(
-        "--sy",
-        (
-          -220
+      spark.style
+        .setProperty(
+
+          "--sy",
+
+          (
+            -220
+            +
+            Math.random()
+            *
+            350
+          )
           +
-          Math.random()
-          * 350
-        )
-        + "px"
-      );
+          "px"
+
+        );
 
 
       document.body
@@ -2419,24 +3805,35 @@
         );
 
 
-      setTimeout(() => {
+      setTimeout(
+        () => {
 
-        spark.remove();
 
-      }, 1800);
+          spark.remove();
+
+
+        },
+
+        1800
+
+      );
 
     }
 
   }
 
 
-  /* =========================
+
+  /* =====================================================
      ARKA PLAN GÜLLER
-  ========================== */
+  ====================================================== */
+
 
   function createBackgroundRoses() {
 
+
     const roses =
+
       document.getElementById(
         "roses"
       );
@@ -2448,74 +3845,99 @@
       i++
     ) {
 
+
       const rose =
+
         document.createElement(
           "span"
         );
 
 
       rose.className =
+
         "background-rose";
 
 
       rose.innerText =
+
         "🌹";
 
 
       rose.style.left =
+
         Math.random()
-        * 100
-        + "vw";
+        *
+        100
+        +
+        "vw";
 
 
       rose.style.top =
+
         Math.random()
-        * 100
-        + "vh";
+        *
+        100
+        +
+        "vh";
 
 
       rose.style.fontSize =
+
         (
           22
           +
           Math.random()
-          * 46
+          *
+          46
         )
-        + "px";
+        +
+        "px";
 
 
       rose.style.opacity =
+
         (
           .04
           +
           Math.random()
-          * .075
+          *
+          .075
         );
 
 
-      rose.style.setProperty(
-        "--duration",
-        (
-          7
+      rose.style
+        .setProperty(
+
+          "--duration",
+
+          (
+            7
+            +
+            Math.random()
+            *
+            10
+          )
           +
-          Math.random()
-          * 10
-        )
-        + "s"
-      );
+          "s"
+
+        );
 
 
       rose.style.animationDelay =
+
         (
           -Math.random()
-          * 10
+          *
+          10
         )
-        + "s";
+        +
+        "s";
 
 
-      roses.appendChild(
-        rose
-      );
+      roses
+        .appendChild(
+          rose
+        );
 
     }
 
@@ -2523,6 +3945,7 @@
 
 
   createBackgroundRoses();
+
 
 </script>
 

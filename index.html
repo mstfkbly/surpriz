@@ -1,700 +1,2185 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hava İçin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+    <title>Hava</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    :root {
-      --white: #ffffff;
-      --soft: rgba(255,255,255,0.80);
-      --muted: rgba(255,255,255,0.58);
-      --glass: rgba(255,255,255,0.10);
-      --border: rgba(255,255,255,0.15);
-      --pink: #ff5ea8;
-      --rose: #ff7ea8;
-      --purple: #9d74ff;
-      --shadow: 0 30px 80px rgba(0,0,0,0.45);
-    }
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet"
+    >
 
-    body {
-      min-height: 100vh;
-      overflow: hidden;
-      color: var(--white);
-      font-family: "Inter", sans-serif;
-      background: #08070c;
-      position: relative;
-    }
+    <style>
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -3;
-      background:
-        linear-gradient(135deg, rgba(8,8,14,0.88), rgba(28,7,19,0.72), rgba(7,7,11,0.90)),
-        url("https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80");
-      background-size: cover;
-      background-position: center;
-      transform: scale(1.05);
-      filter: saturate(1.05);
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(255, 94, 168, 0.20), transparent 28%),
-        radial-gradient(circle at 85% 75%, rgba(157, 116, 255, 0.22), transparent 30%),
-        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.04), transparent 40%);
-    }
+        :root {
+            --white: #ffffff;
+            --soft-white: rgba(255,255,255,.78);
+            --muted: rgba(255,255,255,.48);
 
-    #bgRoses {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 0;
-    }
+            --rose: #ff477e;
+            --rose-light: #ff85a7;
+            --wine: #720026;
+            --purple: #8c52ff;
 
-    .bg-rose {
-      position: absolute;
-      opacity: 0.16;
-      filter: blur(0.3px);
-      animation: drift var(--d) ease-in-out infinite alternate;
-      user-select: none;
-    }
+            --glass: rgba(255,255,255,.075);
+            --border: rgba(255,255,255,.13);
+        }
 
-    .app {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      position: relative;
-      z-index: 2;
-    }
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
 
-    .shell {
-      width: min(92vw, 470px);
-      position: relative;
-    }
+        body {
+            min-height: 100vh;
 
-    .music-toggle {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      z-index: 30;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.09);
-      color: #fff;
-      padding: 10px 14px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 600;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: 0.25s ease;
-    }
+            font-family: "DM Sans", sans-serif;
 
-    .music-toggle:hover {
-      transform: translateY(-2px);
-      background: rgba(255,255,255,0.15);
-    }
+            color: white;
 
-    .card {
-      min-height: 690px;
-      border-radius: 34px;
-      padding: 22px;
-      background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
-      border: 1px solid var(--border);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      position: relative;
-    }
+            background:
+                radial-gradient(
+                    circle at 15% 10%,
+                    rgba(150,0,55,.40),
+                    transparent 32%
+                ),
 
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.08) 40%, transparent 72%);
-      transform: translateX(-120%);
-      animation: sheen 7s infinite;
-      pointer-events: none;
-    }
+                radial-gradient(
+                    circle at 90% 85%,
+                    rgba(99,43,180,.24),
+                    transparent 35%
+                ),
 
-    .top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
-      position: relative;
-      z-index: 2;
-    }
+                linear-gradient(
+                    145deg,
+                    #080509,
+                    #12070d 45%,
+                    #060507
+                );
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.72);
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.10);
-      padding: 9px 12px;
-      border-radius: 999px;
-    }
+            overflow: hidden;
 
-    .step {
-      font-size: 12px;
-      color: rgba(255,255,255,0.46);
-      font-weight: 600;
-    }
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .progress {
-      width: 100%;
-      height: 4px;
-      border-radius: 999px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.08);
-      margin-bottom: 14px;
-    }
 
-    .progress span {
-      display: block;
-      height: 100%;
-      width: 25%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--pink), var(--purple));
-      transition: width 0.55s ease;
-    }
+        /* =========================
+           ARKA PLAN IŞIKLARI
+        ========================== */
 
-    .stage {
-      min-height: 585px;
-      position: relative;
-    }
+        .ambient {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
 
-    .screen {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(26px) scale(0.97);
-      filter: blur(8px);
-      pointer-events: none;
-      transition: opacity 0.65s ease, transform 0.65s ease, filter 0.65s ease;
-      padding: 12px 4px;
-    }
+        .orb {
+            position: absolute;
 
-    .screen.active {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      filter: blur(0);
-      pointer-events: auto;
-    }
+            width: 420px;
+            height: 420px;
 
-    .mini-icon {
-      width: 82px;
-      height: 82px;
-      border-radius: 24px;
-      display: grid;
-      place-items: center;
-      font-size: 36px;
-      margin-bottom: 20px;
-      background: linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.07));
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 20px 45px rgba(0,0,0,0.18);
-      animation: floaty 3.2s ease-in-out infinite;
-    }
+            border-radius: 50%;
 
-    .eyebrow {
-      font-size: 12px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.58);
-      margin-bottom: 14px;
-    }
+            filter: blur(110px);
 
-    .title {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(56px, 13vw, 82px);
-      line-height: 0.95;
-      margin-bottom: 14px;
-      font-weight: 700;
-      letter-spacing: -1.5px;
-      background: linear-gradient(90deg, #fff, #ffd7e9, #fff);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
+            opacity: .27;
+        }
 
-    .subtitle {
-      font-size: clamp(28px, 7vw, 40px);
-      line-height: 1.15;
-      font-weight: 700;
-      letter-spacing: -1.2px;
-      margin-bottom: 16px;
-      max-width: 360px;
-    }
+        .orb.one {
+            background: #b30048;
 
-    .text {
-      max-width: 350px;
-      font-size: 16px;
-      line-height: 1.8;
-      color: var(--soft);
-      margin-bottom: 26px;
-    }
+            left: -180px;
+            top: -160px;
 
-    .photo-wrap {
-      width: 100%;
-      max-width: 320px;
-      padding: 12px;
-      border-radius: 28px;
-      background: linear-gradient(145deg, rgba(255,255,255,0.16), rgba(255,255,255,0.07));
-      border: 1px solid rgba(255,255,255,0.14);
-      box-shadow: 0 22px 55px rgba(0,0,0,0.25);
-      margin-bottom: 18px;
-      transform: rotate(-2deg);
-    }
+            animation: orbMove1 12s ease-in-out infinite alternate;
+        }
 
-    .photo-wrap img {
-      width: 100%;
-      display: block;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-      border-radius: 20px;
-    }
+        .orb.two {
+            background: #702fff;
 
-    .photo-caption {
-      padding: 12px 10px 4px;
-      font-size: 14px;
-      color: rgba(255,255,255,0.76);
-      text-align: center;
-    }
+            right: -190px;
+            bottom: -170px;
 
-    .btn {
-      border: none;
-      outline: none;
-      cursor: pointer;
-      min-width: 190px;
-      padding: 15px 28px;
-      border-radius: 999px;
-      color: #fff;
-      font-size: 15px;
-      font-weight: 700;
-      background: linear-gradient(135deg, #ff5ea8, #9d74ff);
-      box-shadow: 0 16px 40px rgba(255, 94, 168, 0.28);
-      transition: 0.25s ease;
-    }
+            animation: orbMove2 14s ease-in-out infinite alternate;
+        }
 
-    .btn:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 18px 46px rgba(255, 94, 168, 0.38);
-    }
 
-    .btn:active {
-      transform: scale(0.97);
-    }
+        /* =========================
+           ARKA PLAN GÜLLER
+        ========================== */
 
-    .final-name {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(48px, 11vw, 70px);
-      margin-bottom: 8px;
-      background: linear-gradient(90deg, #fff, #ffbfdc, #d6c6ff, #fff);
-      background-size: 220%;
-      -webkit-background-clip: text;
-      color: transparent;
-      animation: gradientFlow 5s linear infinite;
-    }
+        #roseBackground {
+            position: fixed;
 
-    .quote {
-      max-width: 350px;
-      min-height: 82px;
-      margin: 4px 0 16px;
-      color: #ffffff;
-      font-size: 17px;
-      line-height: 1.7;
-      font-weight: 500;
-    }
+            inset: 0;
 
-    .soft-end {
-      max-width: 350px;
-      color: rgba(255,255,255,0.82);
-      line-height: 1.8;
-      font-size: 15px;
-    }
+            overflow: hidden;
 
-    .burst {
-      position: fixed;
-      z-index: 999;
-      pointer-events: none;
-      user-select: none;
-      animation: burstUp 2.4s ease-out forwards;
-      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.22));
-    }
+            pointer-events: none;
 
-    .spark {
-      position: fixed;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.92);
-      box-shadow: 0 0 14px rgba(255,255,255,0.88);
-      z-index: 998;
-      pointer-events: none;
-      animation: sparkFly 1.7s ease-out forwards;
-    }
+            z-index: 0;
+        }
 
-    @keyframes burstUp {
-      0% {
-        opacity: 0;
-        transform: translate(0, 0) scale(0.3) rotate(0deg);
-      }
-      15% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-        transform: translate(var(--x), var(--y)) scale(1.18) rotate(var(--r));
-      }
-    }
+        .background-rose {
+            position: absolute;
 
-    @keyframes sparkFly {
-      0% {
-        opacity: 1;
-        transform: scale(0.2);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(var(--sx), var(--sy)) scale(1.6);
-      }
-    }
+            opacity: .08;
 
-    @keyframes floaty {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-8px);
-      }
-    }
+            filter: blur(.2px);
 
-    @keyframes sheen {
-      0%, 65% {
-        transform: translateX(-120%);
-      }
-      100% {
-        transform: translateX(120%);
-      }
-    }
+            animation:
+                backgroundRoseMove
+                var(--duration)
+                ease-in-out
+                infinite alternate;
+        }
 
-    @keyframes gradientFlow {
-      to {
-        background-position: 220%;
-      }
-    }
 
-    @keyframes drift {
-      from {
-        transform: translateY(0px) rotate(-8deg);
-      }
-      to {
-        transform: translateY(-18px) rotate(8deg);
-      }
-    }
+        /* =========================
+           ANA ALAN
+        ========================== */
 
-    @media (max-width: 520px) {
-      .card {
-        min-height: 660px;
-        border-radius: 28px;
-        padding: 18px;
-      }
+        .app {
+            width: 100%;
+            min-height: 100vh;
 
-      .stage {
-        min-height: 560px;
-      }
+            padding: 20px;
 
-      .music-toggle {
-        top: 10px;
-        right: 10px;
-        padding: 9px 12px;
-        font-size: 12px;
-      }
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-      .text {
-        font-size: 15px;
-      }
+            position: relative;
 
-      .btn {
-        min-width: 170px;
-      }
-    }
-  </style>
+            z-index: 5;
+        }
+
+        .container {
+            width: min(94vw, 465px);
+
+            position: relative;
+        }
+
+
+        /* =========================
+           KART
+        ========================== */
+
+        .card {
+
+            width: 100%;
+
+            height: min(760px, 91vh);
+
+            min-height: 620px;
+
+            position: relative;
+
+            border-radius: 36px;
+
+            overflow: hidden;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.11),
+                    rgba(255,255,255,.035)
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,.13);
+
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+
+            box-shadow:
+
+                0 40px 100px
+                rgba(0,0,0,.50),
+
+                inset 0 1px 0
+                rgba(255,255,255,.10);
+
+            padding: 25px;
+        }
+
+
+        .card::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+
+                linear-gradient(
+                    115deg,
+                    transparent 20%,
+                    rgba(255,255,255,.055) 46%,
+                    transparent 70%
+                );
+
+            transform: translateX(-140%);
+
+            animation: shine 7s infinite;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           ÜST BÖLÜM
+        ========================== */
+
+        .header {
+
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            position: relative;
+
+            z-index: 20;
+        }
+
+        .label {
+
+            font-size: 10px;
+
+            letter-spacing: 2.8px;
+
+            text-transform: uppercase;
+
+            color: rgba(255,255,255,.62);
+        }
+
+        .counter {
+
+            font-size: 11px;
+
+            color: rgba(255,255,255,.38);
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================
+           İLERLEME
+        ========================== */
+
+        .progress {
+
+            margin-top: 17px;
+
+            height: 3px;
+
+            width: 100%;
+
+            background: rgba(255,255,255,.07);
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            z-index: 20;
+        }
+
+        .progress-line {
+
+            height: 100%;
+
+            width: 25%;
+
+            border-radius: inherit;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    #ff477e,
+                    #b76cff
+                );
+
+            box-shadow:
+
+                0 0 15px
+                rgba(255,71,126,.5);
+
+            transition: width .7s cubic-bezier(.2,.8,.2,1);
+        }
+
+
+        /* =========================
+           SAYFALAR
+        ========================== */
+
+        .screens {
+
+            position: relative;
+
+            height: calc(100% - 60px);
+        }
+
+        .screen {
+
+            position: absolute;
+
+            inset: 0;
+
+            padding: 20px 5px 5px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transform:
+                translateY(24px)
+                scale(.97);
+
+            filter: blur(9px);
+
+            transition:
+
+                opacity .7s ease,
+
+                transform .7s
+                cubic-bezier(.2,.8,.2,1),
+
+                filter .7s ease;
+        }
+
+
+        .screen.active {
+
+            opacity: 1;
+
+            pointer-events: auto;
+
+            transform:
+                translateY(0)
+                scale(1);
+
+            filter: blur(0);
+        }
+
+
+        /* =========================
+           İKON
+        ========================== */
+
+        .icon {
+
+            width: 78px;
+            height: 78px;
+
+            border-radius: 26px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            margin-bottom: 24px;
+
+            font-size: 35px;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.14),
+                    rgba(255,255,255,.045)
+                );
+
+            border:
+
+                1px solid
+                rgba(255,255,255,.10);
+
+            box-shadow:
+
+                0 20px 50px
+                rgba(0,0,0,.26);
+
+            animation:
+                iconFloat
+                3.5s ease-in-out
+                infinite;
+        }
+
+
+        /* =========================
+           YAZILAR
+        ========================== */
+
+        .mini {
+
+            text-transform: uppercase;
+
+            letter-spacing: 3.5px;
+
+            font-size: 10px;
+
+            color: rgba(255,255,255,.45);
+
+            margin-bottom: 15px;
+        }
+
+
+        .main-name {
+
+            font-family: "Playfair Display", serif;
+
+            font-size:
+                clamp(60px, 15vw, 88px);
+
+            line-height: .95;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 18px;
+
+            background:
+
+                linear-gradient(
+                    100deg,
+                    #ffffff,
+                    #ffc4d8,
+                    #ffffff
+                );
+
+            background-size: 220%;
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            animation:
+                textGlow
+                5s linear infinite;
+        }
+
+
+        .heading {
+
+            max-width: 370px;
+
+            font-family: "Playfair Display", serif;
+
+            font-size:
+                clamp(30px, 7vw, 41px);
+
+            line-height: 1.12;
+
+            letter-spacing: -.9px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .text {
+
+            max-width: 350px;
+
+            font-size: 15.5px;
+
+            line-height: 1.85;
+
+            color: var(--soft-white);
+
+            margin-bottom: 28px;
+        }
+
+
+        .strong {
+
+            color: #fff;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           BUTON
+        ========================== */
+
+        .button {
+
+            min-width: 190px;
+
+            padding: 15px 29px;
+
+            border: 0;
+
+            border-radius: 100px;
+
+            cursor: pointer;
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            letter-spacing: .2px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #f6437c,
+                    #9f67ff
+                );
+
+            box-shadow:
+
+                0 15px 40px
+                rgba(223,52,129,.30),
+
+                inset 0 1px 0
+                rgba(255,255,255,.25);
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+        }
+
+
+        .button:hover {
+
+            transform:
+                translateY(-3px)
+                scale(1.02);
+
+            box-shadow:
+
+                0 20px 48px
+                rgba(223,52,129,.40);
+        }
+
+
+        .button:active {
+
+            transform:
+                scale(.96);
+        }
+
+
+        /* =========================
+           FOTOĞRAF
+        ========================== */
+
+        .photo-box {
+
+            width: min(100%, 310px);
+
+            position: relative;
+
+            margin-bottom: 23px;
+
+            padding: 8px;
+
+            border-radius: 30px;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.18),
+                    rgba(255,255,255,.045)
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            box-shadow:
+
+                0 30px 65px
+                rgba(0,0,0,.34);
+
+            transform: rotate(-1.5deg);
+
+            animation:
+                photoFloat
+                4.5s ease-in-out
+                infinite;
+        }
+
+
+        .photo-box::after {
+
+            content: "🌹";
+
+            position: absolute;
+
+            right: -13px;
+            bottom: -17px;
+
+            font-size: 50px;
+
+            transform: rotate(15deg);
+
+            filter:
+
+                drop-shadow(
+                    0 9px 9px
+                    rgba(0,0,0,.32)
+                );
+        }
+
+
+        .photo {
+
+            width: 100%;
+
+            height: 330px;
+
+            object-fit: cover;
+
+            display: block;
+
+            border-radius: 23px;
+        }
+
+
+        .photo-info {
+
+            padding:
+                13px 8px 7px;
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-style: italic;
+
+            color:
+                rgba(255,255,255,.76);
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           FINAL
+        ========================== */
+
+        .final-name {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size:
+                clamp(57px, 14vw, 82px);
+
+            margin-bottom: 16px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    #fff,
+                    #ffbfd5,
+                    #c5adff,
+                    #fff
+                );
+
+            background-size: 250%;
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            animation:
+                textGlow
+                5s linear infinite;
+        }
+
+
+        .final-line {
+
+            width: 75px;
+
+            height: 1px;
+
+            margin:
+                4px auto
+                22px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #ff94b6,
+                    transparent
+                );
+        }
+
+
+        .final-message {
+
+            max-width: 350px;
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size: 20px;
+
+            line-height: 1.65;
+
+            color: rgba(255,255,255,.92);
+
+            min-height: 100px;
+
+            margin-bottom: 17px;
+        }
+
+
+        /* =========================
+           MÜZİK
+        ========================== */
+
+        .music {
+
+            position: absolute;
+
+            top: 78px;
+            right: 16px;
+
+            z-index: 80;
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            border:
+
+                1px solid
+                rgba(255,255,255,.13);
+
+            background:
+                rgba(0,0,0,.16);
+
+            backdrop-filter: blur(14px);
+
+            color: white;
+
+            cursor: pointer;
+
+            display: grid;
+
+            place-items: center;
+
+            font-size: 16px;
+
+            transition: .25s;
+        }
+
+
+        .music.playing {
+
+            animation:
+                musicPulse
+                1.8s ease-in-out
+                infinite;
+        }
+
+
+        /* =========================
+           EMOJİ PATLAMASI
+        ========================== */
+
+        .burst {
+
+            position: fixed;
+
+            z-index: 500;
+
+            pointer-events: none;
+
+            user-select: none;
+
+            filter:
+
+                drop-shadow(
+                    0 7px 10px
+                    rgba(0,0,0,.20)
+                );
+
+            animation:
+                burstAnimation
+                2.7s
+                cubic-bezier(.15,.75,.25,1)
+                forwards;
+        }
+
+
+        .spark {
+
+            position: fixed;
+
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            z-index: 490;
+
+            pointer-events: none;
+
+            background: white;
+
+            box-shadow:
+                0 0 12px white;
+
+            animation:
+                sparkAnimation
+                1.7s ease-out
+                forwards;
+        }
+
+
+        /* =========================
+           ANİMASYONLAR
+        ========================== */
+
+        @keyframes orbMove1 {
+
+            to {
+
+                transform:
+                    translate(
+                        100px,
+                        90px
+                    )
+                    scale(1.15);
+            }
+        }
+
+
+        @keyframes orbMove2 {
+
+            to {
+
+                transform:
+                    translate(
+                        -70px,
+                        -100px
+                    )
+                    scale(1.18);
+            }
+        }
+
+
+        @keyframes backgroundRoseMove {
+
+            from {
+
+                transform:
+                    translateY(0)
+                    rotate(-10deg)
+                    scale(1);
+            }
+
+            to {
+
+                transform:
+                    translateY(-35px)
+                    rotate(12deg)
+                    scale(1.10);
+            }
+        }
+
+
+        @keyframes shine {
+
+            0%,
+            68% {
+
+                transform:
+                    translateX(-140%);
+            }
+
+            100% {
+
+                transform:
+                    translateX(140%);
+            }
+        }
+
+
+        @keyframes iconFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+
+                transform:
+                    translateY(-8px);
+            }
+        }
+
+
+        @keyframes photoFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    rotate(-1.5deg)
+                    translateY(0);
+            }
+
+            50% {
+
+                transform:
+                    rotate(-.5deg)
+                    translateY(-7px);
+            }
+        }
+
+
+        @keyframes textGlow {
+
+            to {
+
+                background-position:
+                    250%;
+            }
+        }
+
+
+        @keyframes musicPulse {
+
+            0%,
+            100% {
+
+                box-shadow:
+
+                    0 0 0
+                    0
+                    rgba(255,71,126,.30);
+            }
+
+            50% {
+
+                box-shadow:
+
+                    0 0 0
+                    9px
+                    rgba(255,71,126,0);
+            }
+        }
+
+
+        @keyframes burstAnimation {
+
+            0% {
+
+                opacity: 0;
+
+                transform:
+
+                    translate(0,0)
+
+                    scale(.25)
+
+                    rotate(0deg);
+            }
+
+            13% {
+
+                opacity: 1;
+            }
+
+            100% {
+
+                opacity: 0;
+
+                transform:
+
+                    translate(
+                        var(--x),
+                        var(--y)
+                    )
+
+                    scale(1.3)
+
+                    rotate(
+                        var(--rotate)
+                    );
+            }
+        }
+
+
+        @keyframes sparkAnimation {
+
+            from {
+
+                opacity: 1;
+
+                transform:
+                    scale(.3);
+            }
+
+            to {
+
+                opacity: 0;
+
+                transform:
+
+                    translate(
+                        var(--sx),
+                        var(--sy)
+                    )
+
+                    scale(1.5);
+            }
+        }
+
+
+        /* =========================
+           TELEFON
+        ========================== */
+
+        @media
+        (max-height: 720px) {
+
+            .card {
+
+                min-height: 590px;
+
+                height: 94vh;
+            }
+
+            .photo {
+
+                height: 280px;
+            }
+
+            .main-name {
+
+                font-size: 60px;
+            }
+
+            .heading {
+
+                font-size: 29px;
+            }
+
+            .icon {
+
+                width: 65px;
+                height: 65px;
+
+                font-size: 29px;
+
+                margin-bottom: 15px;
+            }
+        }
+
+    </style>
 </head>
+
+
 <body>
 
-  <div id="bgRoses"></div>
 
-  <div class="app">
-    <div class="shell">
+<div class="ambient">
 
-      <button class="music-toggle" id="musicBtn" onclick="toggleMusic()">♫ Müziği Aç</button>
+    <div class="orb one"></div>
 
-      <div class="card">
-        <div class="top">
-          <div class="badge">Sadece Hava için</div>
-          <div class="step" id="stepText">01 / 04</div>
-        </div>
+    <div class="orb two"></div>
 
-        <div class="progress">
-          <span id="progressFill"></span>
-        </div>
+</div>
 
-        <div class="stage">
 
-          <!-- 1 -->
-          <section class="screen active" id="screen1">
-            <div class="mini-icon">🌹</div>
-            <div class="eyebrow">Küçük bir sürpriz</div>
-            <h1 class="title">Hava</h1>
-            <p class="text">
-              Sana sıradan bir mesaj bırakmak istemedim.
-              Biraz daha özenli, biraz daha akılda kalıcı
-              bir şey hazırlamak istedim.
-            </p>
-            <button class="btn" onclick="nextScreen(1, 'hearts')">Dokun</button>
-          </section>
+<div id="roseBackground"></div>
 
-          <!-- 2 -->
-          <section class="screen" id="screen2">
-            <div class="eyebrow">Bir kare</div>
 
-            <div class="photo-wrap">
-              <img src="foto.jpeg" alt="Fotoğraf">
-              <div class="photo-caption">Bazı anlar, kelimelerden daha güçlüdür.</div>
+<div class="app">
+
+    <div class="container">
+
+
+        <!-- MÜZİK -->
+
+        <button
+            class="music"
+            id="musicButton"
+            onclick="toggleMusic()"
+            title="Müzik">
+
+            ♪
+
+        </button>
+
+
+
+        <div class="card">
+
+
+            <div class="header">
+
+                <div class="label">
+
+                    Hava için
+
+                </div>
+
+
+                <div
+                    class="counter"
+                    id="counter">
+
+                    01 / 04
+
+                </div>
+
             </div>
 
-            <p class="text">
-              Bu sayfa sadece görünmek için değil,
-              biraz da hissedilmek için hazırlandı.
-            </p>
 
-            <button class="btn" onclick="nextScreen(2, 'mix')">Devam et</button>
-          </section>
 
-          <!-- 3 -->
-          <section class="screen" id="screen3">
-            <div class="mini-icon">✨</div>
-            <div class="eyebrow">Kısa ama net</div>
-            <h2 class="subtitle">
-              Bazı insanlar dikkat çekmek için uğraşır.
-            </h2>
-            <p class="text">
-              Bazılarıysa hiçbir şey yapmasa bile fark edilir.
-              <br><br>
-              Sanırım sen o ikinci gruptasın.
-            </p>
-            <button class="btn" onclick="nextScreen(3, 'final')">Son bir şey</button>
-          </section>
+            <div class="progress">
 
-          <!-- 4 -->
-          <section class="screen" id="screen4">
-            <div class="mini-icon">❤️</div>
-            <div class="eyebrow">Final</div>
-            <h2 class="subtitle final-name">Hava</h2>
+                <div
+                    class="progress-line"
+                    id="progress">
 
-            <p class="text" style="margin-bottom: 8px;">
-              Bunu hazırlamamın sebebi seni ikna etmeye çalışmak değil.
-            </p>
+                </div>
 
-            <p class="quote" id="typeTarget"></p>
+            </div>
 
-            <p class="soft-end">
-              Eğer sonunda içinden küçücük bir
-              <strong>“vay be”</strong> geçtiyse,
-              tam istediğim şey buydu.
-            </p>
-          </section>
+
+
+            <div class="screens">
+
+
+                <!-- =======================
+                     SAYFA 1
+                ======================== -->
+
+                <section
+                    class="screen active"
+                    id="screen1">
+
+
+                    <div class="icon">
+
+                        🌹
+
+                    </div>
+
+
+                    <div class="mini">
+
+                        sana küçük bir şey
+
+                    </div>
+
+
+                    <h1 class="main-name">
+
+                        Hava.
+
+                    </h1>
+
+
+                    <p class="text">
+
+                        Sana sadece mesaj yazmak
+                        fazla sıradan geldi.
+
+                        <br><br>
+
+                        O yüzden birkaç dakikanı
+                        biraz daha
+
+                        <span class="strong">
+
+                            özel
+
+                        </span>
+
+                        hale getirmek istedim.
+
+                    </p>
+
+
+                    <button
+                        class="button"
+                        onclick="nextPage(1)">
+
+                        Başlayalım
+
+                    </button>
+
+
+                </section>
+
+
+
+
+                <!-- =======================
+                     SAYFA 2
+                ======================== -->
+
+                <section
+                    class="screen"
+                    id="screen2">
+
+
+                    <div class="photo-box">
+
+                        <img
+                            src="foto.jpg"
+                            class="photo"
+                            alt="Fotoğraf"
+                        >
+
+
+                        <div class="photo-info">
+
+                            Bazı kareler
+                            sadece fotoğraf değildir.
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="button"
+                        onclick="nextPage(2)">
+
+                        Devam et
+
+                    </button>
+
+
+                </section>
+
+
+
+
+                <!-- =======================
+                     SAYFA 3
+                ======================== -->
+
+                <section
+                    class="screen"
+                    id="screen3">
+
+
+                    <div class="icon">
+
+                        ✦
+
+                    </div>
+
+
+                    <div class="mini">
+
+                        bunu söylemeden geçmek istemedim
+
+                    </div>
+
+
+                    <h2 class="heading">
+
+                        Bazı insanlar
+                        dikkat çekmeye çalışır.
+
+                    </h2>
+
+
+                    <p class="text">
+
+                        Bazılarıysa
+                        bunun için hiçbir şey yapmaz.
+
+                        <br><br>
+
+                        Yine de fark edilir.
+
+                        <br><br>
+
+                        <span class="strong">
+
+                            Senin gibi.
+
+                        </span>
+
+                    </p>
+
+
+                    <button
+                        class="button"
+                        onclick="nextPage(3)">
+
+                        Son bir şey
+
+                    </button>
+
+
+                </section>
+
+
+
+
+                <!-- =======================
+                     SAYFA 4
+                ======================== -->
+
+                <section
+                    class="screen"
+                    id="screen4">
+
+
+                    <div class="mini">
+
+                        sadece sana
+
+                    </div>
+
+
+                    <div class="final-name">
+
+                        Hava
+
+                    </div>
+
+
+                    <div class="final-line"></div>
+
+
+                    <div
+                        class="final-message"
+                        id="finalMessage">
+
+                    </div>
+
+
+                    <p class="text">
+
+                        Eğer buraya kadar gelip
+                        içinden küçücük de olsa
+
+                        <span class="strong">
+
+                            “vay be...”
+
+                        </span>
+
+                        dediysen,
+
+                        <br>
+
+                        bu sayfa tam olarak
+                        yapması gerekeni yaptı.
+
+                    </p>
+
+
+                    <div
+                        style="
+                        font-size:31px;
+                        margin-top:3px;">
+
+                        🌹
+
+                    </div>
+
+
+                </section>
+
+
+            </div>
+
 
         </div>
-      </div>
+
     </div>
-  </div>
 
-  <audio id="bgMusic" loop>
-    <source src="muzik.mp3" type="audio/mpeg">
-  </audio>
+</div>
 
-  <script>
-    const finalMessage =
-      "Sadece aklımda kaldığını, sıradan bir mesajdan biraz daha farklı bir şekilde göstermek istedim.";
 
-    let typed = false;
 
-    function nextScreen(current, effectType) {
-      startMusic();
-      runEffect(effectType);
+<!-- ===========================
+     MÜZİK
+============================ -->
 
-      document.getElementById("screen" + current).classList.remove("active");
-      const next = current + 1;
+<audio
+    id="backgroundMusic"
+    autoplay
+    playsinline
+    preload="auto"
+    loop>
 
-      setTimeout(() => {
-        document.getElementById("screen" + next).classList.add("active");
-        document.getElementById("stepText").textContent = "0" + next + " / 04";
-        document.getElementById("progressFill").style.width = (next * 25) + "%";
+    <source
+        src="muzik.mp3"
+        type="audio/mpeg"
+    >
 
-        if (next === 4 && !typed) {
-          typeWriter("typeTarget", finalMessage, 34);
-          typed = true;
+</audio>
+
+
+
+<script>
+
+
+    /* ===========================
+       MÜZİK
+    ============================ */
+
+
+    const music =
+        document.getElementById(
+            "backgroundMusic"
+        );
+
+
+    const musicButton =
+        document.getElementById(
+            "musicButton"
+        );
+
+
+    music.volume = 0.42;
+
+
+    async function tryAutoplay() {
+
+        try {
+
+            await music.play();
+
+            musicButton.classList.add(
+                "playing"
+            );
+
+            musicButton.innerHTML = "♫";
+
         }
-      }, 320);
-    }
 
-    function runEffect(type) {
-      if (type === "hearts") {
-        spawnBurst(["❤️", "💖", "💕", "💗", "✨"], 24);
-      }
+        catch (error) {
 
-      if (type === "mix") {
-        spawnBurst(["❤️", "💖", "💕", "🌹", "🌹", "✨"], 34);
-        spawnSparkles(18);
-      }
+            /*
+              Telefon / Chrome / Safari
+              sesli autoplay'i engellerse
+              ilk kullanıcı dokunuşunda
+              müzik başlatılır.
+            */
 
-      if (type === "final") {
-        spawnBurst(["❤️", "💖", "💕", "🌹", "🌹", "✨", "💫"], 46);
-        spawnSparkles(28);
-      }
-    }
-
-    function spawnBurst(items, count) {
-      for (let i = 0; i < count; i++) {
-        setTimeout(() => {
-          const el = document.createElement("div");
-          el.className = "burst";
-          el.textContent = items[Math.floor(Math.random() * items.length)];
-
-          el.style.left = (10 + Math.random() * 80) + "vw";
-          el.style.top = (60 + Math.random() * 24) + "vh";
-          el.style.fontSize = (18 + Math.random() * 24) + "px";
-
-          el.style.setProperty("--x", (-140 + Math.random() * 280) + "px");
-          el.style.setProperty("--y", (-180 - Math.random() * 200) + "px");
-          el.style.setProperty("--r", (-90 + Math.random() * 180) + "deg");
-
-          document.body.appendChild(el);
-
-          setTimeout(() => {
-            el.remove();
-          }, 2500);
-        }, i * 42);
-      }
-    }
-
-    function spawnSparkles(count) {
-      for (let i = 0; i < count; i++) {
-        const spark = document.createElement("div");
-        spark.className = "spark";
-
-        spark.style.left = (32 + Math.random() * 36) + "vw";
-        spark.style.top = (35 + Math.random() * 32) + "vh";
-        spark.style.setProperty("--sx", (-170 + Math.random() * 340) + "px");
-        spark.style.setProperty("--sy", (-150 + Math.random() * 260) + "px");
-
-        document.body.appendChild(spark);
-
-        setTimeout(() => {
-          spark.remove();
-        }, 1800);
-      }
-    }
-
-    function typeWriter(id, text, speed) {
-      const target = document.getElementById(id);
-      let i = 0;
-      target.textContent = "";
-
-      const timer = setInterval(() => {
-        target.textContent += text.charAt(i);
-        i++;
-
-        if (i >= text.length) {
-          clearInterval(timer);
         }
-      }, speed);
+
     }
 
-    function createBgRoses() {
-      const layer = document.getElementById("bgRoses");
 
-      for (let i = 0; i < 18; i++) {
-        const rose = document.createElement("span");
-        rose.className = "bg-rose";
-        rose.textContent = "🌹";
+    window.addEventListener(
+        "load",
+        () => {
 
-        rose.style.left = (Math.random() * 100) + "vw";
-        rose.style.top = (Math.random() * 100) + "vh";
-        rose.style.fontSize = (22 + Math.random() * 34) + "px";
-        rose.style.opacity = (0.08 + Math.random() * 0.16);
-        rose.style.setProperty("--d", (6 + Math.random() * 8) + "s");
-        rose.style.animationDelay = (-Math.random() * 10) + "s";
+            setTimeout(
+                tryAutoplay,
+                350
+            );
 
-        layer.appendChild(rose);
-      }
+        }
+    );
+
+
+    async function startMusicAfterTouch() {
+
+        if (music.paused) {
+
+            try {
+
+                await music.play();
+
+                musicButton.classList.add(
+                    "playing"
+                );
+
+                musicButton.innerHTML = "♫";
+
+            }
+
+            catch (e) {}
+
+        }
+
     }
 
-    function startMusic() {
-      const music = document.getElementById("bgMusic");
-      const btn = document.getElementById("musicBtn");
 
-      if (music.paused) {
-        music.play()
-          .then(() => {
-            btn.textContent = "♫ Müziği Kapat";
-          })
-          .catch(() => {
-            btn.textContent = "♫ Müziği Aç";
-          });
-      }
-    }
+    document.addEventListener(
+
+        "pointerdown",
+
+        startMusicAfterTouch,
+
+        {
+            once: true
+        }
+
+    );
+
 
     function toggleMusic() {
-      const music = document.getElementById("bgMusic");
-      const btn = document.getElementById("musicBtn");
 
-      if (music.paused) {
-        music.play()
-          .then(() => {
-            btn.textContent = "♫ Müziği Kapat";
-          })
-          .catch(() => {
-            btn.textContent = "Tarayıcı engelledi";
-          });
-      } else {
-        music.pause();
-        btn.textContent = "♫ Müziği Aç";
-      }
+        if (music.paused) {
+
+            music.play();
+
+            musicButton.classList.add(
+                "playing"
+            );
+
+            musicButton.innerHTML = "♫";
+
+        }
+
+        else {
+
+            music.pause();
+
+            musicButton.classList.remove(
+                "playing"
+            );
+
+            musicButton.innerHTML = "♪";
+
+        }
+
     }
 
-    createBgRoses();
-  </script>
+
+
+    /* ===========================
+       SAYFA GEÇİŞİ
+    ============================ */
+
+
+    function nextPage(page) {
+
+
+        startMusicAfterTouch();
+
+
+        /*
+          1. BUTON
+          Kalpler
+        */
+
+        if (page === 1) {
+
+            emojiExplosion(
+
+                [
+                    "❤️",
+                    "💗",
+                    "💕",
+                    "💖",
+                    "🩷"
+                ],
+
+                28
+
+            );
+
+        }
+
+
+        /*
+          2. BUTON
+          Kalp + Gül
+        */
+
+        if (page === 2) {
+
+            emojiExplosion(
+
+                [
+                    "❤️",
+                    "💗",
+                    "🌹",
+                    "🌹",
+                    "💕",
+                    "🩷",
+                    "🌹"
+                ],
+
+                40
+
+            );
+
+            sparkles(22);
+
+        }
+
+
+        /*
+          3. BUTON
+          Final
+        */
+
+        if (page === 3) {
+
+            emojiExplosion(
+
+                [
+                    "❤️",
+                    "💗",
+                    "💕",
+                    "💖",
+                    "🌹",
+                    "🌹",
+                    "✨",
+                    "🩷",
+                    "🌹"
+                ],
+
+                55
+
+            );
+
+            sparkles(32);
+
+        }
+
+
+
+        const oldScreen =
+
+            document.getElementById(
+                "screen" + page
+            );
+
+
+        const next = page + 1;
+
+
+        oldScreen.classList.remove(
+            "active"
+        );
+
+
+        setTimeout(
+            () => {
+
+
+                document
+                    .getElementById(
+                        "screen" + next
+                    )
+                    .classList.add(
+                        "active"
+                    );
+
+
+                document
+                    .getElementById(
+                        "counter"
+                    )
+                    .innerText =
+
+                    "0" + next + " / 04";
+
+
+                document
+                    .getElementById(
+                        "progress"
+                    )
+                    .style.width =
+
+                    (
+                        next * 25
+                    )
+                    + "%";
+
+
+                if (next === 4) {
+
+                    typeFinalText();
+
+                }
+
+
+            },
+
+            400
+
+        );
+
+    }
+
+
+
+    /* ===========================
+       EMOJİLER
+    ============================ */
+
+
+    function emojiExplosion(
+        items,
+        count
+    ) {
+
+
+        for (
+            let i = 0;
+            i < count;
+            i++
+        ) {
+
+
+            setTimeout(
+                () => {
+
+
+                    const emoji =
+
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    emoji.className =
+                        "burst";
+
+
+                    emoji.innerText =
+
+                        items[
+                            Math.floor(
+                                Math.random()
+                                *
+                                items.length
+                            )
+                        ];
+
+
+                    emoji.style.left =
+
+                        (
+                            8
+                            +
+                            Math.random() * 84
+                        )
+                        + "vw";
+
+
+                    emoji.style.top =
+
+                        (
+                            68
+                            +
+                            Math.random() * 20
+                        )
+                        + "vh";
+
+
+                    emoji.style.fontSize =
+
+                        (
+                            18
+                            +
+                            Math.random() * 27
+                        )
+                        + "px";
+
+
+                    emoji.style.setProperty(
+
+                        "--x",
+
+                        (
+                            -150
+                            +
+                            Math.random()
+                            * 300
+                        )
+                        + "px"
+
+                    );
+
+
+                    emoji.style.setProperty(
+
+                        "--y",
+
+                        (
+                            -240
+                            -
+                            Math.random()
+                            * 260
+                        )
+                        + "px"
+
+                    );
+
+
+                    emoji.style.setProperty(
+
+                        "--rotate",
+
+                        (
+                            -100
+                            +
+                            Math.random()
+                            * 200
+                        )
+                        + "deg"
+
+                    );
+
+
+                    document.body
+                        .appendChild(
+                            emoji
+                        );
+
+
+                    setTimeout(
+                        () => {
+
+                            emoji.remove();
+
+                        },
+
+                        2800
+                    );
+
+
+                },
+
+                i * 37
+            );
+
+        }
+
+    }
+
+
+
+    /* ===========================
+       PARILTILAR
+    ============================ */
+
+
+    function sparkles(count) {
+
+
+        for (
+            let i = 0;
+            i < count;
+            i++
+        ) {
+
+
+            const spark =
+
+                document.createElement(
+                    "span"
+                );
+
+
+            spark.className =
+                "spark";
+
+
+            spark.style.left =
+
+                (
+                    30
+                    +
+                    Math.random() * 40
+                )
+                + "vw";
+
+
+            spark.style.top =
+
+                (
+                    40
+                    +
+                    Math.random() * 25
+                )
+                + "vh";
+
+
+            spark.style.setProperty(
+
+                "--sx",
+
+                (
+                    -180
+                    +
+                    Math.random() * 360
+                )
+                + "px"
+
+            );
+
+
+            spark.style.setProperty(
+
+                "--sy",
+
+                (
+                    -180
+                    +
+                    Math.random() * 300
+                )
+                + "px"
+
+            );
+
+
+            document.body
+                .appendChild(
+                    spark
+                );
+
+
+            setTimeout(
+                () => {
+
+                    spark.remove();
+
+                },
+
+                1800
+            );
+
+        }
+
+    }
+
+
+
+    /* ===========================
+       ARKA PLAN GÜLLER
+    ============================ */
+
+
+    function createBackgroundRoses() {
+
+
+        const area =
+
+            document.getElementById(
+                "roseBackground"
+            );
+
+
+        for (
+            let i = 0;
+            i < 24;
+            i++
+        ) {
+
+
+            const rose =
+
+                document.createElement(
+                    "div"
+                );
+
+
+            rose.className =
+                "background-rose";
+
+
+            rose.innerText =
+                "🌹";
+
+
+            rose.style.left =
+
+                Math.random()
+                * 100
+                + "vw";
+
+
+            rose.style.top =
+
+                Math.random()
+                * 100
+                + "vh";
+
+
+            rose.style.fontSize =
+
+                (
+                    25
+                    +
+                    Math.random()
+                    * 48
+                )
+                + "px";
+
+
+            rose.style.setProperty(
+
+                "--duration",
+
+                (
+                    7
+                    +
+                    Math.random()
+                    * 9
+                )
+                + "s"
+
+            );
+
+
+            rose.style.animationDelay =
+
+                (
+                    -Math.random()
+                    * 10
+                )
+                + "s";
+
+
+            area.appendChild(
+                rose
+            );
+
+        }
+
+    }
+
+
+
+    /* ===========================
+       FINAL YAZI
+    ============================ */
+
+
+    let finalTyped = false;
+
+
+    function typeFinalText() {
+
+
+        if (finalTyped) {
+
+            return;
+
+        }
+
+
+        finalTyped = true;
+
+
+        const text =
+
+            "Bazı insanlara sıradan bir mesaj yetmez. Çünkü bazı insanlar, farkında olmadan bile insanın aklında diğerlerinden biraz daha fazla kalır.";
+
+
+        const element =
+
+            document.getElementById(
+                "finalMessage"
+            );
+
+
+        element.innerHTML = "";
+
+
+        let index = 0;
+
+
+        const typing =
+
+            setInterval(
+                () => {
+
+
+                    element.innerHTML +=
+                        text.charAt(
+                            index
+                        );
+
+
+                    index++;
+
+
+                    if (
+                        index
+                        >=
+                        text.length
+                    ) {
+
+                        clearInterval(
+                            typing
+                        );
+
+                    }
+
+
+                },
+
+                32
+            );
+
+    }
+
+
+
+    createBackgroundRoses();
+
+
+</script>
+
+
 </body>
 </html>
